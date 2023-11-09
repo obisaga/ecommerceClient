@@ -1,0 +1,151 @@
+#root {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+  }
+  
+  .homepageContainer{
+width:inherit;
+  }
+
+.header-image{
+    width: 100%;
+    background-size: cover;
+}
+
+
+.collections{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .collections .collections-header{
+    border: solid thin  black;
+  }
+
+  .collections button{
+    border: none;
+    color: black;
+    background-color: antiquewhite;
+    border-radius: 10px;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    width: 250px;
+  }
+
+  .about-us{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background: gainsboro;
+    width:inherit;
+  }
+
+  .about-us .aboutus-text{
+    text-align: justify;
+    padding: 4em 4em;
+    width: 70%;
+  }
+
+  .about-image{
+    width: 30%;
+  }
+
+
+  .guarantees{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    gap: 0.1em;
+  }
+
+  .guarantees section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6em;
+    padding: 4em;
+  }
+
+  .info{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    gap: 0.1em;
+  }
+
+  .info .customer-service{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6em;
+    font-size: smaller;
+    width: 33%;
+  }
+
+  .info a{
+    text-decoration: none;
+    color: black;
+  }
+
+  .info .about{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6em;
+    font-size: smaller;
+    width: 33%;
+  }
+
+  .info .info-icons{
+    display:flex;
+    flex-direction: row;
+    gap: 0.7em;
+    padding-top: 2em;
+  }
+
+  .info .newsletter{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6em;
+    width: 33%;
+  }
+
+  .info .title{
+    font-weight: 400;
+    font-size: 1.2em;
+  }
+
+  .info .about .title{
+    padding-bottom: 1.5em;
+  }
+
+  .info .newsletter .title{
+    padding-bottom: 1.5em;
+  }
+
+  .info .newsletter .newstext{
+    font-size: 0.8em;
+    padding: 0.5em 0.8em;
+  }
+
+  .info .newsletter input{
+    text-align: center;
+    border-radius: 5px;
+  }
+
+  .info .newsletter button{
+    border-radius: 5px;
+    font-size: 0.6em;
+    padding: 3px 10px
+  }
+  
