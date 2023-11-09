@@ -1,12 +1,32 @@
-*{
-    
+#root{
+  padding: 0%;
 }
 
-.topNav {
-    width: inherit;
+/* div .topNav {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    align-items: center;
+} */
+
+.topnav-elements{
+  display: flex;
+  justify-content: space-around;
+  align-content: center;
+}
+
+.topnav-elements .social-media-icons i{
+  padding: 1em;
+  padding-top: 2em;
+}
+
+.logo{
+  height: 0.5em;
+  font-size: 2em;
+  padding-top: 0.5em;
+}
+
+.topnav-elements  .user-cart-icons i{
+padding: 1em;
+padding-top: 2em;
 }
 
 .bottomNav {
