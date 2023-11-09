@@ -37,8 +37,7 @@ color: black;
 .bottomNav {
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    
+    justify-content: center;  
 }
 
 .links a {
@@ -86,4 +85,9 @@ color: black;
   
   .dropdown:hover .dropbtn {
     background-color: none;
+  }
+
+ 
+  header{
+    background-size: cover;
   }
