@@ -59,11 +59,14 @@ const Navigation = () => {
         </section>
       </header>
       <section className="collections">
-        <span>COLLECTIONS</span>
+        <span className="collections-header">COLLECTIONS</span>
+        <br />
+        <span>CAROUSEL</span>
+        <br />
         <button>SHOP NOW</button>
       </section>
       <section className="about-us">
-        <p className="aboutus-text"></p>
+        <p className="aboutus-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
         <img
           src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1255/image-not-found.svg"
           alt="some image"
