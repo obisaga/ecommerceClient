@@ -15,18 +15,23 @@
 
 .topnav-elements .social-media-icons i{
   padding: 1em;
-  padding-top: 2em;
+  padding-top: 1.4em;
+  font-size: 1.2em;
+  color: black;
 }
 
 .logo{
-  height: 0.5em;
+  height: 0.2em;
   font-size: 2em;
   padding-top: 0.5em;
+  color: black,
 }
 
 .topnav-elements  .user-cart-icons i{
 padding: 1em;
-padding-top: 2em;
+padding-top: 1.4em;
+font-size: 1.2em;
+color: black;
 }
 
 .bottomNav {
@@ -39,6 +44,8 @@ padding-top: 2em;
 .links a {
     padding-left: 2rem;
     color: black;
+    font-size: small;
+    text-decoration: none;
 }
 
 .dropbtn {
