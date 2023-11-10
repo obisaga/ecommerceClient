@@ -6,7 +6,7 @@
   }
   
   .homepageContainer{
-width:inherit;
+    width:inherit;
   }
 
 .header-image{
@@ -15,14 +15,17 @@ width:inherit;
 }
 
 
-.collections{
+/* .collections{
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
+  } */
 
   .collections .collections-header{
     border: solid thin  black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .collections button{

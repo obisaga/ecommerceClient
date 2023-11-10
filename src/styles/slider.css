@@ -1,0 +1,42 @@
+.container{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 600px;
+    height: 400px;
+  }
+
+
+.pi-angle-left{
+    cursor: pointer;
+    opacity: 0.5;
+    width: 50px;
+    height: 50px;
+    background-color: #aca8a8;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+}
+
+.pi-angle-right{
+    cursor: pointer;
+    opacity: 0.5;
+    width: 50px;
+    height: 50px;
+    background-color: #aca8a8;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+}
+
+
+

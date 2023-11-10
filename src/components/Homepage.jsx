@@ -2,15 +2,12 @@ import React from "react";
 import Navigation from "../elements/Navigation";
 import Footer from "../elements/Footer";
 import CarouselElement from "../elements/CarouselElement";
+import Slider from "../elements/Slider";
 import "../styles/homepage.css"
 
 const Homepage = () => {
 
 
-
-
-
-  
   return (
     <div className="homepageContainer">
       <Navigation />
@@ -26,7 +23,7 @@ const Homepage = () => {
         </header>
         <section className="collections">
           <span className="collections-header">COLLECTIONS</span>
-          <CarouselElement />
+          <Slider />
           <button>SHOP NOW</button>
         </section>
         <section className="about-us">
