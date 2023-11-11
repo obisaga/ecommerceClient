@@ -1,3 +1,31 @@
+.collections{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .collections .collections-header{
+    border: solid thin  black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .collections button{
+    border: none;
+    color: black;
+    background-color: antiquewhite;
+    border-radius: 10px;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    width: 250px;
+  }
+
+
 .container{
     position: relative;
     display: flex;

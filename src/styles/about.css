@@ -1,0 +1,17 @@
+.about-us{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background: gainsboro;
+    width:inherit;
+  }
+
+  .about-us .aboutus-text{
+    text-align: justify;
+    padding: 4em 4em;
+    width: 70%;
+  }
+
+  .about-image{
+    width: 30%;
+  }
