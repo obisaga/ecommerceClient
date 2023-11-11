@@ -20,8 +20,8 @@ const Cart = () => {
       try {
         const response = await axios.post("http://localhost:3000/api/cart");
         console.log(response.data);
-  
         setCart(response.data);
+        
       } catch (err) {
         console.log(err);
       }

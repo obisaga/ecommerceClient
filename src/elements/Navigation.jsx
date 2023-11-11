@@ -16,17 +16,11 @@ const Navigation = () => {
               <i className="pi pi-facebook"></i>
             </NavLink>
             <NavLink to="/shop">
-              <i className="pi pi-search"></i>{" "}
+              <i className="pi pi-search"></i>
             </NavLink>
           </span>
           <span className="logo">
-            <NavLink
-              to="/home"
-              style={{ textDecoration: "none", color: "black" }}
-            >
-              {" "}
-              The Jewellery Shop{" "}
-            </NavLink>
+            <NavLink to="/home" style={{ textDecoration: "none", color: "black" }}>The Jewellery Shop</NavLink>
           </span>
           <span className="user-cart-icons">
             <NavLink to="/login">
@@ -43,9 +37,7 @@ const Navigation = () => {
         <div className="links">
           <NavLink to="/home">HOME</NavLink>
           <div className="dropdown">
-            <a href="" className="dropbtn">
-              SHOP
-            </a>
+            <NavLink to="/shop" className="dropbtn">SHOP</NavLink>
             <div className="dropdown-content">
               <NavLink to="/shop">RINGS</NavLink>
               <NavLink to="/shop">NECKLACES</NavLink>
