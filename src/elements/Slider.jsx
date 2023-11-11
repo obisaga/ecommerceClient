@@ -5,7 +5,8 @@ import "primeicons/primeicons.css";
 
 const Slider = () => {
   const [products, setProducts] = useState([]);
-  const [slide, setSlide] = useState(0);
+  const [index, setIndex] = useState(0);
+  const length = 3
 
   const fetchProducts = async () => {
     try {
@@ -22,11 +23,13 @@ const Slider = () => {
   }, []);
 
   const nextSlide = () => {
-    setSlide(slide > 0 ? slide - 1 : 2);
+    const newIndex = index + 1;
+    setIndex(newIndex >= length ? 0 : newIndex);
   };
 
   const prevSlide = () => {
-    setSlide(slide < 3 ? slide + 1 : 0);
+    const newIndex = index - 1;
+    setIndex(newIndex < 0 ? length - 1 : newIndex);
   };
 
   //   const responsive = {
@@ -55,7 +58,7 @@ const Slider = () => {
         {products.map((product, index) => {
           return (
             <>
-              <div className="container" key={index} slide={slide}>
+              <div className="carousel" key={index + 1} slide={index}>
                 <span className="pi pi-angle-left" onClick={prevSlide}></span>
                 <img src={product.image} alt="image" />
                 <p>{product.title}</p>

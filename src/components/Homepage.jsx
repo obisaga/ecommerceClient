@@ -14,7 +14,7 @@ const Homepage = () => {
     <div className="homepageContainer">
       <Navigation />
       <Header />
-      {/* <Slider /> */}
+      <Slider />
       <About />
       <Guarantees />
       <Info />
