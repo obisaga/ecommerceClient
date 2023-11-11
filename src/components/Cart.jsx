@@ -7,20 +7,12 @@ import "../styles/cart.css"
 
 const Cart = () => {
     const [product, setProduct] = useState([]);
-    const [cart, setCart] = useState({
-        products: [
-            {
-              productId: product.id,
-              quantity: product.availabiliy,
-            },
-          ]
-    })
+    const [cart, setCart] = useState({})
 
-    const addProduct = async () => {
+    const fetchCart = async () => {
       try {
-        const response = await axios.post("http://localhost:3000/api/cart");
+        const response = await axios.get(`http://localhost:3000/api/cart/${id}`);
         console.log(response.data);
-  
         setCart(response.data);
       } catch (err) {
         console.log(err);
@@ -28,7 +20,7 @@ const Cart = () => {
     };
   
     useEffect(() => {
-      addProduct();
+      fetchCart();
     }, []);
   return (
     <>
