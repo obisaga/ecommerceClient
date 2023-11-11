@@ -1,0 +1,28 @@
+.cardContainer{
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+
+    display: grid ;
+    gap: 2rem;
+    grid-template-columns: repeat(4, 1fr); 
+  } 
+  
+  .card{
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+    
+  }
+  
+  .card:hover {
+    background-color: #c7c6c3;
+  }
+  
+  .cardBody {
+    background-color: #f2f0e9;
+  }
+  
+   
+  .link{
+    color: black !important;
+    text-decoration: none !important;
+
+  }
