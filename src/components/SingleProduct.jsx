@@ -22,7 +22,7 @@ const SingleProduct = () => {
         setError("Search unsuccessful. No data found.");
         setProducts([]);
     } else {
-        setProducts(products);
+        setProducts(response.data);
       }
 
     } catch (error) {
