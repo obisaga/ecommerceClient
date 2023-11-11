@@ -7,8 +7,8 @@ import { useNavigate } from "react-router-dom";
 import { UserContext } from '../context/UserContext';
 
 
-const Login = async ()=> {
-  const navigate = useNavigate();
+const Login = () => {
+    const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [success, setSuccess] = useState(false);
@@ -32,8 +32,8 @@ const Login = async ()=> {
     
     const handleSubmit = async (e) => {
       e.preventDefault();
-      // login(email, password, setLoading, setSuccess, setError);
-      console.log(response)
+      login(email, password, setLoading, setSuccess, setError);
+      
     };
   
   return (
@@ -74,7 +74,7 @@ const Login = async ()=> {
             placeholder="Password"
             required
           />
-          {/* <input type="submit" className="loginButton" value="LOGIN" /> */}
+          <input type="submit" className="loginButton" value="LOGIN" />
         </form>
         
   

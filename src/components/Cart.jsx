@@ -71,31 +71,6 @@ const Cart = () => {
   );
 }
 
-// export default Cart
 
-// import React, { useContext } from 'react';
-// import Navigation from "../elements/Navigation";
-// import Info from "../elements/Info";
-// import Footer from "../elements/Footer"
-// import { CartContext } from '../context/CartProvider';
-
-// const Cart = () => {
-//   const { cart, removeItem } = useContext(CartContext);
-//   console.log(cart, 'cart')
-
-//   return (
-//     <div>
-//       <h2>Shopping Cart</h2>
-//       <ul>
-//         {cart.length ? cart.map(item => (
-//           <li key={item._id}>
-//             {item.name} - Quantity: {item.quantity}
-//             <button onClick={() => removeItem(item._id)}>Remove item</button>
-//           </li>
-//         )) : <p>Your cart is empty</p>}
-//       </ul>
-//     </div>
-//   );
-// }
 
 export default Cart;

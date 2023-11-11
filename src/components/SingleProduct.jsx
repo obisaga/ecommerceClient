@@ -1,10 +1,12 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import { useParams } from "react-router-dom";
 import Navigation from '../elements/Navigation';
 import Footer from '../elements/Footer';
 import * as ReactBootstrap from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import axios from 'axios'
+import { UserContext } from '../context/UserContext';
+
 
 
 const SingleProduct = (props) => {
@@ -38,19 +40,22 @@ const SingleProduct = (props) => {
   }, [id]);
 
 
- 
+  const {user} = useContext(UserContext);
+console.log(user)
    
     const findCart = async () => {
-
+console.log("hello")
       try {    
-        const url = `http://localhost:3000/api/cart/user/${req.user._id}`;
+        const url = `http://localhost:3000/api/cart/user/${user._id}`;
         const response = await axios.get(url);
-        console.log(response.data)
-       if(response){
+        console.log(response)
+       if(response.request.status === 200){
+        //send data about userId, products (productId and quantity) to be able to update cart
         const addToCart = await axios.put(url);
         console.log(addToCart.data)
        }
        else {
+         //send data about userId, products (productId and quantity) to be able to create a cart
         const createCart = await axios.post("http://localhost:3000/api/cart");
         console.log(createCart.data)
        }

@@ -1,6 +1,7 @@
 import React from "react";
 import "primeicons/primeicons.css";
 import "../styles/navi.css";
+import { NavLink } from "react-router-dom";
 
 const Navigation = () => {
   return (
@@ -8,9 +9,9 @@ const Navigation = () => {
       <div className="topNav">
         <span className="topnav-elements">
           <span className="social-media-icons">
-            <a href="https://www.instagram.com/">
-              <i className="pi pi-instagram"></i>
-            </a>
+            <NavLink to="https://www.instagram.com/" > <i className="pi pi-instagram"></i></NavLink>
+          
+            
             <a href="https://www.facebook.com/">
               <i className="pi pi-facebook"></i>
             </a>
@@ -40,8 +41,8 @@ const Navigation = () => {
               SHOP
             </a>
             <div className="dropdown-content">
-              <a href="#">RINGS</a>
-              <a href="#">NECKLACES</a>
+            <NavLink to="/shop" > SHOP</NavLink>             
+             <a href="#">NECKLACES</a>
               <a href="#">BRACELETS</a>
             </div>
           </div>

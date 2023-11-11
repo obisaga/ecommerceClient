@@ -26,10 +26,11 @@ const UserProvider= ({children}) => {
             const { token, user } = response.data;
             sessionStorage.setItem('token', token);
             setUser(user);
+           
             setToken(token);
             setSuccess(true);
             setTimeout(() => {
-                navigate('/');
+                navigate('/home');
             }, 3000);
         } catch (e) {
             console.log(e.response.data)
@@ -41,7 +42,7 @@ const UserProvider= ({children}) => {
             setLoading(false);
         }
     };
-
+    console.log(user)
     const logout = () => {
         sessionStorage.removeItem('token')
         setUser(null)
