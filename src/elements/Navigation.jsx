@@ -35,11 +35,11 @@ const Navigation = () => {
       <div className="bottomNav">
         <div className="links">
           <a href="">HOME</a>
-          <div class="dropdown">
-            <a href="" class="dropbtn">
+          <div className="dropdown">
+            <a href="" className="dropbtn">
               SHOP
             </a>
-            <div class="dropdown-content">
+            <div className="dropdown-content">
               <a href="#">RINGS</a>
               <a href="#">NECKLACES</a>
               <a href="#">BRACELETS</a>

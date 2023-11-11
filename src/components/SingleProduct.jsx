@@ -1,68 +1,78 @@
 import React, {useState, useEffect} from 'react'
+import { useParams } from "react-router-dom";
 import Navigation from '../elements/Navigation';
 import Footer from '../elements/Footer';
 import * as ReactBootstrap from "react-bootstrap";
-import Search from '../elements/Search';
+import Card from "react-bootstrap/Card";
+import axios from 'axios'
 
-const SingleProduct = () => {
 
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(false)
+const SingleProduct = (props) => {
+  const [product, setProduct] = useState({});
+  
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const fetchProducts = async () => {
+
+  const { id } = useParams();
+
+  const productFetch = async () => {
     try {
-      setLoading(true)
-      setError("")
-      const response = await axios.get("http://localhost:3000/api/products");
-      console.log(response.data);
-      setProducts(response.data);
+      setLoading(true);
+      const url = `http://localhost:3000/api/products/${id}`;
+      const response = await axios.get(url);
+      console.log(response.data)
 
-      if (products.length === 0) {
-        setError("Search unsuccessful. No data found.");
-        setProducts([]);
-    } else {
-        setProducts(response.data);
-      }
 
+  
+     
+      setProduct(response.data)
+    
     } catch (error) {
-      setError("The request to get searched products has failed");
-      setProducts([]);
+      console.error;
+      // setError("The request to get searched products has failed");
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
   };
 
   useEffect(() => {
-    fetchProducts();
-  }, []);
-
-
+    productFetch();
+  }, [id]);
 
   return (
     <div>
-      <Navigation />
-      <Search />
-      {loading ? (
+//       <Navigation />
+
+
+{/* //       {loading ? (
         <div>
           <ReactBootstrap.Spinner animation="border" variant="light" />
           <p className='paragraphContent'>Content loading ...</p>
         </div>
-      ) : null}
-      {error && <div>{error}</div>}  
+      ) : null} */}
+      {/* {error && <div>{error}</div>}   */}
+
+      {Object.keys(product).length ? 
+      <Card>
+        <Card.Img variant="top" src={product.image} />
+        <Card.Body className="cardBody">
+          <Card.Title className="cardTitle">{product.title}</Card.Title>
+          <Card.Text className="about">
+            {product.desc}
+            
+            
+          </Card.Text>
+        </Card.Body>
+      </Card> : null}
       
-      {products.map((product, index) => {
-        return (
-          <>
-            <p key={index}>{product.title}</p>
-            <img src={product.image} alt={product.title} />
-          </>
-        );
-      })}
 
       <Footer />
     </div>
-  )
-}
+    
+  );
+};
+
+
 
 export default SingleProduct
