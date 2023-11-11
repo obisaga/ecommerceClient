@@ -2,19 +2,30 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../styles/slider.css";
 import "primeicons/primeicons.css";
+// import Carousel from 'react-bootstrap/Carousel';
+import Slider from "react-slick";
 
-const Slider = () => {
+const Carousel = () => {
   const [products, setProducts] = useState([]);
-  const [index, setIndex] = useState(0);
-  const length = 3
+  // const [index, setIndex] = useState(0);
+  const [error, setError] = useState("");
 
   const fetchProducts = async () => {
     try {
       const response = await axios.get("http://localhost:3000/api/products");
       console.log(response.data);
-      setProducts(response.data);
-    } catch (err) {
-      console.log(err);
+      
+      if (products.length === 0) {
+        setError("Slider unsuccessful. No data found.")
+        setProducts([]);
+    } else {
+        setProducts(response.data);
+      }
+
+    } catch (error) {
+      console.log(error);
+      setError("The request has failed");
+      setProducts([]);
     }
   };
 
@@ -22,63 +33,68 @@ const Slider = () => {
     fetchProducts();
   }, []);
 
-  const nextSlide = () => {
-    const newIndex = index + 1;
-    setIndex(newIndex >= length ? 0 : newIndex);
+  const settings = {
+    dots: true,
+    infinite: true,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    autoplay: true,
+    speed: 2000,
+    autoplaySpeed: 2000,
+    cssEase: "linear"
   };
 
-  const prevSlide = () => {
-    const newIndex = index - 1;
-    setIndex(newIndex < 0 ? length - 1 : newIndex);
-  };
+  // const nextSlide = () => {
+  //   const newIndex = index + 1;
+  //   setIndex(newIndex >= length ? 0 : newIndex);
+  // };
 
-  //   const responsive = {
-  //     desktop: {
-  //       breakpoint: { max: 3000, min: 1024 },
-  //       items: 3,
-  //       slidesToSlide: 3, // optional, default to 1.
-  //     },
-  //     tablet: {
-  //       breakpoint: { max: 1024, min: 464 },
-  //       items: 2,
-  //       slidesToSlide: 2, // optional, default to 1.
-  //     },
-  //     mobile: {
-  //       breakpoint: { max: 464, min: 0 },
-  //       items: 1,
-  //       slidesToSlide: 1, // optional, default to 1.
-  //     },
-  //   };
+  // const prevSlide = () => {
+  //   const newIndex = index - 1;
+  //   setIndex(newIndex < 0 ? length - 1 : newIndex);
+  // };
+
+  // const handleSelect = (selectedIndex) => {
+  //   setIndex(selectedIndex);
+  // };
+
 
   return (
     <>
       <section className="collections">
         <span className="collections-header">COLLECTIONS</span>
 
-        {products.map((product, index) => {
-          return (
-            <>
-              <div className="carousel" key={index + 1} slide={index}>
-                <span className="pi pi-angle-left" onClick={prevSlide}></span>
-                <img src={product.image} alt="image" />
-                <p>{product.title}</p>
-              </div>
-              <div>
-                <img src={product.image} alt="image" />
-                <p>{product.title}</p>
-              </div>
-              <div>
-                <img src={product.image} alt="image" />
-                <p>{product.title}</p>
-                <span className="pi pi-angle-right" onClick={nextSlide}></span>
-              </div>
-            </>
-          );
-        })}
+        {error && <div>{error}</div>}
+        <div>
+          <Slider {...settings}>
+            {products.map((product, index) => {
+              return (
+                <div key={index}>
+                  <img src={product.image} alt="image" />
+                  <div>
+                    <h3>2</h3>
+                  </div>
+                  <div>
+                    <h3>3</h3>
+                  </div>
+                </div>
+              );
+            })}
+          </Slider>
+        </div>
+
+        {/* <Carousel activeIndex={index} onSelect={handleSelect}>
+          {products.map((product, key) => {
+            <Carousel.Item key={key}>
+              <img src={product.image} />
+            </Carousel.Item>
+          })}
+        </Carousel> */}
+
         <button>SHOP NOW</button>
       </section>
     </>
   );
 };
 
-export default Slider;
+export default Carousel;
