@@ -29,49 +29,52 @@ const Slider = () => {
     setSlide(slide < 3 ? slide + 1 : 0);
   };
 
-//   const responsive = {
-//     desktop: {
-//       breakpoint: { max: 3000, min: 1024 },
-//       items: 3,
-//       slidesToSlide: 3, // optional, default to 1.
-//     },
-//     tablet: {
-//       breakpoint: { max: 1024, min: 464 },
-//       items: 2,
-//       slidesToSlide: 2, // optional, default to 1.
-//     },
-//     mobile: {
-//       breakpoint: { max: 464, min: 0 },
-//       items: 1,
-//       slidesToSlide: 1, // optional, default to 1.
-//     },
-//   };
+  //   const responsive = {
+  //     desktop: {
+  //       breakpoint: { max: 3000, min: 1024 },
+  //       items: 3,
+  //       slidesToSlide: 3, // optional, default to 1.
+  //     },
+  //     tablet: {
+  //       breakpoint: { max: 1024, min: 464 },
+  //       items: 2,
+  //       slidesToSlide: 2, // optional, default to 1.
+  //     },
+  //     mobile: {
+  //       breakpoint: { max: 464, min: 0 },
+  //       items: 1,
+  //       slidesToSlide: 1, // optional, default to 1.
+  //     },
+  //   };
 
   return (
     <>
-{products.map((product, index) => {
-    return (
-    <>
-      <div className="container" key={index} slide={slide} >
-        <span className="pi pi-angle-left" onClick={prevSlide}></span>
-        <img src={product.image} alt="image" />
-        <p >{product.title}</p>
-      </div>
-      <div>
-        <img src={product.image} alt="image" />
-        <p >{product.title}</p>
-      </div>
-      <div>
-        <img src={product.image} alt="image" />
-        <p >{product.title}</p>
-        <span className="pi pi-angle-right" onClick={nextSlide}></span>
-      </div>
-      </>
-    
-    )
-})}
-  </>
-  
+      <section className="collections">
+        <span className="collections-header">COLLECTIONS</span>
+
+        {products.map((product, index) => {
+          return (
+            <>
+              <div className="container" key={index} slide={slide}>
+                <span className="pi pi-angle-left" onClick={prevSlide}></span>
+                <img src={product.image} alt="image" />
+                <p>{product.title}</p>
+              </div>
+              <div>
+                <img src={product.image} alt="image" />
+                <p>{product.title}</p>
+              </div>
+              <div>
+                <img src={product.image} alt="image" />
+                <p>{product.title}</p>
+                <span className="pi pi-angle-right" onClick={nextSlide}></span>
+              </div>
+            </>
+          );
+        })}
+        <button>SHOP NOW</button>
+      </section>
+    </>
   );
 };
 
