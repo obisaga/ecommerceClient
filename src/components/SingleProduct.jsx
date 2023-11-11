@@ -23,9 +23,6 @@ const SingleProduct = (props) => {
       const response = await axios.get(url);
       console.log(response.data)
 
-
-  
-     
       setProduct(response.data)
     
     } catch (error) {
@@ -40,9 +37,40 @@ const SingleProduct = (props) => {
     productFetch();
   }, [id]);
 
+
+ 
+   
+    const findCart = async () => {
+
+      try {    
+        const url = `http://localhost:3000/api/cart/user/${req.user._id}`;
+        const response = await axios.get(url);
+        console.log(response.data)
+       if(response){
+        const addToCart = await axios.put(url);
+        console.log(addToCart.data)
+       }
+       else {
+        const createCart = await axios.post("http://localhost:3000/api/cart");
+        console.log(createCart.data)
+       }
+
+      
+      } catch (error) {
+        console.error;
+      } finally {
+        setLoading(false);
+      }
+    };
+  
+  
+
+
+
   return (
     <div>
 //       <Navigation />
+
 
 
 {/* //       {loading ? (
@@ -60,10 +88,9 @@ const SingleProduct = (props) => {
           <Card.Title className="cardTitle">{product.title}</Card.Title>
           <Card.Text className="about">
             {product.desc}
-            
-            
           </Card.Text>
         </Card.Body>
+        <button className="addToCart" onClick={findCart}>ADD TO CART </button>
       </Card> : null}
       
 

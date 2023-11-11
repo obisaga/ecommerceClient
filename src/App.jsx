@@ -3,6 +3,8 @@ import { Routes, Route } from 'react-router-dom'
 import Homepage from './components/Homepage'
 import Shop from './components/Shop'
 import Login from './components/Login'
+import BackupLogin from './components/BackupLogin'
+
 import Register from './components/Register'
 import SingleProduct from './components/SingleProduct'
 
@@ -16,6 +18,8 @@ function App() {
           <Route path="/shop" element={<Shop />} />
           <Route path="/products/:id" element={<SingleProduct />}/>
           <Route path="/login" element={<Login />} />
+          <Route path="/login2" element={<BackupLogin />} />
+      
           <Route path="/register" element={<Register />} />
         </Routes>
 

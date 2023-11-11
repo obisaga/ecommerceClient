@@ -1,6 +1,6 @@
-// import axios from 'axios';
-// import React, { createContext, useState} from 'react';
-// import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import React, { createContext, useState} from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export const UserContext = createContext();
 
@@ -9,20 +9,22 @@ const UserProvider= ({children}) => {
     //Initialize user satte to null
     const [user, setUser] = useState(null);
     // the initial state for token from sessionStorage
-    const [token, setToken] = useState(sessionStorage.getItem('jwt') || null);
+    const [token, setToken] = useState(sessionStorage.getItem('token') || null);
 
-    const api_url = import.meta.env.VITE_BACKEND_URL;
+    // const api_url = import.meta.env.VITE_BACKEND_URL;
+
+    const url = "http://localhost:3000"
 
 
     const login = async (email, password, setLoading, setSuccess, setError ) => {
         const payload = { email, password };
         setLoading(true);
         try {
-            const response = await axios.post(api_url + '/api/auth/login', payload, {
+            const response = await axios.post(url + '/api/auth/login', payload, {
                 headers: { 'Content-Type': 'application/json' }
             });
             const { token, user } = response.data;
-            sessionStorage.setItem('jwt', token);
+            sessionStorage.setItem('token', token);
             setUser(user);
             setToken(token);
             setSuccess(true);
@@ -41,10 +43,10 @@ const UserProvider= ({children}) => {
     };
 
     const logout = () => {
-        sessionStorage.removeItem('jwt')
+        sessionStorage.removeItem('token')
         setUser(null)
         setToken(null)
-        navigate("/sign-in");
+        navigate("/home");
     }
 
 

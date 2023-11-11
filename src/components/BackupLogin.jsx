@@ -1,25 +1,58 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "../styles/loginAndRegister.css";
 import Navigation from "../elements/Navigation";
 import Info from "../elements/Info";
 import Footer from "../elements/Footer";
-import { useNavigate } from "react-router-dom";
-import { UserContext } from '../context/UserContext';
 
 
-const Login = async ()=> {
-  const navigate = useNavigate();
+const Login = () => {
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [success, setSuccess] = useState(false);
-    const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
     const [showElement, setShowElement] = useState(false);
-      
-    const {login} = useContext(UserContext);
+    const navigate = useNavigate();
   
+    const userLogin = async (credentials) => {
+      try {
+        const url = "http://localhost:3000/api/auth/login";
+        const requestData = {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            email: credentials.email,
+            password: credentials.password,
+          }),
+        };
+        const getResponse = await fetch(url, requestData);
+        console.log(getResponse);
   
-      
+        if (getResponse.ok) {
+          const data = await getResponse.json();
+          console.log(data);
+  
+          const userToken = data.token;
+  
+          sessionStorage.setItem("token", JSON.stringify(userToken));
+  
+          if(userToken){
+            navigate("/home")
+          }
+          return data;
+        } else {
+          const data = await getResponse.json();
+          setError("Invalid e-mail or password, please try again!");
+          setShowElement(true);
+  
+          return data;
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    console.log(error);
+  
     useEffect(() => {
       let timer = setTimeout(() => {
         setShowElement(false);
@@ -28,28 +61,27 @@ const Login = async ()=> {
         clearTimeout(timer);
       };
     }, [showElement]);
-
-    
+  
     const handleSubmit = async (e) => {
       e.preventDefault();
-      // login(email, password, setLoading, setSuccess, setError);
-      console.log(response)
+      const response = await userLogin({
+        email,
+        password,
+      });
+      console.log(response);
     };
   
   return (
     <div>
       <Navigation />
-      {loading && <p>Loading...</p>}
-      {success && <p>Login successful!</p>}
-      {error && <p>Error: {error}</p>}
-      {!loading && !error && (
-        <>
+      <div>
         <form onSubmit={handleSubmit} className="loginForm">
           <p className="loginRegisterTitle">Login</p>
           {showElement ? (
             <div class="popup">
               <p id="timer" class="popuptext">
-                {error}
+                {" "}
+                {error}{" "}
               </p>
             </div>
           ) : null}
@@ -74,15 +106,9 @@ const Login = async ()=> {
             placeholder="Password"
             required
           />
-          {/* <input type="submit" className="loginButton" value="LOGIN" /> */}
+          <input type="submit" className="loginButton" value="LOGIN" />
         </form>
-        
-  
-        </>
-      )}
-
-
-    
+      </div>
       <Info />
       <Footer />
     </div>
@@ -90,5 +116,3 @@ const Login = async ()=> {
 }
 
 export default Login
-
-
