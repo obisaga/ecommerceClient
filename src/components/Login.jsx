@@ -17,8 +17,6 @@ const Login = () => {
     const [showElement, setShowElement] = useState(false);
       
     const {login} = useContext(UserContext);
-  
-  
       
     useEffect(() => {
       let timer = setTimeout(() => {
@@ -80,9 +78,6 @@ const Login = () => {
   
         </>
       )}
-
-
-    
       <Info />
       <Footer />
     </div>

@@ -11,6 +11,7 @@ const SingleProduct = (props) => {
   const [product, setProduct] = useState({});
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [cart, setCart] = useState([])
 
   const { id } = useParams();
   const { user } = useContext(UserContext);
@@ -33,45 +34,58 @@ const SingleProduct = (props) => {
   };
 
 
-  const findCart = async () => {
+  const findCart = async (productId, quantity) => {
     try {
       console.log("Finding user's cart...");
 
       const url = `http://localhost:3000/api/cart/user/${user._id}`;
       const response = await axios.get(url);
       console.log(response)
-      console.log("User's cart found:", response.data);
+      const existingCartData = response.data
+      console.log("User's cart found:", existingCartData);
 
       //send data about userId, products (productId and quantity) to be able to update cart
       if (response.status === 200) {    
-        const updateCartData = {
+        //Update the cart data
+        // const updatedCartData = {
+        //   userId: user._id,
+        //   products: existingCartData.products.map((product) =>
+        //     product.productId === productId ? { ...product, quantity } : product),
+        // };
+
+        const updatedCartData = {
           userId: user._id,
-          products: [
-            { 
-              productId: id, 
-              quantity: 1,
-            },
-          ],
+          products: existingCartData,
         };
 
-        const updateCart = await axios.put(url, updateCartData)
+        console.log(updatedCartData)  // Empty array?
+
+        if(updatedCartData.length > 0){
+          setCart(...product, quantity)
+        }else{
+          setCart([])
+        }
+
+
+        // Send a PUT request to update the user's cart
+        const updateCart = await axios.put(url, updatedCartData)  // I get 404 message - maybe smth with props in findCart? - missing cart context?
         console.log("Cart updated:", updateCart.data)
       
       } else {
         //send data about userId, products (productId and quantity) to be able to create a cart if user's cart was not found
         console.log("User's cart not found. Creating a new cart...")
 
-        const createNewCartData = {
+        const newCartData = {
           userId: user._id,
           products: [
             {
-              productId: id,
-              quantity: 1,
+              productId,
+              quantity,
             }
           ]
         }
 
-        const createCart = await axios.post("http://localhost:3000/api/cart", createNewCartData);
+        const createCart = await axios.post("http://localhost:3000/api/cart", newCartData);
         console.log("Cart created:", createCart.data);
         
       }
@@ -105,7 +119,7 @@ const SingleProduct = (props) => {
             <Card.Text className="about">{product.desc}</Card.Text>
           </Card.Body>
           <button className="addToCart" onClick={findCart}>
-            ADD TO CART{" "}
+            ADD TO CART
           </button>
         </Card>
       ) : null}

@@ -31,16 +31,19 @@ const Shop = () => {
     <>
       <Navigation />
 
-
- 
-     
       <div className="cardContainer">
         {products.map((product, index) => {
           return (
             <Card className="card" key={index}>
-              <Link className="link" key={index} to={`/products/${product._id}`}>
+              <Link
+                className="link"
+                key={index}
+                to={`/products/${product._id}`}
+              >
                 <Card.Body>
-                  <Card.Title><p>{product.title}</p></Card.Title>
+                  <Card.Title>
+                    <p>{product.title}</p>
+                  </Card.Title>
                   <Card.Img
                     variant="bottom"
                     className="cardImg"
@@ -51,9 +54,7 @@ const Shop = () => {
             </Card>
           );
         })}
-        </div>
-     
-
+      </div>
 
       <Info />
       <Footer />
