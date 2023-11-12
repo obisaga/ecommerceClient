@@ -9,9 +9,9 @@ import CartProvider from './context/CartContext.jsx';
 ReactDOM.createRoot(document.getElementById("root")).render(
   <BrowserRouter>
     <UserProvider>
-      <CartProvider>
+      {/* <CartProvider> */}
         <App />
-      </CartProvider>
+      {/* </CartProvider> */}
     </UserProvider>
   </BrowserRouter>
 );

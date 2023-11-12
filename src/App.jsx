@@ -17,34 +17,33 @@ function App() {
 
   return (
     <>
-      {/* <Routes>
+      <Routes>
           <Route path="/home" element={<Homepage />} />
           <Route path="/shop" element={<Shop />} />
-          {/* <Route path="/cart" element={<Cart />} /> */}
-      {/* <Route path="/cart" element={<Cart />} />
+          <Route path="/cart" element={<Cart />} />
           <Route path="/products/:id" element={<SingleProduct />}/>
-          <Route path="/login" element={<Login />} /> */}
+          <Route path="/login" element={<Login />} />
       {/* <Route path="/login2" element={<BackupLogin />} /> */}
-      {/* <Route path="/register" element={<Register />} /> */}
-      {/* </Routes> */}
+      <Route path="/register" element={<Register />} />
+      </Routes> 
 
-      <Routes>
+      {/* <Routes> */}
         {/* PUBLIC routes  */}
-        <Route path="/" element={<PublicRoutes />}>
+        {/* <Route path="/" element={<PublicRoutes />}>
           <Route index element={<Homepage />} />
           <Route path="/shop" element={<Shop />} />
           <Route path="/products/:id" element={<SingleProduct />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-        </Route>
+        </Route> */}
 
         {/* PRIVATE Routes */}
-        <Route path="/cart" element={<PrivateRoutes />}>
+        {/* <Route path="/cart" element={<PrivateRoutes />}>
           <Route index element={<Cart />} />
         </Route>
 
         <Route path="*" element={<NotFound />} />
-      </Routes>
+      </Routes> */}
     </>
   );
 }
