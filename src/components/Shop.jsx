@@ -1,38 +1,27 @@
 import React, {useState, useEffect} from 'react'
-import axios from 'axios'
 import Navigation from '../elements/Navigation';
 import Info from '../elements/Info';
 import Footer from '../elements/Footer';
 import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
 import "../styles/shop.css"
-
+import useShop from '../context/ShopContext';
 // import * as ReactBootstrap from "react-bootstrap";
 
 const Shop = () => {
-  const [products, setProducts] = useState([]);
 
-  const fetchProducts = async () => {
-    try {
-      const response = await axios.get("http://localhost:3000/api/products");
-      console.log(response.data);
+  const {dispatch} = useShop()
+  console.log(dispatch)
 
-      setProducts(response.data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  //missing logic
 
-  useEffect(() => {
-    fetchProducts();
-  }, []);
 
   return (
     <>
       <Navigation />
 
       <div className="cardContainer">
-        {products.map((product, index) => {
+        {dispatch.map((product, index) => {
           return (
             <Card className="card" key={index}>
               <Link

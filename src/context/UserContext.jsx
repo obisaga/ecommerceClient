@@ -6,7 +6,7 @@ export const UserContext = createContext();
 
 const UserProvider= ({children}) => {
     const navigate = useNavigate();
-    //Initialize user satte to null
+    //Initialize user state to null
     const [user, setUser] = useState(null);
     // the initial state for token from sessionStorage
     const [token, setToken] = useState(sessionStorage.getItem('token') || null);
