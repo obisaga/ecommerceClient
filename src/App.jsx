@@ -3,12 +3,12 @@ import Homepage from './components/Homepage'
 import Shop from './components/Shop'
 import Login from './components/Login'
 // import BackupLogin from './components/BackupLogin'
-// import Cart from './components/Cart'
+import Cart from './components/Cart'
 import Register from './components/Register'
 import SingleProduct from './components/SingleProduct'
 import SingleProductTest from './components/SingleProductTest'
 
-import Cart from "./components/ShoppingCart"
+// import Cart from "./components/ShoppingCart"
 // import NotFound from "./components/NotFound";
 // import PublicRoutes from "./routes/PublicRoutes"
 // import PrivateRoutes from "./routes/PrivateRoutes"
