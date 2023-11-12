@@ -11,8 +11,6 @@ const SingleProduct = (props) => {
   const [product, setProduct] = useState({});
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [cart, setCart] = useState([])
-
   const { id } = useParams();
   const { user } = useContext(UserContext);
   console.log(user);
@@ -40,62 +38,46 @@ const SingleProduct = (props) => {
 
       const url = `http://localhost:3000/api/cart/user/${user._id}`;
       const response = await axios.get(url);
-      console.log(response)
-      const existingCartData = response.data
-      console.log("User's cart found:", existingCartData);
+      console.log(response.data)
+     if(response.status === 204){
+      console.log("User has no carts yet, creating new cart")
 
-      //send data about userId, products (productId and quantity) to be able to update cart
-      if (response.status === 200) {    
-        //Update the cart data
-        // const updatedCartData = {
-        //   userId: user._id,
-        //   products: existingCartData.products.map((product) =>
-        //     product.productId === productId ? { ...product, quantity } : product),
-        // };
-
-        const updatedCartData = {
-          userId: user._id,
-          products: existingCartData,
-        };
-
-        console.log(updatedCartData)  // Empty array?
-
-        if(updatedCartData.length > 0){
-          setCart(...product, quantity)
-        }else{
-          setCart([])
-        }
-
-
-        // Send a PUT request to update the user's cart
-        const updateCart = await axios.put(url, updatedCartData)  // I get 404 message - maybe smth with props in findCart? - missing cart context?
-        console.log("Cart updated:", updateCart.data)
-      
-      } else {
-        //send data about userId, products (productId and quantity) to be able to create a cart if user's cart was not found
-        console.log("User's cart not found. Creating a new cart...")
-
-        const newCartData = {
+      const newCartData = {
           userId: user._id,
           products: [
-            {
-              productId,
-              quantity,
-            }
+            {productId: product._id, quantity: 1}
           ]
         }
 
         const createCart = await axios.post("http://localhost:3000/api/cart", newCartData);
         console.log("Cart created:", createCart.data);
+
+
+     } else if (response.status === 200){
+        console.log("Cart found")
+        const existingProducts = response.data[0].products
         
+        const addThisItem = {productId: product._id, quantity: 3}
+       
+        existingProducts.push(addThisItem)
+        console.log(existingProducts)
+
+        const pushToCart = {
+          products: existingProducts
+            
+        }
+        
+        const updateCart = await axios.put(`http://localhost:3000/api/cart/user/${user._id}`, pushToCart)
+        console.log("Cart updated", updateCart)
+     
       }
+   
     } catch (error) {
-      console.log("Error:", error.message)
+    console.log("Error", error)
     } finally {
-      setLoading(false);
+      console.log("The end of function")
     }
   };
-
 
     useEffect(() => {
       productFetch();

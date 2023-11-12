@@ -1,4 +1,4 @@
-.cart-container{
+/* .cart-container{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -98,4 +98,87 @@
 
 
 
+ */
+ .cart button:hover{
+    background-color: bisque;
+ }
+ .continueBtnTop{
+    border:none;
+    background-color: white;
+    margin-right: 80%;
+    margin-top: 2rem;
+    margin-bottom: 4rem
+ }
+ .continueBtnTop:hover{
+   background-color: white;
+   text-decoration: underline;
 
+ }
+
+
+
+ .cart{
+    display:flex;
+    justify-content: space-between;
+ }
+
+ .cart img{
+width: 3rem;
+height:3rem
+ }
+
+ .cartQuantityButtons{
+    display:flex;
+    justify-content: space-between;
+ }
+ .cartQuantityButtons p{
+    padding-left: 2rem;
+    padding-right: 2rem;
+ }
+
+ .adjustmentBtn {
+    width:2rem;
+    height: 2rem
+ }
+ .deleteBtn {
+    height: 2rem;
+    margin-left: 2rem
+ }
+
+ .total-price{
+    display: flex;
+    justify-content: flex-end;
+   gap:1rem
+ }
+
+ .bottomButtons{
+    display:flex;
+    justify-content: right;
+    margin-top: 2rem;
+    margin-bottom: 5rem;
+ }
+
+
+ .proceedBtn{
+    border:none;
+    background-color: white;
+    
+ }
+ .proceedBtn:hover{
+    background-color: white;
+    text-decoration: underline;
+    
+ }
+
+ .startShoppingBtn{
+
+    border:none;
+    background-color: white;
+    margin-right: 80%;
+    margin-bottom: 5rem;
+ }
+ .startShoppingBtn:hover{
+    background-color: white;
+      text-decoration: underline;
+     
+   }

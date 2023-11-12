@@ -9,7 +9,9 @@ import CarouselElement from "../elements/CarouselElement";
 import Slider from "../elements/Slider";
 import "../styles/homepage.css"
 
+
 const Homepage = () => {
+
   return (
     <div className="homepageContainer">
       <Navigation />

@@ -1,70 +1,144 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import { NavLink } from "react-router-dom";
 import Navigation from "../elements/Navigation";
 import Info from "../elements/Info";
 import Footer from "../elements/Footer"
 import axios from 'axios';
 import "../styles/cart.css"
+import { UserContext } from "../context/UserContext";
 
-const Cart = () => {
-    const [product, setProduct] = useState([]);
-    const [cart, setCart] = useState({
-        products: [
-            {
-              productId: product.id,
-              quantity: product.availabiliy,
-            },
-          ]
-    })
 
-    const addProduct = async () => {
+
+
+const Cart = (props) => {
+    const [product, setProduct] = useState([{message:"Cart is Empty"}]);
+    
+    const [total, setTotal] = useState(0);
+    const { user } = useContext(UserContext);
+
+    const findCart = async () => {
       try {
-        const response = await axios.post("http://localhost:3000/api/cart");
+        const response = await axios.get(`http://localhost:3000/api/cart/user/${user._id}`);
         console.log(response.data);
-        setCart(response.data);
+        if(response.status === 204){
+          console.log("Cart is empty")
+        } else if (response.status === 200){
+          console.log("Cart found")
+        setProduct(response.data[0].products.map((product)=> product))
+
         
+        }
+
       } catch (err) {
         console.log(err);
-      }
+      } finally {
+     
+          }
     };
-  
+      
+
     useEffect(() => {
-      addProduct();
+      findCart();
     }, []);
+
+    useEffect(() => {
+      //sum the prices of products
+      if(Object.keys(product).length>1) {
+        const arr = (product.map((product) => product.productId.price))
+        const sum = arr.reduce((accumulator, object) => {
+          return accumulator + object;
+        }, 0);
+      console.log(sum)
+      setTotal(sum)
+      } else {
+        console.log('Counter failed')}
+    }, [findCart]);
+
+
+
+  
+    const addOne = () => {
+      console.log("Add Button Clicked");
+      };
+
+    const removeOne = () => {
+        console.log("Remove One Button Clicked");
+      };
+
+    const deleteItem =  () => {
+        console.log("Remove Button Clicked");
+      //   try {
+      //     const existingProducts = product
+      //  const addThisItem = {productId: button.key, quantity: 0}
+         
+      //  existingProducts.push(addThisItem)
+      //     console.log(existingProducts)
+  
+      //     const pushToCart = {
+      //       products: existingProducts
+      //      }
+      //     const updateCart = await axios.put(`http://localhost:3000/api/cart/user/${user._id}`, pushToCart)
+      //     console.log("Cart updated", updateCart)
+      //   }
+      //   catch (error) {
+      //     console.log("Error", error)
+      //     } finally {
+      //       console.log("The end of function")
+      //     }
+      };
+
+      const continueShop = () => {
+        console.log("Continue Button Clicked");
+      };
+      
+      const proceedCheck = () => {
+        console.log("Proceed Button Clicked");
+      };
+
+    
+
+
   return (
     <>
       <Navigation />
+      {/* <div> <button className="continueBtnTop" onClick={continueShop}> ← CONTINUE SHOPPING </button></div> */}
+      {Object.keys(product).length > 1 ? (
+   
+       <>
+              <NavLink to="/shop"><div> <button className="continueBtnTop" onClick={continueShop}> ← CONTINUE SHOPPING </button></div></NavLink> 
 
-      <div className="cart-container">
-        <div className="cart-wrapper">
-          <div className="product-info">
-            <button className='btn-delete'> x </button>
-            <img src={product.image} alt={product.title} />
-            <p className="product-details">
-              <span className="product-title">Title: Ring</span>
-              <span className="product-size">Size: 1</span>
-              <span className="product-color">Color: silver</span>
-            </p>
-          </div>
-          <div className="product-quantity">
-            <button className="btn-reduce">-</button>
-            <span className="quantity-desc">Quantity</span>
-            <button className="btn-increase">+</button>
-          </div>
-          <div className="product-price">
-            <span className="price">100 EUR</span>
-          </div>
+         {product.map((product, index) => {
+          return (
+            <div  key={index}>
+            <div className="cart">
+            <img src={product.productId.image}></img>
+            <p >{product.productId.title}</p>
+            <p >Color: {product.productId.color}</p>
+            <p >{product.productId.price} €</p> 
+            <div className="cartQuantityButtons">
+              <button className="adjustmentBtn" onClick={removeOne}> - </button>
+              <p>Qty: {product.quantity}</p>
+              <button className="adjustmentBtn" onClick={addOne}> + </button>
+              <button className="deleteBtn" onClick={deleteItem}> Remove from Cart </button>
+           </div>
+            </div>
+             <hr/>
+             </div>
+          );
+        })
+      }
+       <div className="total-price">
+          <p>Total: {total} </p>
+          <p>€</p>
         </div>
-        <hr />
-        <div className="total-price">
-          <span>TOTAL</span>
-          <span>EUR</span>
+        <div className='bottomButtons'>
+          
+          {/* <NavLink to="/home"> */}
+            <button className="proceedBtn" onClick={proceedCheck}> PROCEED TO CHECKOUT →</button>
+            {/* </NavLink> */}
         </div>
-        <div className='back-checkout-btn'>
-          <NavLink to="/shop"><button className="btn-back"> CONTINUE SHOPPING </button></NavLink>
-          <NavLink to="/home"><button className="checkout"> PROCEED TO CHECKOUT </button></NavLink>
-        </div>
-      </div>
+       </>
+      ) : <><p>Cart is Empty</p>    <NavLink to="/shop"><button className="startShoppingBtn" onClick={continueShop}> ← START SHOPPING </button></NavLink></>}
 
       <Info />
       <Footer />
