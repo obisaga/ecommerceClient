@@ -5,7 +5,7 @@ import Footer from "../elements/Footer";
 import useShop from "../context/ShopContext";
 import { NavLink } from "react-router-dom";
 
-const Cart = ({cart}) => {
+const ShoppingCart = ({cart}) => {
 
 // missing logic ???
 
@@ -66,4 +66,4 @@ const {addToCart, removeFromCart, updateQuantity, clearCart, calculateTotal} = u
   );
 };
 
-export default Cart;
+export default ShoppingCart;

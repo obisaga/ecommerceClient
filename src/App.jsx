@@ -6,7 +6,7 @@ import Login from './components/Login'
 import Register from './components/Register'
 import Product from './components/Product'
 import { ShopProvider } from "./context/ShopContext";
-import Cart from "./components/ShoppingCart"
+import ShoppingCart from "./components/ShoppingCart";
 // import NotFound from "./components/NotFound";
 // import PublicRoutes from "./routes/PublicRoutes"
 // import PrivateRoutes from "./routes/PrivateRoutes"
@@ -21,7 +21,7 @@ function App() {
         <Routes>
           <Route path="/home" element={<Homepage />} />
           <Route path="/shop" element={<Shop />} />
-          <Route path="/cart" element={<Cart />} />
+          <Route path="/cart" element={<ShoppingCart />} />
 
           <Route path="/products/:id" element={<Product />} />
           <Route path="/login" element={<Login />} />
