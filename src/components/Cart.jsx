@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import { NavLink } from "react-router-dom";
 import Navigation from "../elements/Navigation";
 import Info from "../elements/Info";
 import Footer from "../elements/Footer"
@@ -60,8 +61,8 @@ const Cart = () => {
           <span>EUR</span>
         </div>
         <div className='back-checkout-btn'>
-          <button className="btn-back"> CONTINUE SHOPPING </button>
-          <button className="checkout"> PROCEED TO CHECKOUT </button>
+          <NavLink to="/shop"><button className="btn-back"> CONTINUE SHOPPING </button></NavLink>
+          <NavLink to="/home"><button className="checkout"> PROCEED TO CHECKOUT </button></NavLink>
         </div>
       </div>
 
