@@ -10,6 +10,7 @@ const Cart = () => {
 
   return (
     <div>
+      <Navigation />
       <h2>Shopping Cart</h2>
       {cart.products.length === 0 ? (
         <p>Your cart is empty.</p>
@@ -53,13 +54,8 @@ const Cart = () => {
           <button onClick={clearCart}>Clear Cart</button>
         </div>
       )}
-
-
-
-    
-
-
-
+      <Info />
+      <Footer />
     </div>
   );
 };
