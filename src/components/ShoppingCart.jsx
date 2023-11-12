@@ -17,7 +17,7 @@ const {addToCart, removeFromCart, updateQuantity, clearCart, calculateTotal} = u
 
       <h2>SHOPPING CART</h2>
 
-      {Object.keys(cart).length === 0 ? (
+      {cart.length === 0 ? (
         <p>Your cart is empty</p>
       ) : (
         <div>

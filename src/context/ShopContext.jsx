@@ -90,7 +90,7 @@ const calculateTotal = (cart) => {
     updateQuantity,
     clearCart,
     calculateTotal,
-    dispatch,
+    dispatch,        //am i supposed to export dispatch? how to get all products in frontend when clicked on SHOP btn?
   };
 
   return <ShopContext.Provider value={value}>{children}</ShopContext.Provider>;

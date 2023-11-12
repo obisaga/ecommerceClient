@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useEffect} from 'react'
 import Navigation from '../elements/Navigation';
 import Info from '../elements/Info';
 import Footer from '../elements/Footer';
@@ -10,8 +10,12 @@ import useShop from '../context/ShopContext';
 
 const Shop = () => {
 
-  const {dispatch} = useShop()
-  console.log(dispatch)
+  const {state, dispatch, fetchProducts} = useShop()
+  console.log(state, dispatch, fetchProducts)
+
+  useEffect(() => {
+    fetchProducts();
+  }, [fetchProducts])
 
   //missing logic
 
@@ -21,7 +25,7 @@ const Shop = () => {
       <Navigation />
 
       <div className="cardContainer">
-        {dispatch.map((product, index) => {
+        {state.products.map((product, index) => {
           return (
             <Card className="card" key={index}>
               <Link
