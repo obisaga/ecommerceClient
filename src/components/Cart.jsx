@@ -6,6 +6,7 @@ import Footer from "../elements/Footer"
 import axios from 'axios';
 import "../styles/cart.css"
 import { UserContext } from "../context/UserContext";
+import "primeicons/primeicons.css";
 
 
 
@@ -15,6 +16,8 @@ const Cart = (props) => {
     
     const [total, setTotal] = useState(0);
     const { user } = useContext(UserContext);
+    const [count, setCount] = useState(0);
+
 
     const findCart = async () => {
       try {
@@ -50,6 +53,7 @@ const Cart = (props) => {
         }, 0);
       console.log(sum)
       setTotal(sum)
+      setCount(Object.keys(product).length)
       } else {
         console.log('Counter failed')}
     }, [findCart]);
@@ -130,6 +134,9 @@ const Cart = (props) => {
        <div className="total-price">
           <p>Total: {total} </p>
           <p>€</p>
+          <h1 count={count} className="count">{count}</h1>
+
+          
         </div>
         <div className='bottomButtons'>
           
@@ -148,4 +155,4 @@ const Cart = (props) => {
 
 
 
-export default Cart;
+export default Cart(count);

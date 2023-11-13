@@ -182,3 +182,19 @@ height:3rem
       text-decoration: underline;
      
    }
+
+   .count{
+      font-size: 0.8rem;
+      color:white;
+      /* background-image: url("https://i.ibb.co/5c8bwX0/circle-fill-svgrepo-com.png"); */
+      /* background-image: no-repeat center/80% url("https://upload.wikimedia.org/wikipedia/commons/c/c0/Location_dot_black.svg"); */
+      background: no-repeat center url("https://raw.githubusercontent.com/obisaga/ecommerceImages/main/circle-fill-svgrepo-com.png");
+     padding: 1.2rem 1.2rem 1.2rem 1.2rem;
+    
+      background-size: 50%, 50%, 20%;;
+   
+   }
+   /* .pi pi-circle-fill{
+     color:aqua !important;
+   } */
+
