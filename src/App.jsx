@@ -6,7 +6,7 @@ import Login from './components/Login'
 import Cart from './components/Cart'
 import Register from './components/Register'
 import SingleProduct from './components/SingleProduct'
-
+import Contact from "./components/Contact";
 
 // import NotFound from "./components/NotFound";
 // import PublicRoutes from "./routes/PublicRoutes"
@@ -25,6 +25,8 @@ function App() {
           <Route path="/products/:id" element={<SingleProduct />}/>
           <Route path="/login" element={<Login />} /> 
       <Route path="/register" element={<Register />} />
+      <Route path="/contact" element={<Contact />} /> 
+
       </Routes>
 
       </>
