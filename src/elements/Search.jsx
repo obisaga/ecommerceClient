@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import axios from 'axios';
 import * as ReactBootstrap from "react-bootstrap";
 
 const Search = () => {
@@ -13,10 +14,10 @@ const Search = () => {
         setLoading(true)
         setError("")
         const response = await axios.get(`http://localhost:3000/api/products/search?=${input}`);
-        console.log(response.data);
+        console.log("Response data: ", response.data);
         setProducts(response.data);
   
-        if (products.length === 0) {
+        if (response.data.length === 0) {
           setError("Search unsuccessful. No data found.");
           setProducts([]);
       } else {
