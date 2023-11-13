@@ -2,7 +2,6 @@ import { Routes, Route } from "react-router-dom";
 import Homepage from './components/Homepage'
 import Shop from './components/Shop'
 import Login from './components/Login'
-// import BackupLogin from './components/BackupLogin'
 import Cart from './components/Cart'
 import Register from './components/Register'
 import SingleProduct from './components/SingleProduct'
