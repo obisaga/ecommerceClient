@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import Navigation from '../elements/Navigation';
+import Search from '../elements/Search';
 import Info from '../elements/Info';
 import Footer from '../elements/Footer';
 import Card from "react-bootstrap/Card";
@@ -30,6 +31,7 @@ const Shop = () => {
   return (
     <>
       <Navigation />
+      <Search /> 
 
       <div className="cardContainer">
         {products.map((product, index) => {
