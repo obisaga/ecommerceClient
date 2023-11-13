@@ -1,108 +1,110 @@
-// import React, { createContext, useContext, useState, useEffect } from 'react';
-// import axios from 'axios';
-// import { useNavigate } from 'react-router-dom';
-// import { UserContext } from './UserContext';
+import React, { createContext, useContext, useEffect, useReducer } from 'react';
+import shopReducer, { initialState } from "./shopReducer";
+import axios from 'axios';
 
-// export const CartContext = createContext();
+// Create the ShopContext
+const ShopContext = createContext(initialState);
 
-// const CartProvider = ({ children }) => {
-//   const navigate = useNavigate();
-//   const { user, token } = useContext(UserContext);
-//   const [cart, setCart] = useState({ userId: null, products: [] });
 
-//   const url = "http://localhost:3000";
+// Create the ShopProvider component
+export const ShopProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(shopReducer, initialState);
 
-//   const addItemToCart = async (productId, quantity) => {
-//     if (!user || !token) {
-//       navigate('/login');
-//       return;
-//     }
+//function to add a product to the cart
+const addToCart = (state, product) => {
+    const existingProductIndex = state.cart.findIndex((currentProduct) => currentProduct._id === product._id);
+  
+    if (existingProductIndex !== -1) {
+      // Product already exists in the cart, update quantity
+      const updatedCart = state.cart.map((product, index) =>
+        index === existingProductIndex ? { ...product, quantity: product.quantity + 1 } : product
+      );
+      return calculateTotal(updatedCart);
+    } else {
+      // Product is not in the cart, add the product
+      const updatedCart = [...state.cart, { ...product, quantity: 1 }];
+      return calculateTotal(updatedCart);
+    }
+  };
 
-//     try {
-//       const response = await axios.put(`${url}/api/cart`,
-//         {
-//           userId: user._id,
-//           products: [
-//             { 
-//                 productId, 
-//                 quantity 
-//             }],
-//         },
-//         {
-//           headers: {
-//             'Content-Type': 'application/json',
-//             Authorization: `Bearer ${token}`,
-//           },
-//         }
-//       );
+//function to remove a product from the cart
+const removeFromCart = (productId) => {
+  const updatedCart = state.cart.filter((currentProduct) => currentProduct._id !== productId);
+  return calculateTotal(updatedCart);
+};
 
-//       setCart(response.data);
-//     } catch (error) {
-//       console.error('Error adding item to cart:', error.message);
-//     }
-//   };
+//function to update the quantity of a product in the cart
+const updateQuantity = (state, { productId, quantity }) => {
+  const updatedCart = state.cart.map((currentProduct) =>
+  currentProduct._id === productId ? { ...currentProduct, quantity } : currentProduct
+  );
+  return calculateTotal(updatedCart);
+};
 
-//   const removeItemFromCart = async (productId) => {
-//     if (!user || !token) {
-//       navigate('/login');
-//       return;
-//     }
+//function to clear the cart - shopReducer will reset the cart to its initial state
+const clearCart = () => {
+    dispatch({type: "CLEAR_CART"})
+}
 
-//     try {
-//       const response = await axios.delete(`${url}/api/cart/${user._id}/${productId}`, {
-//         headers: {
-//           Authorization: `Bearer ${token}`,
-//         },
-//       });
+// Helper function to calculate the total price of items in the cart
+//acc is accumulator and it starts from 0 so for each product in the cart adds the product price and multiplies it by quantity
+const calculateTotal = (cart) => {
+  const total = cart.reduce((acc, product) => acc + product.price * product.quantity, 0);
+  return { ...state, cart, total };
+};
 
-//       setCart(response.data);
-//     } catch (error) {
-//       console.error('Error removing item from cart:', error.message);
-//     }
-//   };
+//     let total = 0;
+//     products.forEach((product) => (total += product.price));
 
-//   const clearCart = async () => {
-//     if (!user || !token) {
-//       navigate('/login');
-//       return;
-//     }
-
-//     try {
-//       await axios.delete(`${url}/api/cart/${user._id}`, {
-//         headers: {
-//           Authorization: `Bearer ${token}`,
-//         },
-//       });
-
-//       setCart({ userId: null, products: [] });
-//     } catch (error) {
-//       console.error('Error clearing cart:', error.message);
-//     }
-//   };
-
-//   useEffect(() => {
-//     const fetchCart = async () => {
-//       if (user && token) {
-//         try {
-//           const response = await axios.get(`${url}/api/cart/user/${user._id}`, {
-//             headers: {
-//               Authorization: `Bearer ${token}`,
-//             },
-//           });
-
-//           setCart(response.data);
-//         } catch (error) {
-//           console.error('Error fetching cart:', error.message);
-//         }
+//     dispatch({
+//       type: "UPDATE_PRICE",
+//       payload: {
+//         total
 //       }
-//     };
+//     });
 
-//     fetchCart();
-//   }, [user, token]);
 
-//   return (
-//     <CartContext.Provider value={{ cart, addItemToCart, removeItemFromCart, clearCart }}>{children}</CartContext.Provider>
-//   );
-// };
+  // Fetch products from the server and set them in the context
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        dispatch({ type: 'SET_PRODUCTS_START' });
 
-// export default CartProvider;
+        const response = await axios.get('http://localhost:3000/api/products');
+
+        dispatch({ type: 'SET_PRODUCTS', payload: response.data });
+        console.log(dispatch)
+
+      } catch (error) {
+        console.error('Error fetching products:', error);
+        dispatch({ type: 'SET_PRODUCTS_ERROR', payload: error.message });
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  const value = {
+    addToCart,
+    removeFromCart,
+    updateQuantity,
+    clearCart,
+    calculateTotal,
+    dispatch,        //am i supposed to export dispatch? how to get all products in frontend when clicked on SHOP btn?
+  };
+
+  return <ShopContext.Provider value={value}>{children}</ShopContext.Provider>;
+};
+
+// Create a custom hook to use the ShopContext
+const useShop = () => {
+  const context = useContext(ShopContext);
+
+  if (!context || context === undefined) {
+    throw new Error('useShop must be used within a ShopProvider');
+  }
+
+  return context;
+};
+
+export default useShop;

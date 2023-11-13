@@ -27,6 +27,9 @@ const Navigation = () => {
             <NavLink to="/login">
               <i className="pi pi-user"></i>
             </NavLink>
+            <NavLink to="/account">
+              <i className="pi pi-cog"></i>
+            </NavLink>
             <NavLink to="/cart">
               <i className="pi pi-shopping-cart"></i>
             </NavLink>

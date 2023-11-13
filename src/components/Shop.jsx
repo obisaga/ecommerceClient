@@ -12,6 +12,7 @@ import "../styles/shop.css"
 
 const Shop = () => {
   const [products, setProducts] = useState([]);
+  const [search, setSearch] = useState(false)
 
   const fetchProducts = async () => {
     try {
@@ -28,12 +29,20 @@ const Shop = () => {
     fetchProducts();
   }, []);
 
+  const fireSearch = () => {
+    setSearch(true)
+  };
+
+  const showAll = () => {
+    setSearch(false)
+  };
+
   return (
     <>
       <Navigation />
-      <Search /> 
-
-      <div className="cardContainer">
+      <button onClick={fireSearch}>Search for a product</button>   
+      <button onClick={showAll}>Show All</button> 
+      {search ?    <Search /> :  <div className="cardContainer">
         {products.map((product, index) => {
           return (
             <Card className="card" key={index}>
@@ -56,8 +65,13 @@ const Shop = () => {
             </Card>
           );
         })}
-      </div>
 
+
+      </div>
+ }
+     
+
+     
       <Info />
       <Footer />
     </>

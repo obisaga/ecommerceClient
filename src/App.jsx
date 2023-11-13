@@ -6,6 +6,7 @@ import Cart from './components/Cart'
 import Register from './components/Register'
 import SingleProduct from './components/SingleProduct'
 import Contact from "./components/Contact";
+import AccountSettings from "./components/AccountSettings";
 
 // import NotFound from "./components/NotFound";
 // import PublicRoutes from "./routes/PublicRoutes"
@@ -25,6 +26,8 @@ function App() {
           <Route path="/login" element={<Login />} /> 
       <Route path="/register" element={<Register />} />
       <Route path="/contact" element={<Contact />} /> 
+      <Route path="/account" element={<AccountSettings />} /> 
+
 
       </Routes>
 
