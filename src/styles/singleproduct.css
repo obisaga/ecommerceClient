@@ -1,0 +1,14 @@
+.singleProductWrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.productContainer{
+    display: flex !important;
+    flex-direction: row;
+}
+
+.productImg{
+    width: 500px;
+
+}

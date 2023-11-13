@@ -41,7 +41,7 @@ const Shop = () => {
                 to={`/products/${product._id}`}
               >
                 <Card.Body>
-                  <Card.Title>
+                  <Card.Title className="cardTitle">
                     <p>{product.title}</p>
                   </Card.Title>
                   <Card.Img
