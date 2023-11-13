@@ -51,14 +51,23 @@ const Cart = (props) => {
 
     useEffect(() => {
       //sum the prices of products
-      if(Object.keys(product).length>1) {
-        const arr = (product.map((product) => product.productId.price))
+      // if(Object.keys(product).length>1) {
+      //   const arr = (product.map((product) => product.productId.price))
+      //   const sum = arr.reduce((accumulator, object) => {
+      //     return accumulator + object;
+      //   }, 0);
+      // console.log(sum)
+       // setCount(Object.keys(product).length)
+
+      if(product.length>0) {
+        const arr = (product.map((product) => product.price))
         const sum = arr.reduce((accumulator, object) => {
           return accumulator + object;
         }, 0);
       console.log(sum)
       setTotal(sum)
-      setCount(Object.keys(product).length)
+      setTotal(sum)
+      setCount(product.length)
       } else {
         console.log('Counter failed')}
     }, [findCart]);
@@ -68,16 +77,16 @@ const Cart = (props) => {
   
     const addOne = () => {
       console.log("Add Button Clicked");
+      setQuantity(quantity + 1);
       };
 
     const removeOne = (value) => {
       console.log(value)
         console.log("Remove One Button Clicked");
-        setQuantity(quantity-1)
-        const addThisItem = {productId: product._id, quantity: product.quantity}
-        console.log(addThisItem)
+        if (quantity > 1) {
+          setQuantity(quantity - 1);
+        }
 
-        const selectedProduct = product._id
         // selectedProduct ? 
         //update quantity -1
         //send it to cart context function updateCart
@@ -89,6 +98,12 @@ const Cart = (props) => {
   // currentProduct._id === productId ? { ...currentProduct, quantity } : currentProduct
   // );
       };
+
+      useEffect(() => {
+        const addThisItem = { productId: product._id, quantity: quantity };
+        console.log(addThisItem);
+        updateCart(addThisItem);
+     }, [quantity]);
 
     const deleteItem =  () => {
         console.log("Remove Button Clicked");
@@ -141,7 +156,7 @@ const Cart = (props) => {
             <p >Color: {product.productId.color}</p>
             <p >{product.productId.price} €</p> 
             <div className="cartQuantityButtons">
-              <button className="adjustmentBtn" value={product.productId._id} onClick={removeOne(value)}> - </button>
+              <button className="adjustmentBtn" onClick={() => removeOne(product._id)}> - </button>
               <p>Qty: {product.quantity}</p>
               <button className="adjustmentBtn" onClick={addOne}> + </button>
               <button className="deleteBtn"  onClick={deleteItem}> Remove from Cart </button>
