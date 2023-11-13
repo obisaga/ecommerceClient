@@ -7,6 +7,8 @@ import axios from 'axios';
 import "../styles/cart.css"
 import { UserContext } from "../context/UserContext";
 import "primeicons/primeicons.css";
+import { CartContext } from "../context/CartContext";
+
 
 
 
@@ -17,6 +19,8 @@ const Cart = (props) => {
     const [total, setTotal] = useState(0);
     const { user } = useContext(UserContext);
     const [count, setCount] = useState(0);
+    const [quantity, setQuantity] = useState(0);
+    const {addToCart, updateCart} = useContext(CartContext)
 
 
     const findCart = async () => {
@@ -25,9 +29,10 @@ const Cart = (props) => {
         console.log(response.data);
         if(response.status === 204){
           console.log("Cart is empty")
-        } else if (response.status === 200){
+        } else if (response.status === 200){ 
           console.log("Cart found")
         setProduct(response.data[0].products.map((product)=> product))
+        // setQuantity(response.data[0].products.map((product)=> product.quantity))
 
         
         }
@@ -65,8 +70,24 @@ const Cart = (props) => {
       console.log("Add Button Clicked");
       };
 
-    const removeOne = () => {
+    const removeOne = (value) => {
+      console.log(value)
         console.log("Remove One Button Clicked");
+        setQuantity(quantity-1)
+        const addThisItem = {productId: product._id, quantity: product.quantity}
+        console.log(addThisItem)
+
+        const selectedProduct = product._id
+        // selectedProduct ? 
+        //update quantity -1
+        //send it to cart context function updateCart
+        //if 0 - remove item from cart
+     
+        // updateCart(addThisItem)
+
+  //       const updatedCart = state.cart.map((currentProduct) =>
+  // currentProduct._id === productId ? { ...currentProduct, quantity } : currentProduct
+  // );
       };
 
     const deleteItem =  () => {
@@ -116,14 +137,14 @@ const Cart = (props) => {
             <div  key={index}>
             <div className="cart">
             <img src={product.productId.image}></img>
-            <p >{product.productId.title}</p>
+            <p>{product.productId._id} , {product._id}, {product.quantity}, {product.productId.title}</p>
             <p >Color: {product.productId.color}</p>
             <p >{product.productId.price} €</p> 
             <div className="cartQuantityButtons">
-              <button className="adjustmentBtn" onClick={removeOne}> - </button>
+              <button className="adjustmentBtn" value={product.productId._id} onClick={removeOne(value)}> - </button>
               <p>Qty: {product.quantity}</p>
               <button className="adjustmentBtn" onClick={addOne}> + </button>
-              <button className="deleteBtn" onClick={deleteItem}> Remove from Cart </button>
+              <button className="deleteBtn"  onClick={deleteItem}> Remove from Cart </button>
            </div>
             </div>
              <hr/>

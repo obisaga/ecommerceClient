@@ -6,6 +6,8 @@ import * as ReactBootstrap from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import axios from "axios";
 import { UserContext } from "../context/UserContext";
+import { CartContext } from "../context/CartContext";
+
 import "../styles/singleproduct.css"
 
 
@@ -15,6 +17,7 @@ const SingleProduct = (props) => {
   const [error, setError] = useState("");
   const { id } = useParams();
   const { user } = useContext(UserContext);
+  const {addToCart, updateCart} = useContext(CartContext)
   console.log(user);
 
   const productFetch = async () => {
@@ -42,35 +45,23 @@ const SingleProduct = (props) => {
       const response = await axios.get(url);
       console.log(response.data)
      if(response.status === 204){
-      console.log("User has no carts yet, creating new cart")
+      // console.log("User has no carts yet, creating new cart")
 
       const newCartData = {
-          userId: user._id,
-          products: [
-            {productId: product._id, quantity: 1}
-          ]
-        }
+        userId: user._id,
+        products: [
+          {productId: product._id, quantity: 1}
+        ]
+      }
 
-        const createCart = await axios.post("http://localhost:3000/api/cart", newCartData);
-        console.log("Cart created:", createCart.data);
+      addToCart(newCartData)
 
 
      } else if (response.status === 200){
-        console.log("Cart found")
+        // console.log("Cart found")
         const existingProducts = response.data[0].products
-        
         const addThisItem = {productId: product._id, quantity: 3}
-       
-        existingProducts.push(addThisItem)
-        console.log(existingProducts)
-
-        const pushToCart = {
-          products: existingProducts
-            
-        }
-        
-        const updateCart = await axios.put(`http://localhost:3000/api/cart/user/${user._id}`, pushToCart)
-        console.log("Cart updated", updateCart)
+        updateCart(existingProducts, addThisItem)
      
       }
    
@@ -106,7 +97,7 @@ const SingleProduct = (props) => {
             
             <Card.Text className="color"><p>Color: {product.color}</p></Card.Text>
             {/* <Card.Text className="size"><p>Sizes: {product.availability.map((product)=> <p>{product.size}  <button className="addToCart" onClick={findCart}>ADD TO CART</button></p>)}</p></Card.Text> */}
-           <Card.Text className="size"><p>Sizes: {product.availability.map((product)=> <p>{product.size}  </p>)}</p></Card.Text>
+           <Card.Text className="size"><div>Sizes: {product.availability.map((product)=> <p>{product.size}  </p>)}</div></Card.Text>
 
             <Card.Text className="price"><p>Price: {product.price} €</p></Card.Text>
             <button className="addToCart" onClick={findCart}>ADD TO CART</button>
