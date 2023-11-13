@@ -6,6 +6,8 @@ import * as ReactBootstrap from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import axios from "axios";
 import { UserContext } from "../context/UserContext";
+import "../styles/singleproduct.css"
+
 
 const SingleProduct = (props) => {
   const [product, setProduct] = useState({});
@@ -94,16 +96,25 @@ const SingleProduct = (props) => {
       ) : null} 
       {error && <div>{error}</div>}   
       {Object.keys(product).length ? (
-        <Card>
-          <Card.Img variant="top" src={product.image} />
+        <div className="singleProductWrapper">
+        <Card className="productContainer">
+          <Card.Img variant="top" className="productImg" src={product.image} />
           <Card.Body className="cardBody">
             <Card.Title className="cardTitle">{product.title}</Card.Title>
-            <Card.Text className="about">{product.desc}</Card.Text>
+            <Card.Text className="about"><p>{product.description}</p></Card.Text>
+            <hr/>
+            
+            <Card.Text className="color"><p>Color: {product.color}</p></Card.Text>
+            {/* <Card.Text className="size"><p>Sizes: {product.availability.map((product)=> <p>{product.size}  <button className="addToCart" onClick={findCart}>ADD TO CART</button></p>)}</p></Card.Text> */}
+           <Card.Text className="size"><p>Sizes: {product.availability.map((product)=> <p>{product.size}  </p>)}</p></Card.Text>
+
+            <Card.Text className="price"><p>Price: {product.price} €</p></Card.Text>
+            <button className="addToCart" onClick={findCart}>ADD TO CART</button>
           </Card.Body>
-          <button className="addToCart" onClick={findCart}>
-            ADD TO CART
-          </button>
+         
         </Card>
+     
+       </div>
       ) : null}
       <Footer />
     </div>

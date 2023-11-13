@@ -134,7 +134,7 @@ const Cart = (props) => {
        <div className="total-price">
           <p>Total: {total} </p>
           <p>€</p>
-          <h1 count={count} className="count">{count}</h1>
+          <h1 className="count">{count}</h1>
 
           
         </div>
@@ -155,4 +155,4 @@ const Cart = (props) => {
 
 
 
-export default Cart(count);
+export default Cart;

@@ -26,3 +26,13 @@
     text-decoration: none !important;
 
   }
+
+  .cardTitle p{
+    font-size:1rem;
+
+  }
+  .cardImg{
+  object-fit: cover;
+  width: 230px;
+  height: 230px 
+}
