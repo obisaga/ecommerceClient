@@ -1,19 +1,43 @@
-import React, {useContext} from "react";
+import React, {useContext, useState} from "react";
 import "primeicons/primeicons.css";
 import "../styles/navi.css";
 import { NavLink } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
+import { CartContext } from "../context/CartContext";
+
+// import LogoutModal from "./LogoutModal";
+
+//MODAL STUFF
+import 'mdb-react-ui-kit/dist/css/mdb.min.css';
+import "@fortawesome/fontawesome-free/css/all.min.css";
+import {
+    MDBBtn,
+    MDBModal,
+    MDBModalDialog,
+    MDBModalContent,
+    MDBModalHeader,
+    MDBModalTitle,
+    MDBModalBody,
+    MDBModalFooter,
+  } from 'mdb-react-ui-kit';
 
 
 const Navigation = () => {
 const {user, logout} = useContext(UserContext);
+const {cartCountingProducts} = useContext(UserContext);
+
 console.log(user, "navigation login")
+console.log(cartCountingProducts, "IS THIS VISIBLE")
+const [modal, setModal] = useState(false)
+
 
 const handleLogout =  () => {
-  alert("Good Bye");
-
+  setModal(!modal);  
+ 
+};
+const confirmLogout = () => {
+  setModal(!modal);  
   logout()
-  
 };
 
 
@@ -39,10 +63,34 @@ const handleLogout =  () => {
           <span className="user-cart-icons">
 
 
-            {user ? <><NavLink to="/home" onClick={handleLogout}> <i className="pi pi-sign-out"></i></NavLink>  <NavLink to="/account"><i className="pi pi-cog"></i></NavLink></> 
+            {user ? <><i onClick={handleLogout} className="pi pi-sign-out"></i><NavLink to="/account"><i className="pi pi-cog"></i></NavLink></> 
               : <NavLink to="/login"><i className="pi pi-user"></i></NavLink>
             }
+       
+            <>
 
+    <MDBModal tabIndex='-1' open={modal} setOpen={setModal}>
+      <MDBModalDialog centered>
+        <MDBModalContent>
+          <MDBModalHeader>
+            <MDBModalTitle>Confirm Logout</MDBModalTitle>
+            <MDBBtn className='btn-close' color='none' onClick={handleLogout}></MDBBtn>
+          </MDBModalHeader>
+          <MDBModalBody>
+            <p>
+              Are you sure you want to Logout?
+            </p>
+          </MDBModalBody>
+          <MDBModalFooter>
+            <MDBBtn color='secondary' onClick={handleLogout}>
+              Nevermind
+            </MDBBtn>
+            <NavLink to="/home"><MDBBtn onClick={confirmLogout}>Yes</MDBBtn></NavLink>
+          </MDBModalFooter>
+        </MDBModalContent>
+      </MDBModalDialog>
+    </MDBModal>
+  </>
 
             
           

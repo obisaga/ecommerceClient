@@ -7,7 +7,7 @@ import Register from './components/Register'
 import SingleProduct from './components/SingleProduct'
 import Contact from "./components/Contact";
 import AccountSettings from "./components/AccountSettings";
-import OlgaCart from "./components/OlgaCart";
+import Cart from "./components/Cart";
 
 // import NotFound from "./components/NotFound";
 // import PublicRoutes from "./routes/PublicRoutes"
@@ -22,8 +22,7 @@ function App() {
       <Routes>
           <Route path="/home" element={<Homepage />} />
           <Route path="/shop" element={<Shop />} />
-          {/* <Route path="/cart" element={<Cart />} /> */}
-                    <Route path="/cart" element={<OlgaCart />} />
+          <Route path="/cart" element={<Cart />} />
 
           <Route path="/products/:id" element={<SingleProduct />}/>
           <Route path="/login" element={<Login />} /> 

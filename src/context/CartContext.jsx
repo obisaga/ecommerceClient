@@ -60,6 +60,14 @@ const clearCart = () => {
    //delete endpoint
 }
 
+const cartCountingProducts = async (sumCart) => {
+    console.log("Cart found - Context")  
+    console.log(sumCart, "Objects in the cart")
+   const numberofProducts = sumCart
+   console.log(numberofProducts, "Context Objects in the cart")
+  
+};
+
 
 //add totalAmount in backend schema for cart
   //need to make endpoint for it
@@ -71,7 +79,9 @@ const clearCart = () => {
     removeFromCart,
     updateCart,
     clearCart,
-    updateCartQuantity  }     
+    updateCartQuantity,
+    cartCountingProducts,
+  }     
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 };
