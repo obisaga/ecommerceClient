@@ -1,9 +1,22 @@
-import React from "react";
+import React, {useContext} from "react";
 import "primeicons/primeicons.css";
 import "../styles/navi.css";
 import { NavLink } from "react-router-dom";
+import { UserContext } from "../context/UserContext";
+
 
 const Navigation = () => {
+const {user, logout} = useContext(UserContext);
+console.log(user, "navigation login")
+
+const handleLogout =  () => {
+  alert("Good Bye");
+
+  logout()
+  
+};
+
+
   return (
     <>
    
@@ -24,12 +37,15 @@ const Navigation = () => {
             <NavLink to="/home" style={{ textDecoration: "none", color: "black" }}>The Jewellery Shop</NavLink>
           </span>
           <span className="user-cart-icons">
-            <NavLink to="/login">
-              <i className="pi pi-user"></i>
-            </NavLink>
-            <NavLink to="/account">
-              <i className="pi pi-cog"></i>
-            </NavLink>
+
+
+            {user ? <><NavLink to="/home" onClick={handleLogout}> <i className="pi pi-sign-out"></i></NavLink>  <NavLink to="/account"><i className="pi pi-cog"></i></NavLink></> 
+              : <NavLink to="/login"><i className="pi pi-user"></i></NavLink>
+            }
+
+
+            
+          
             <NavLink to="/cart">
               <i className="pi pi-shopping-cart"></i>
             </NavLink>

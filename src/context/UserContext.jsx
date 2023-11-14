@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { createContext, useState} from 'react';
+import React, { createContext, useState, useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export const UserContext = createContext();
@@ -42,14 +42,45 @@ const UserProvider= ({children}) => {
             setLoading(false);
         }
     };
+
     console.log(user)
+    
     const logout = () => {
         sessionStorage.removeItem('token')
         setUser(null)
         setToken(null)
         navigate("/home");
     }
+     
+ // useEffect hook to load the user data on component mount
+ useEffect(() => {
+    // Define a function to fetch user data
+    const fetchUserData = async () => {
+        // If there's a token set in the state, try to get the user data
+        if (token) {
+            const url = "http://localhost:3000";
+            try {
+                const response = await axios.get(`${url}/api/users/${user._id}`, {
+                    headers: {
+                        'Authorization': `${token}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+                // Set the user data on successful response
+                console.log(response.data, "response context")
+                // setUser(response.data.userId);
+            } catch (e) {
+                console.error('Failed to fetch user data:', e);
+                 logout();
+                // Handle failure to fetch user data (e.g., by logging out the user)
 
+
+            }
+        }
+    };
+
+ fetchUserData();
+}, [token]);
 
   return (
     <UserContext.Provider value={{user, token, login, logout}}>{children}</UserContext.Provider>

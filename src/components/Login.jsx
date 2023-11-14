@@ -16,7 +16,7 @@ const Login = () => {
     const [error, setError] = useState("");
     const [showElement, setShowElement] = useState(false);
       
-    const {login} = useContext(UserContext);
+    const {user, login} = useContext(UserContext);
       
     useEffect(() => {
       let timer = setTimeout(() => {
@@ -38,7 +38,7 @@ const Login = () => {
     <div>
       <Navigation />
       {loading && <p>Loading...</p>}
-      {success && <p>Login successful!</p>}
+      {success && <p>{user.firstName} SUCCESFULLY LOGGED IN</p>}
       {error && <p>Error: {error}</p>}
       {!loading && !error && (
         <>

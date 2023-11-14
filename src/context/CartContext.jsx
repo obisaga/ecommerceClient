@@ -21,16 +21,10 @@ const addToCart = async (newCartData) => {
 
   };
 
-//function to remove a product from the cart
-const removeFromCart = () => {
-  
-};
 
 //function to update the quantity of a product in the cart
 const updateCart = async (existingProducts, addThisItem) => {
-    console.log("Cart found - Context")
-        
-       
+    console.log("Cart found - Context")  
         existingProducts.push(addThisItem)
         console.log(existingProducts)
 
@@ -40,6 +34,24 @@ const updateCart = async (existingProducts, addThisItem) => {
         
         const updateCart = await axios.put(`http://localhost:3000/api/cart/user/${user._id}`, pushToCart)
         console.log("Cart updated", updateCart)
+
+};
+
+const updateCartQuantity = async (newQuantity, additionalValue) => {
+    console.log("Cart found - Context")  
+console.log(additionalValue, "From Context")
+    const updateQty = await axios.put(`http://localhost:3000/api/cart/user/${user._id}/${additionalValue}`, {
+        newQuantity: newQuantity
+    })
+    console.log("Cart updated", updateQty)
+
+};
+
+const removeFromCart = async (idValue) => {
+    console.log("Cart found - Context")  
+    console.log(idValue, "From Context")
+    const updateQty = await axios.put(`http://localhost:3000/api/cart/user/${user._id}/remove/${idValue}`)
+    console.log("Cart updated", updateQty)
 
 };
 
@@ -58,7 +70,8 @@ const clearCart = () => {
     addToCart,
     removeFromCart,
     updateCart,
-    clearCart  }     
+    clearCart,
+    updateCartQuantity  }     
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 };

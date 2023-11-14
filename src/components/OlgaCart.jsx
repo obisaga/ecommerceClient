@@ -13,14 +13,16 @@ import { CartContext } from "../context/CartContext";
 
 
 
-const Cart = (props) => {
+const OlgaCart = (props) => {
     const [product, setProduct] = useState([{message:"Cart is Empty"}]);
     
     const [total, setTotal] = useState(0);
     const { user } = useContext(UserContext);
     const [count, setCount] = useState(0);
-    const [quantity, setQuantity] = useState(0);
-    const {addToCart, updateCart} = useContext(CartContext)
+    const [clicked, setClicked] = useState(false);
+    const {addToCart, updateCart, updateCartQuantity, removeFromCart} = useContext(CartContext)
+
+
 
 
     const findCart = async () => {
@@ -49,6 +51,10 @@ const Cart = (props) => {
       findCart();
     }, []);
 
+    
+
+
+
     useEffect(() => {
       //sum the prices of products
       if(Object.keys(product).length>1) {
@@ -64,52 +70,52 @@ const Cart = (props) => {
     }, [findCart]);
 
 
-
+    useEffect(() => {
+        const fetchData = async () => {
+            await findCart();
+        };
+        if (clicked) {
+            fetchData();
+            // Reset the state after fetching
+            setClicked(false);
+        }
+    }, [clicked]);
   
-    const addOne = () => {
-      console.log("Add Button Clicked");
+  
+    const addOne = (event) => {
+        const buttonValue = event.target.value;
+        const additionalValue = event.target.getAttribute('data-custom-value');
+        const sum = parseInt(buttonValue, 10) + 1;
+        console.log('ProductId:', additionalValue, 'Qty:', sum);
+        const newQuantity = sum
+        console.log('updated:', newQuantity);
+ 
+         updateCartQuantity(sum, additionalValue);
+         setClicked(true)
+
       };
 
-    const removeOne = (value) => {
-      console.log(value)
-        console.log("Remove One Button Clicked");
-        setQuantity(quantity-1)
-        const addThisItem = {productId: product._id, quantity: product.quantity}
-        console.log(addThisItem)
 
-        const selectedProduct = product._id 
-        // selectedProduct ? 
-        //update quantity -1
-        //send it to cart context function updateCart
-        //if 0 - remove item from cart
+
+    const removeOne = (event) => {
+        const buttonValue = event.target.value;
+        const additionalValue = event.target.getAttribute('data-custom-value');
+        const sum = parseInt(buttonValue, 10) - 1;
+        console.log('ProductId:', additionalValue, 'Qty:', sum);
+        const newQuantity = sum
+        console.log('updated:', newQuantity);
+ 
+         updateCartQuantity(sum, additionalValue);
+         setClicked(true)
      
-        // updateCart(addThisItem)
-
-  //       const updatedCart = state.cart.map((currentProduct) =>
-  // currentProduct._id === productId ? { ...currentProduct, quantity } : currentProduct
-  // );
       };
 
-    const deleteItem =  () => {
-        console.log("Remove Button Clicked");
-      //   try {
-      //     const existingProducts = product
-      //  const addThisItem = {productId: button.key, quantity: 0}
-         
-      //  existingProducts.push(addThisItem)
-      //     console.log(existingProducts)
-  
-      //     const pushToCart = {
-      //       products: existingProducts
-      //      }
-      //     const updateCart = await axios.put(`http://localhost:3000/api/cart/user/${user._id}`, pushToCart)
-      //     console.log("Cart updated", updateCart)
-      //   }
-      //   catch (error) {
-      //     console.log("Error", error)
-      //     } finally {
-      //       console.log("The end of function")
-      //     }
+      const deleteItem = (event) => {
+        const idValue = event.target.getAttribute('data-custom-value');
+       
+         removeFromCart(idValue);
+         setClicked(true)
+     
       };
 
       const continueShop = () => {
@@ -141,10 +147,10 @@ const Cart = (props) => {
             <p >Color: {product.productId.color}</p>
             <p >{product.productId.price} €</p> 
             <div className="cartQuantityButtons">
-              <button className="adjustmentBtn" value={product.productId._id} onClick={removeOne(value)}> - </button>
+            <button className="adjustmentBtn" value={product.quantity} data-custom-value={product.productId._id} onClick={removeOne}> - </button>
               <p>Qty: {product.quantity}</p>
-              <button className="adjustmentBtn" onClick={addOne}> + </button>
-              <button className="deleteBtn"  onClick={deleteItem}> Remove from Cart </button>
+              <button className="adjustmentBtn" value={product.quantity} data-custom-value={product.productId._id} onClick={addOne}> + </button>
+              <button className="deleteBtn" value={product.quantity} data-custom-value={product.productId._id} onClick={deleteItem}> Remove from Cart </button>
            </div>
             </div>
              <hr/>
@@ -152,6 +158,7 @@ const Cart = (props) => {
           );
         })
       }
+
        <div className="total-price">
           <p>Total: {total} </p>
           <p>€</p>
@@ -177,5 +184,5 @@ const Cart = (props) => {
 
 
 
-export default Cart;
+export default OlgaCart;
 

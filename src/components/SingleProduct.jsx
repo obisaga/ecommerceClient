@@ -60,7 +60,7 @@ const SingleProduct = (props) => {
      } else if (response.status === 200){
         // console.log("Cart found")
         const existingProducts = response.data[0].products
-        const addThisItem = {productId: product._id, quantity: 3}
+        const addThisItem = {productId: product._id}
         updateCart(existingProducts, addThisItem)
      
       }
@@ -97,7 +97,7 @@ const SingleProduct = (props) => {
             
             <Card.Text className="color"><p>Color: {product.color}</p></Card.Text>
             {/* <Card.Text className="size"><p>Sizes: {product.availability.map((product)=> <p>{product.size}  <button className="addToCart" onClick={findCart}>ADD TO CART</button></p>)}</p></Card.Text> */}
-           <Card.Text className="size"><div>Sizes: {product.availability.map((product)=> <p>{product.size}  </p>)}</div></Card.Text>
+           <Card.Text className="size"><div>Sizes: {product.availability.map((product)=> {product.size}  )}</div></Card.Text>
 
             <Card.Text className="price"><p>Price: {product.price} €</p></Card.Text>
             <button className="addToCart" onClick={findCart}>ADD TO CART</button>
