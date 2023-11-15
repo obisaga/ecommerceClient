@@ -38,7 +38,7 @@ const Login = () => {
     <div>
       <Navigation />
       {loading && <p>Loading...</p>}
-      {success && <p>{user.firstName} SUCCESFULLY LOGGED IN</p>}
+      {success && <p>{user.firstName} has successfully logged in </p>}
       {error && <p>Error: {error}</p>}
       {!loading && !error && (
         <>
