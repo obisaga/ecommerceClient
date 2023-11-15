@@ -1,0 +1,32 @@
+.parent{
+    background-color:#F7E7DB;
+}
+.parent p{
+    padding-top: 1rem;
+ 
+}
+  
+  .slider {
+    margin:0 20px;
+    overflow:"hidden";
+    padding:2rem 0;
+  }
+  
+  .slider img {
+    width: 15rem;
+    height: 15rem;
+    object-fit: cover;
+    border-radius:10px;
+  }
+  
+  .react-multi-carousel-list {
+  padding: 0rem 0 2rem 0;
+  }
+  
+  .custom-dot-list-style button{
+  border: none;
+  background: black
+  }
+  .react-multi-carousel-dot.react-multi-carousel-dot--active button{
+  background: white !important;
+  }

@@ -7,8 +7,6 @@ import Register from './components/Register'
 import SingleProduct from './components/SingleProduct'
 import Contact from "./components/Contact";
 import AccountSettings from "./components/AccountSettings";
-import Cart from "./components/Cart";
-
 // import NotFound from "./components/NotFound";
 // import PublicRoutes from "./routes/PublicRoutes"
 // import PrivateRoutes from "./routes/PrivateRoutes"
