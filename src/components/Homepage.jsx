@@ -7,6 +7,7 @@ import Info from "../elements/Info"
 import Footer from "../elements/Footer";
 import Slider from "../elements/Slider";
 
+
 import "../styles/homepage.css"
 
 

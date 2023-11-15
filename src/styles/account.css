@@ -1,0 +1,27 @@
+div .settings-container{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(232, 236, 240); 
+    padding: 3em 2em;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+} 
+div h1{
+    font-size: 2em;
+}
+
+.name{
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    padding-top: 1em;
+}
+
+button{
+    border-radius: 5px;
+    font-size: 0.6em;
+    padding: 1px 4px;
+    margin: 8px;
+}
+
