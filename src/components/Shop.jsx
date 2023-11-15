@@ -14,6 +14,7 @@ const Shop = () => {
   const [products, setProducts] = useState([]);
   const [search, setSearch] = useState(false)
 
+
   const fetchProducts = async () => {
     try {
       const response = await axios.get("http://localhost:3000/api/products");
@@ -36,6 +37,7 @@ const Shop = () => {
   const showAll = () => {
     setSearch(false)
   };
+
 
   return (
     <>
@@ -66,12 +68,8 @@ const Shop = () => {
           );
         })}
 
-
       </div>
  }
-     
-
-     
       <Info />
       <Footer />
     </>

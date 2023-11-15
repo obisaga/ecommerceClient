@@ -1,10 +1,12 @@
-import React, {useContext, useState} from "react";
+import React, {useContext, useState, useEffect} from "react";
 import "primeicons/primeicons.css";
 import "../styles/navi.css";
 import { NavLink } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 import { CartContext } from "../context/CartContext";
-
+import axios from 'axios'
+import { useParams } from "react-router-dom";
+import * as ReactBootstrap from "react-bootstrap";
 // import LogoutModal from "./LogoutModal";
 
 //MODAL STUFF
@@ -39,6 +41,40 @@ const confirmLogout = () => {
   setModal(!modal);  
   logout()
 };
+
+const [product, setProduct] = useState([]);
+const [loading, setLoading] = useState(false);
+const [error, setError] = useState("");
+
+const { categories } = useParams();
+
+console.log("Current category:", categories);
+
+const filterProducts = async () => {
+  try {
+    setLoading(true);
+    setError("");
+
+    console.log("Before API call");
+
+    const response = await axios.get(`http://localhost:3000/api/products/${categories}`);
+    console.log(response.data);
+
+    const filteredProducts = response.data.filter(product => product.categories.includes(categories));
+    console.log(filteredProducts);
+
+    setProducts(filteredProducts);
+  } catch (error) {
+    console.error("Error fetching products:", error.message);
+    setError("Failed to fetch products");
+  } finally {
+    setLoading(false);
+  }
+};
+
+useEffect(() => {
+  filterProducts();
+}, [categories]);
 
 
   return (
@@ -101,13 +137,24 @@ const confirmLogout = () => {
         </span>
       </div>
       <hr size="1" />
+
+      {loading ? (
+        <div>
+          <ReactBootstrap.Spinner animation="border" variant="light" />
+          <p className='paragraphContent'>Content loading ...</p>
+        </div>
+      ) : null} 
+      {error && <div>{error}</div>}  
+
+      
+
       <div className="bottomNav">
         <div className="links">
           <NavLink to="/home">HOME</NavLink>
           <div className="dropdown">
             <NavLink to="/shop" className="dropbtn">SHOP</NavLink>
             <div className="dropdown-content">
-              <NavLink to="/shop">RINGS</NavLink>
+              <NavLink to="/shop" onClick={filterProducts}>RINGS</NavLink>
               <NavLink to="/shop">NECKLACES</NavLink>
               <NavLink to="/shop">BRACELETS</NavLink>
             </div>
