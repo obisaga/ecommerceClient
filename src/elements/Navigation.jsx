@@ -57,13 +57,13 @@ const filterProducts = async () => {
 
     console.log("Before API call");
 
-    const response = await axios.get(`http://localhost:3000/api/products/${categories}`);
+    const response = await axios.get(`http://localhost:3000/api/products/filter/${categories}`);
     console.log(response.data);
 
     const filteredProducts = response.data.filter(product => product.categories.includes(categories));
     console.log(filteredProducts);
 
-    setProducts(filteredProducts);
+    // setProduct(filteredProducts);
   } catch (error) {
     console.error("Error fetching products:", error.message);
     setError("Failed to fetch products");
