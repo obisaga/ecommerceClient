@@ -7,6 +7,8 @@ import { CartContext } from "../context/CartContext";
 import axios from 'axios'
 import { useParams } from "react-router-dom";
 import * as ReactBootstrap from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+
 // import LogoutModal from "./LogoutModal";
 
 //MODAL STUFF
@@ -27,6 +29,7 @@ import {
 const Navigation = () => {
 const {user, logout} = useContext(UserContext);
 const {cartCountingProducts} = useContext(UserContext);
+const navigate = useNavigate();
 
 console.log(user, "navigation login")
 console.log(cartCountingProducts, "IS THIS VISIBLE")
@@ -50,10 +53,10 @@ const [filter, setFilter] = useState("");
 
 const filterProducts = async (event) => {
   try {
-    const buttonValue= event.target.value;
+    const buttonValue = event.target.value;
     setFilter(buttonValue)
     console.log(buttonValue);
-   
+    navigate(`/shop/${buttonValue}`);
    
     setProduct(response.data);
   } catch (err) {
@@ -145,18 +148,9 @@ useEffect(() => {
           <div className="dropdown">
             <NavLink to="/shop" className="dropbtn">SHOP</NavLink>
             <div className="dropdown-content">
-            <NavLink
-                className="link"
-                               to={`/shop/${filter}`}
-              > <button onClick={filterProducts} value="rings">RINGS</button> </NavLink>
-              <NavLink
-                className="link"
-                               to={`/shop/${filter}`}
-              ><button onClick={filterProducts} value="earrings">EARRINGS</button></NavLink>
-              <NavLink
-                className="link"
-                               to={`/shop/${filter}`}
-              ><button onClick={filterProducts} value="bracelets">BRACELETS</button></NavLink>
+             <button onClick={filterProducts} value="rings">RINGS</button> 
+              <button onClick={filterProducts} value="earrings">EARRINGS</button>
+              <button onClick={filterProducts} value="bracelets">BRACELETS</button>
             </div>
           </div>
           <NavLink to="">ABOUT US</NavLink>
