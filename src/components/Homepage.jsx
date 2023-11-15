@@ -5,9 +5,7 @@ import About from "../elements/About";
 import Guarantees from "../elements/Guarantees";
 import Info from "../elements/Info"
 import Footer from "../elements/Footer";
-import CarouselElement from "../elements/CarouselElement";
 import Slider from "../elements/Slider";
-import OlgaCarousel from "../elements/OlgaCarousel";
 
 import "../styles/homepage.css"
 
@@ -18,8 +16,7 @@ const Homepage = () => {
     <div className="homepageContainer">
       <Navigation />
       <Header />
-      <OlgaCarousel/>
-      {/* <Slider /> */}
+      <Slider/>
       <About />
       <Guarantees />
       <Info />

@@ -15,6 +15,8 @@ const UserProvider= ({children}) => {
 
     const url = "http://localhost:3000"
 
+    console.log('Token used in API request:', token);
+
 
     const login = async (email, password, setLoading, setSuccess, setError ) => {
         const payload = { email, password };
@@ -23,8 +25,11 @@ const UserProvider= ({children}) => {
             const response = await axios.post(url + '/api/auth/login', payload, {
                 headers: { 'Content-Type': 'application/json' }
             });
+
+            if(response.status === 200){
             const { token, user } = response.data;
             sessionStorage.setItem('token', token);
+            console.log('Token set in sessionStorage:', token);
             setUser(user);
            
             setToken(token);
@@ -32,6 +37,11 @@ const UserProvider= ({children}) => {
             setTimeout(() => {
                 navigate('/home');
             }, 3000);
+
+            } else {
+                console.log(response.status)
+            }
+            
         } catch (e) {
             console.log(e.response.data)
             setError(e.response.data);
@@ -60,7 +70,7 @@ const UserProvider= ({children}) => {
         if (token) {
             const url = "http://localhost:3000";
             try {
-                const response = await axios.get(`${url}/api/users/${user._id}`, {
+                const response = await axios.get(`${url}/api/users/user`, {
                     headers: {
                         'Authorization': `${token}`,
                         'Content-Type': 'application/json'
@@ -68,7 +78,7 @@ const UserProvider= ({children}) => {
                 });
                 // Set the user data on successful response
                 console.log(response.data, "response context")
-                setUser(response.data.userId);
+                setUser(response.data);
             } catch (e) {
                 console.error('Failed to fetch user data:', e);
                  logout();
@@ -77,7 +87,7 @@ const UserProvider= ({children}) => {
         }
     };
 
- fetchUserData();
+            fetchUserData();
 }, [token]);
 
   return (

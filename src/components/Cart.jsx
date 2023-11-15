@@ -111,7 +111,7 @@ const Cart = (props) => {
 
 
     const removeOne = (event) => {
-        const buttonValue = event.target.value;
+        const buttonValue = event.target.value; 
         const additionalValue = event.target.getAttribute('data-custom-value');
         const sum = parseInt(buttonValue, 10) - 1;
         console.log('ProductId:', additionalValue, 'Qty:', sum);
@@ -125,11 +125,20 @@ const Cart = (props) => {
 
       const deleteItem = (event) => {
         const idValue = event.target.getAttribute('data-custom-value');
-       
+       console.log(idValue)
          removeFromCart(idValue);
          setClicked(true)
      
       };
+
+      // const deleteCart = (event) => {
+      //   const idValue = event.target.getAttribute('data-custom-value');
+       
+      //    removeFromCart(idValue);
+      //    setClicked(true)
+     
+      // };
+
 
       const continueShop = () => {
         console.log("Continue Button Clicked");
@@ -175,7 +184,7 @@ const Cart = (props) => {
        <div className="total-price">
           <p>Total: {total} </p>
           <p>€</p>
-          <h1 className="count">{count}</h1>
+          
 
           
         </div>

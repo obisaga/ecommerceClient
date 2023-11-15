@@ -27,12 +27,11 @@ import {
 
 
 const Navigation = () => {
-const {user, logout} = useContext(UserContext);
-const {cartCountingProducts} = useContext(UserContext);
+const {user, login, logout} = useContext(UserContext);
+const {cartCountingProducts, numberofProducts} = useContext(CartContext);
 const navigate = useNavigate();
 
 console.log(user, "navigation login")
-console.log(cartCountingProducts, "IS THIS VISIBLE")
 const [modal, setModal] = useState(false)
 
 
@@ -51,9 +50,9 @@ const [error, setError] = useState("");
 const [filter, setFilter] = useState("");
 
 
-const filterProducts = async (event) => {
+const filterProducts = async (e) => {
   try {
-    const buttonValue = event.target.value;
+    const buttonValue = e.target.value;
     setFilter(buttonValue)
     console.log(buttonValue);
     navigate(`/shop/${buttonValue}`);
@@ -104,7 +103,7 @@ useEffect(() => {
         <MDBModalContent>
           <MDBModalHeader>
             <MDBModalTitle>Confirm Logout</MDBModalTitle>
-            <MDBBtn className='btn-close' color='none' onClick={handleLogout}></MDBBtn>
+            <MDBBtn className='btn-close' color='none' onClick={(e)=>filterProducts(e)}></MDBBtn>
           </MDBModalHeader>
           <MDBModalBody>
             <p>
@@ -127,6 +126,7 @@ useEffect(() => {
             <NavLink to="/cart">
               <i className="pi pi-shopping-cart"></i>
             </NavLink>
+            {user ? <>{numberofProducts}</> : null}
           </span>
         </span>
       </div>

@@ -1,4 +1,4 @@
-import React, { createContext,  useState, useContext } from 'react';
+import React, { createContext,  useState, useContext, useEffect } from 'react';
 import axios from 'axios';
 import { UserContext } from "./UserContext"
 
@@ -11,6 +11,8 @@ export const CartContext = createContext();
 // Create the ShopProvider component
 const CartProvider = ({ children }) => {
     const { user } = useContext(UserContext);
+    const [numberofProducts, setNumberofProducts] = useState(0); // Assuming it's initially 0
+
 
 
 //function to add a product to the cart
@@ -48,8 +50,7 @@ console.log(additionalValue, "From Context")
 };
 
 const removeFromCart = async (idValue) => {
-    console.log("Cart found - Context")  
-    console.log(idValue, "From Context")
+    console.log(idValue, "Cart found - Context")  
     const updateQty = await axios.put(`http://localhost:3000/api/cart/user/${user._id}/remove/${idValue}`)
     console.log("Cart updated", updateQty)
 
@@ -63,10 +64,13 @@ const clearCart = () => {
 const cartCountingProducts = async (sumCart) => {
     console.log("Cart found - Context")  
     console.log(sumCart, "Objects in the cart")
-   const numberofProducts = sumCart
-   console.log(numberofProducts, "Context Objects in the cart")
-  
+    setNumberofProducts(sumCart)
+    
 };
+
+// useEffect(()=>{
+//     cartCountingProducts()
+// }, [login])
 
 
 //add totalAmount in backend schema for cart
@@ -81,6 +85,7 @@ const cartCountingProducts = async (sumCart) => {
     clearCart,
     updateCartQuantity,
     cartCountingProducts,
+    numberofProducts
   }     
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
