@@ -68,13 +68,11 @@ const UserProvider= ({children}) => {
                 });
                 // Set the user data on successful response
                 console.log(response.data, "response context")
-                // setUser(response.data.userId);
+                setUser(response.data.userId);
             } catch (e) {
                 console.error('Failed to fetch user data:', e);
                  logout();
                 // Handle failure to fetch user data (e.g., by logging out the user)
-
-
             }
         }
     };
