@@ -45,36 +45,27 @@ const confirmLogout = () => {
 const [product, setProduct] = useState([]);
 const [loading, setLoading] = useState(false);
 const [error, setError] = useState("");
+const [filter, setFilter] = useState("");
 
-const { categories } = useParams();
 
-console.log("Current category:", categories);
-
-const filterProducts = async () => {
+const filterProducts = async (event) => {
   try {
-    setLoading(true);
-    setError("");
-
-    console.log("Before API call");
-
-    const response = await axios.get(`http://localhost:3000/api/products/filter/${categories}`);
-    console.log(response.data);
-
-    const filteredProducts = response.data.filter(product => product.categories.includes(categories));
-    console.log(filteredProducts);
-
-    // setProduct(filteredProducts);
-  } catch (error) {
-    console.error("Error fetching products:", error.message);
-    setError("Failed to fetch products");
-  } finally {
-    setLoading(false);
+    const buttonValue= event.target.value;
+    setFilter(buttonValue)
+    console.log(buttonValue);
+   
+   
+    setProduct(response.data);
+  } catch (err) {
+    console.log(err);
   }
 };
 
 useEffect(() => {
   filterProducts();
-}, [categories]);
+}, []);
+
+
 
 
   return (
@@ -154,9 +145,18 @@ useEffect(() => {
           <div className="dropdown">
             <NavLink to="/shop" className="dropbtn">SHOP</NavLink>
             <div className="dropdown-content">
-              <NavLink to="/shop" onClick={filterProducts}>RINGS</NavLink>
-              <NavLink to="/shop">NECKLACES</NavLink>
-              <NavLink to="/shop">BRACELETS</NavLink>
+            <NavLink
+                className="link"
+                               to={`/shop/${filter}`}
+              > <button onClick={filterProducts} value="rings">RINGS</button> </NavLink>
+              <NavLink
+                className="link"
+                               to={`/shop/${filter}`}
+              ><button onClick={filterProducts} value="earrings">EARRINGS</button></NavLink>
+              <NavLink
+                className="link"
+                               to={`/shop/${filter}`}
+              ><button onClick={filterProducts} value="bracelets">BRACELETS</button></NavLink>
             </div>
           </div>
           <NavLink to="">ABOUT US</NavLink>
