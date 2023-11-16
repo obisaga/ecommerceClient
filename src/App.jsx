@@ -30,6 +30,8 @@ function App() {
       <Route path="/register" element={<Register />} />
       <Route path="/contact" element={<Contact />} /> 
       <Route path="/account" element={<AccountSettings />} /> 
+         
+
 
 
       </Routes>

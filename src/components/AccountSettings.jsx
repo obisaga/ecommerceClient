@@ -1,119 +1,123 @@
-import React, {useState, useContext} from 'react'
+import React, { useState, useContext } from 'react'
 import axios from 'axios'
 import { UserContext } from '../context/UserContext';
 import Navigation from "../elements/Navigation";
 import Footer from "../elements/Footer";
 import "../styles/account.css"
 import { NavLink } from "react-router-dom";
+import Info from "../elements/Info"
 
 
 const AccountSettings = () => {
-  const { user, logout } = useContext(UserContext);
-  const [success, setSuccess] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-  const [firstName, setFirstName] = useState("")
-  const [lastName, setLastName] = useState("")
 
-  // console.log(user);
- 
+    const { user, token, logout } = useContext(UserContext);
+    const [isEditing, setEditing] = useState(false);
+    const [name, setName] = useState(user.firstName);
+    const [lastName, setLastName] = useState(user.lastName);
+    const [success, setSuccess] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState("");
 
-  const updateProfile = async () => {
-    try {
-      setLoading(true)
-      setError("")
-      const response = await axios.put(`http://localhost:3000/api/users/${user._id}`, {
-        firstName,
-        lastName,
-      });
+    const handleEditClick = () => {
+        setEditing(true);
+    };
 
-      console.log(response.data, "Response from account fetch");
+    const handleSaveClick = async () => {
+        // Send data to the database
+        try {
+            const response = await axios.put(`http://localhost:3000/api/users/${user._id}`, {
+                firstName: name,
+                lastName: lastName,
+            }, {
+                headers: {
+                    'Authorization': `${token}`,
+                    'Content-Type': 'application/json'
+                }
+            });
 
-      setSuccess(true)
-    } catch (err) {
-      setError("Error updating profile")
-    } finally {
-      setLoading(false)
-    }
-  };
- 
+            console.log('Data saved:', response.data);
+        } catch (error) {
+            console.error('Error saving data:', error);
+        }
 
-const handleSubmit = async (e) => {
-  e.preventDefault()
-  await updateProfile();
-  console.log(response.data);
-  }
+        setEditing(false);
+    };
 
+    const handleNameChange = (event) => {
+        setName(event.target.value);
+    };
 
-  return (
-    <>
-      <Navigation />
-      {loading && <p>Loading...</p>}
-      {success && <p>Login successful!</p>}
-      {error && <p>Error: {error}</p>}
-     
+    const handleLastNameChange = (event) => {
+        setLastName(event.target.value);
+    };
 
-      {!loading && !error ? (
-        <form onSubmit={handleSubmit} className="form-widget">
-          <div>
-            <label htmlFor="email">Email</label>
-            <input id="email" type="text" value={user} disabled />
-          </div>
-          <div>
-            <label htmlFor="firstName">First Name</label>
-            <input
-              id="firstName"
-              type="text"
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
-            />
-          </div>
-          <div>
-            <label htmlFor="lastName">Last Name</label>
-            <input
-              id="lastName"
-              type="text"
-              value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
-            />
-          </div>
+    return (
+        <div>
+            <Navigation />
+            {loading && <p>Loading...</p>}
+            {success && <p>User updated successful!</p>}
+            {error && <p>Error: {error}</p>}
 
-          <div>
-            <button
-              className="button-submit"
-              type="submit"
-              disabled={loading}
-            >
-              {loading ? "Loading ..." : "Update"}
-            </button>
-          </div>
+            <h1>Account Settings</h1>
 
-          <div>
-            <button
-              className="button-logout"
-              type="button"
-              onClick={() => logout()}
-            >
-              Sign Out
-            </button>
-          </div>
-        </form>
-      ) : (
-        <>
-        <h3 className='not-available'>
-          User settings not available at the moment. Please come back later!
-        </h3>
-        <NavLink to="/shop">
-          <button> SHOP </button>
-        </NavLink>
-        </>
-      )}
+            <br />
+            {!loading && !error ? (<>{isEditing ? (
+                <div>
 
-      <Footer />
-    </>
-  );
+                    <label>
+                        Name:
+                        <input type="text" value={name} onChange={handleNameChange} />
+                    </label>
+                    <br />
+                    <label>
+                        Last Name:
+                        <input type="text" value={lastName} onChange={handleLastNameChange} />
+                    </label>
+                    <br />
+                    <label htmlFor="email">Email</label>
+                    <input id="email" type="text" value={user.email} disabled />
+                    <br />
+
+                    <button onClick={handleSaveClick}>SAVE</button>
+                </div>
+            ) : (
+                <div>
+                    <p>Name: {name}</p>
+                    <p>Last Name: {lastName}</p>
+                    <p>Email: {user.email}</p>
+                    <button onClick={handleEditClick}>EDIT</button>
+                    <button
+                        className="button-logout"
+                        type="button"
+                        onClick={() => logout()}
+                    >
+                        Sign Out
+                    </button>
+                </div>
+
+            )}</>)
+                :
+                (
+                    <>
+                        <h3 className='not-available'>
+                            User settings not available at the moment. Please come back later!
+                        </h3>
+                        <NavLink to="/shop">
+                            <button> SHOP </button>
+                        </NavLink>
+                    </>)
+            }
+            <NavLink to="/shop">
+                <button> SHOP </button>
+            </NavLink>
+            <hr />
+            <div>
+                <h1>Order History</h1>
+            </div>
+            <Info />
+            <Footer />
+        </div>
+    );
 };
 
-
-
-export default AccountSettings
+export default AccountSettings;
