@@ -36,6 +36,7 @@ const updateCart = async (existingProducts, addThisItem) => {
         
         const updateCart = await axios.put(`http://localhost:3000/api/cart/user/${user._id}`, pushToCart)
         console.log("Cart updated", updateCart)
+        cartCountingProducts()
     }
     
       catch (error) {
@@ -47,15 +48,16 @@ const updateCart = async (existingProducts, addThisItem) => {
 const updateCartQuantity = async (additionalValue, newQuantity) => {
     try {
  
+    const updatedProducts = parseInt(newQuantity, 10);
 
-    const updatedProducts = newQuantity
+   
 
-         
+
     // Update the cart on the backend
     const updateCart = await axios.put(`http://localhost:3000/api/cart/user/${user._id}/${additionalValue}`, {newQuantity : updatedProducts});
     
     console.log("Cart updated", updateCart.data.message);
-
+    cartCountingProducts()
     } catch (error) {
         console.error("Error updating cart quantity:", error);
 }
@@ -70,8 +72,10 @@ const removeFromCart = async (idValue) => {
 };
 
 //function to clear the cart - shopReducer will reset the cart to its initial state
-const clearCart = () => {
-   //delete endpoint
+const clearCart = async () => {
+    const deleteCart = await axios.delete(`http://localhost:3000/api/cart/user/${user._id}`)
+    console.log("Cart deleted", deleteCart)
+
 }
 
 // / const quantityAmount = async () => {
@@ -102,7 +106,7 @@ const cartCountingProducts = async () => {
         const findCart = await axios.get(`http://localhost:3000/api/cart/user/${user._id}`)
         console.log("FIND CART CONTEXT", findCart)
        if(findCart){
-        setNumberofProducts(findCart.data[0].totalAmount)
+        setNumberofProducts(findCart.data.totalAmount)
        }
 
     } catch (error) {
@@ -110,7 +114,8 @@ const cartCountingProducts = async () => {
 }
 
 };
-cartCountingProducts()
+
+console.log(numberofProducts, "TOTAL AMOUNT")
 
 
   const value = {
@@ -120,7 +125,8 @@ cartCountingProducts()
     clearCart,
     updateCartQuantity,
     cartCountingProducts,
-    numberofProducts
+    numberofProducts,
+    
   }     
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;

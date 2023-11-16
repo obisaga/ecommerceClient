@@ -17,7 +17,7 @@ const SingleProduct = (props) => {
   const [error, setError] = useState("");
   const { id } = useParams();
   const { user } = useContext(UserContext);
-  const { addToCart, updateCart, updateCartQuantity } = useContext(CartContext)
+  const { addToCart, updateCart, updateCartQuantity, cartCountingProducts } = useContext(CartContext)
   console.log(user);
 
   const productFetch = async () => {
@@ -45,8 +45,6 @@ const SingleProduct = (props) => {
       const response = await axios.get(url);
       // console.log(response.data[0].products.map((product)=> product.productId._id))
 
-
-
       if (response.status === 204) {
         console.log("User has no carts yet, creating new cart")
 
@@ -72,12 +70,12 @@ const SingleProduct = (props) => {
           const targetProduct = response.data[0].products.find((product) => product.productId._id === targetProductId);
           const newQuantity = targetProduct.quantity + 1
 
-          console.log(newQuantity)
+          // console.log(newQuantity)
           const additionalValue = targetProductId
           // console.log(additionalValue)
           updateCartQuantity(additionalValue, newQuantity)
 
-
+          
           return; 
         } else if(isProductIdMatch === false){
           console.log("Cart found");
