@@ -9,10 +9,6 @@ import { UserContext } from "../context/UserContext";
 import "primeicons/primeicons.css";
 import { CartContext } from "../context/CartContext";
 
-
-
-
-
 const Cart = (props) => {
     const [product, setProduct] = useState([{message:"Cart is Empty"}]);
     
@@ -21,8 +17,6 @@ const Cart = (props) => {
     const [count, setCount] = useState(0);
     const [clicked, setClicked] = useState(false);
     const {addToCart, updateCart, updateCartQuantity, removeFromCart, cartCountingProducts} = useContext(CartContext)
-
-
 
 
     const findCart = async () => {
@@ -36,26 +30,19 @@ const Cart = (props) => {
           console.log("Cart found")
         setProduct(response.data[0].products.map((product)=> product))
         // setQuantity(response.data[0].products.map((product)=> product.quantity))
-
-        
         }
-
       } catch (err) {
         console.log(err);
       } finally {
-     
           }
     };
       
-
     useEffect(() => {
       findCart();
+
     }, []);
 
     
-
-
-
     useEffect(() => {
       //sum the prices of products
       if(Object.keys(product).length>1) {
@@ -66,17 +53,6 @@ const Cart = (props) => {
       console.log(sum)
       setTotal(sum)
     console.log(arr)
-
-    const cartCounter = (product.map((product) => product.quantity))
-    const sumCart = cartCounter.reduce((accumulator, object) => {
-        return accumulator + object;
-      }, 0);
-    console.log(sumCart)
-
-
-
-      setCount(sumCart)
-      cartCountingProducts(sumCart);
       } else {
         console.log(Object.keys(product)[0])
         console.log('Counter failed')}
@@ -103,7 +79,7 @@ const Cart = (props) => {
         const newQuantity = sum
         console.log('updated:', newQuantity);
  
-         updateCartQuantity(sum, additionalValue);
+         updateCartQuantity(newQuantity, additionalValue);
          setClicked(true)
 
       };

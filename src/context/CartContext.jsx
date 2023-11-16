@@ -26,8 +26,8 @@ const addToCart = async (newCartData) => {
 
 //function to update the quantity of a product in the cart
 const updateCart = async (existingProducts, addThisItem) => {
-    console.log("Cart found - Context")  
-        existingProducts.push(addThisItem)
+    try{console.log("Cart found - Context")  
+    existingProducts.push(addThisItem)
         console.log(existingProducts)
 
         const pushToCart = {
@@ -36,18 +36,35 @@ const updateCart = async (existingProducts, addThisItem) => {
         
         const updateCart = await axios.put(`http://localhost:3000/api/cart/user/${user._id}`, pushToCart)
         console.log("Cart updated", updateCart)
-
+    }
+    
+      catch (error) {
+            console.error("Error updating cart quantity:", error);
+    }
 };
+
 
 const updateCartQuantity = async (newQuantity, additionalValue) => {
-    console.log("Cart found - Context")  
-console.log(additionalValue, "From Context")
-    const updateQty = await axios.put(`http://localhost:3000/api/cart/user/${user._id}/${additionalValue}`, {
-        newQuantity: newQuantity
-    })
-    console.log("Cart updated", updateQty)
+    try {
+        const findCart = await axios.get(`http://localhost:3000/api/cart/user/${user._id}`)
+        // console.log(findCart.data[0].products, "FIND CART")
+    // const existingCart = findCart.data[0].products
+        // Create an array with the existing products and the new product
+    const updatedProducts = [
+        { newQuantity: newQuantity }
+    ];
+    // const updatedProducts = newQuantity
+    
+    // Update the cart on the backend
+    const updateCart = await axios.put(`http://localhost:3000/api/cart/user/${user._id}/${additionalValue}`, updatedProducts);
+    
+    console.log("Cart updated", updateCart.data.message);
 
+    } catch (error) {
+        console.error("Error updating cart quantity:", error);
+}
 };
+
 
 const removeFromCart = async (idValue) => {
     console.log(idValue, "Cart found - Context")  
@@ -61,21 +78,43 @@ const clearCart = () => {
    //delete endpoint
 }
 
-const cartCountingProducts = async (sumCart) => {
-    console.log("Cart found - Context")  
-    console.log(sumCart, "Objects in the cart")
-    setNumberofProducts(sumCart)
+// / const quantityAmount = async () => {
+    //        try{
+    //         const cartInfo = await axios.get(`http://localhost:3000/api/cart/user/${user._id}`)
+    // console.log("Quantity Amount", cartInfo.totalAmount)
+    //     // setNumberofProducts(sumCart)
+    //     } catch (error) {
+    //         console.error("Error getting Cart info", error);
+    //     }
+        
+        
+    // };
     
+    // useEffect(()=>{
+    //     quantityAmount()
+    // }, [login])
+
+// const cartCountingProducts = async (sumCart) => {
+//     console.log("Cart found - Context")  
+//     console.log(sumCart, "Objects in the cart")
+//     setNumberofProducts(sumCart)
+    
+// };
+
+const cartCountingProducts = async () => {
+    try {
+        const findCart = await axios.get(`http://localhost:3000/api/cart/user/${user._id}`)
+        console.log("FIND CART CONTEXT", findCart)
+       if(findCart){
+        setNumberofProducts(findCart.data[0].totalAmount)
+       }
+
+    } catch (error) {
+        console.error("Error updating cart quantity:", error);
+}
+
 };
-
-// useEffect(()=>{
-//     cartCountingProducts()
-// }, [login])
-
-
-//add totalAmount in backend schema for cart
-  //need to make endpoint for it
-
+cartCountingProducts()
 
 
   const value = {
