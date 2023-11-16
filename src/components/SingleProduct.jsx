@@ -73,8 +73,9 @@ const SingleProduct = (props) => {
           const newQuantity = targetProduct.quantity + 1
 
           console.log(newQuantity)
-
-          updateCartQuantity(newQuantity)
+          const additionalValue = targetProductId
+          // console.log(additionalValue)
+          updateCartQuantity(additionalValue, newQuantity)
 
 
           return; 

@@ -44,19 +44,15 @@ const updateCart = async (existingProducts, addThisItem) => {
 };
 
 
-const updateCartQuantity = async (newQuantity, additionalValue) => {
+const updateCartQuantity = async (additionalValue, newQuantity) => {
     try {
-        const findCart = await axios.get(`http://localhost:3000/api/cart/user/${user._id}`)
-        // console.log(findCart.data[0].products, "FIND CART")
-    // const existingCart = findCart.data[0].products
-        // Create an array with the existing products and the new product
-    const updatedProducts = [
-        { newQuantity: newQuantity }
-    ];
-    // const updatedProducts = newQuantity
-    
+ 
+
+    const updatedProducts = newQuantity
+
+         
     // Update the cart on the backend
-    const updateCart = await axios.put(`http://localhost:3000/api/cart/user/${user._id}/${additionalValue}`, updatedProducts);
+    const updateCart = await axios.put(`http://localhost:3000/api/cart/user/${user._id}/${additionalValue}`, {newQuantity : updatedProducts});
     
     console.log("Cart updated", updateCart.data.message);
 
