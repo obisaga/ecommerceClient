@@ -37,8 +37,8 @@ const [modal, setModal] = useState(false)
 
 const handleLogout =  () => {
   setModal(!modal);  
- 
 };
+
 const confirmLogout = () => {
   setModal(!modal);  
   logout()

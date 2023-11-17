@@ -46,8 +46,9 @@ console.log("Error", err)
             <div  key={index}>
             <div className="cart">
             <img src={product.productId.image}></img>
-            <p>{product.productId._id} , {product._id}, {product.quantity}, {product.productId.title}</p>
+            <p>{product.productId.title}</p>
             <p >Color: {product.productId.color}</p>
+            <p> Amount: {product.quantity}</p>
             <p >{product.productId.price} €</p> 
           
             </div>
