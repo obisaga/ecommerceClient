@@ -1,6 +1,9 @@
 import React, {useContext, useEffect, useState} from 'react'
 import { CartContext } from "../context/CartContext";
 import { UserContext } from "../context/UserContext"
+import Navigation from "../elements/Navigation";
+import Info from "../elements/Info";
+import Footer from "../elements/Footer"
 import axios from 'axios';
 
 
@@ -38,6 +41,7 @@ console.log("Error", err)
 
   return (
     <>
+    <Navigation />
     <div>Order Summary</div>
 
 
@@ -71,6 +75,8 @@ console.log("Error", err)
     
 
     <button className="confirmBtn"  onClick={handleClick}> Confirm </button>
+    <Info />
+    <Footer />
     </>
   )
 }
