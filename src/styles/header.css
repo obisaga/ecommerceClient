@@ -1,6 +1,7 @@
 .header-image{
     width: 100%;
-    height: 50rem;
+    height: 40rem;
     background-size: cover;
     object-fit: cover;
+    opacity: 0.85;
 }

@@ -41,8 +41,10 @@ const Shop = () => {
   return (
     <>
       <Navigation />
-      <button onClick={fireSearch}>Search for a product</button>   
-      <button onClick={showAll}>Show All</button> 
+      <div className="shopBtns">
+      <button onClick={fireSearch} className="shopBtn">Search for a product</button>   
+      <button onClick={showAll}className="shopBtn">Show All</button> 
+      </div>
       {search ?    <Search /> :  <div className="cardContainer">
         {products.map((product, index) => {
           return (

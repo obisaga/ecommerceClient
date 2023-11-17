@@ -1,10 +1,11 @@
-import {Navigate, Outlet} from "react-router-dom"
+// import React from 'react';
+// import {Navigate, Outlet} from "react-router-dom"
 
-const PrivateRoutes = () => {
+// const PrivateRoutes = () => {
 
-    const isAuth = sessionStorage.getItem("token")
+//     const isAuth = sessionStorage.getItem("token")
     
-  return !isAuth ? <Navigate to="/login" /> : <Outlet />
-}
+//   return !isAuth ? <Navigate to="/home" /> : <Outlet />
+// }
 
-export default PrivateRoutes
+// export default PrivateRoutes

@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import "../styles/shop.css"
 
 
+
+
 const Search = () => {
 
     const [products, setProducts] = useState([]);
@@ -56,20 +58,23 @@ const Search = () => {
       ) : null}
 
       {/* {error && <div>{error}</div>} */}
-      <form onSubmit={handleSubmit}>
+      <div className="searchParent">
+      <form onSubmit={handleSubmit} className="searchForm">
         <input
           type="text"
           placeholder="Search for a product"
           value={input}
           onChange={handleChange}
+          className='inputSearch'
         />
       </form>
-      
-{products.length ?  (
+      </div>
+      <div className="cardContainer">
+{products.length ?   (
       products.map((product, index) => {
         return (
-          <>
-           <div className="cardContainer">
+          
+            <>
             <Card className="card" key={index}>
               <Link
                 className="link"
@@ -88,10 +93,11 @@ const Search = () => {
                 </Card.Body>
               </Link>
             </Card>
-            </div>
-          </>
+            </>
+            
+          
         );
-      })) : (<><p>{error}</p></>)}
+      })) : (<div className="errorParent"><p>{error}</p></div>)}</div>
     </div>
   );
 }

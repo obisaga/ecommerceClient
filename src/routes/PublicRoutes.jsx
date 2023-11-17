@@ -1,10 +1,10 @@
-import {Navigate, Outlet, Route} from "react-router-dom"
+// import React from 'react';
+// import {Navigate, Outlet, Route} from "react-router-dom"
 
-const PublicRoutes = () => {
+// const PublicRoutes = () => {
 
-   const isAuth = sessionStorage.getItem("token")
+//    const isAuth = sessionStorage.getItem("token")
 
-  return !isAuth ? (<Navigate to="/home" />) : (<Outlet><Route index element={<Homepage />} /></Outlet>)
-}
+//   return isAuth ? <Navigate to="/" /> : <Outlet />}
 
-export default PublicRoutes
+// export default PublicRoutes

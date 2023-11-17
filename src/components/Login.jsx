@@ -42,10 +42,10 @@ const Login = () => {
       {/* {success } */}
       {/* {error && <p>Error: {error}</p>} */}
 
-      
+    
       {!loading && !error && (
-        <>
-        <p>Not a member yet?  <Link to="/register">Register here</Link></p><br/>
+         <div className="form-container">
+        <p className ="pLoginRegister">Not a member yet?  <Link to="/register">Register here</Link></p><br/>
         <form onSubmit={handleSubmit} className="loginForm">
           <p className="loginRegisterTitle">Login</p>
           {/* {showElement ? (
@@ -78,9 +78,8 @@ const Login = () => {
           />
           <input type="submit" className="loginButton" value="LOGIN" />
         </form>
-        
   
-        </>
+        </div>
       )}
 
       {error ? (<><p> {error.message} </p></>): null}

@@ -47,7 +47,7 @@ const ShopFilter = () => {
   return (
     <>
       <Navigation />
-      
+      <div className="cardContainer">
       {products.map((product, index) => {return (
     <Card className="card" key={index}>
         <Link
@@ -67,7 +67,7 @@ const ShopFilter = () => {
           </Card.Body>
         </Link>
       </Card>
-)})}
+)})}</div>
 
         
       <Info />

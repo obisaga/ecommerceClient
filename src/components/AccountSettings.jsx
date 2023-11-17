@@ -83,42 +83,47 @@ const AccountSettings = () => {
             {loading && <p>Loading...</p>}
             {success && <p>User updated successful!</p>}
             {error && <p>Error: {error}</p>}
-
-            <h1>Account Settings</h1>
+            <NavLink to="/shop">
+                <button className='continueBtn'> ← GO TO SHOP </button>
+            </NavLink>
+            <div className="titleParent"><h1>Account Settings</h1></div>
 
             <br />
             {!loading && !error ? (<>{isEditing ? (
-                <div>
-
+                <div className='settings-container'>
+                
                     <label>
-                        Name:
+                        Name: 
                         <input type="text" value={name} onChange={handleNameChange} />
                     </label>
                     <br />
                     <label>
-                        Last Name:
+                        Last Name: 
                         <input type="text" value={lastName} onChange={handleLastNameChange} />
                     </label>
                     <br />
-                    <label htmlFor="email">Email</label>
+                    <label htmlFor="email">Email:
                     <input id="email" type="text" value={user.email} disabled />
+                    </label>
                     <br />
 
-                    <button onClick={handleSaveClick}>SAVE</button>
+                    <button onClick={handleSaveClick} className='editBtn'>SAVE</button>
                 </div>
             ) : (
-                <div>
+                <div className="settings">
                     <p>Name: {name}</p>
                     <p>Last Name: {lastName}</p>
                     <p>Email: {user.email}</p>
-                    <button onClick={handleEditClick}>EDIT</button>
-                    <button
-                        className="button-logout"
+                    <div className="settingsBtns">
+                    <button onClick={handleEditClick} className='editBtn'>EDIT</button>
+                   <button
+                        className="editBtn"
                         type="button"
                         onClick={() => logout()}
                     >
                         Sign Out
                     </button>
+                    </div>
                 </div>
 
             )}</>)
@@ -129,20 +134,18 @@ const AccountSettings = () => {
                             User settings not available at the moment. Please come back later!
                         </h3>
                         <NavLink to="/shop">
-                            <button> SHOP </button>
+                            <button className='continueBtn'> ← SHOP </button>
                         </NavLink>
                     </>)
             }
-            <NavLink to="/shop">
-                <button> SHOP </button>
-            </NavLink>
+           
             <hr />
 
            
 
-                <h1>Order History</h1>
+            <div className="titleParent"> <h1>Order History</h1></div>
  
-                {orders ? (<>
+                {orders ? (<div className="orders">
                 <p>Order Number: {orders._id}</p> 
                 <p>Total Price: {orders.totalAmountPrice}</p> 
                 <p>Products: {orders.totalAmount}</p>
@@ -150,13 +153,13 @@ const AccountSettings = () => {
                {images.map((img,index) => {
                     return (
                       <div key={index}>
-                      <img src={img}></img>
+                      <img src={img} style={{width:"100px"}}></img>
                       </div>
                        
                     );
                   })
                 }
-                </> 
+                </div> 
                 
                 ) 
                 

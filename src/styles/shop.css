@@ -1,15 +1,16 @@
-.cardContainer{
-    margin-top: 5rem;
-    margin-bottom: 5rem;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;1,400;1,500&display=swap');
 
+.cardContainer{
+    margin: 5rem 8rem 5rem 8rem;
     display: grid ;
     gap: 2rem;
-    grid-template-columns: repeat(4, 1fr); 
+    grid-template-columns: repeat(3, 1fr); 
   } 
   
   .card{
+    font-family: "Montserrat";
+    background-color: #F3EEEE;
     box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
-    
   }
   
   .card:hover {
@@ -24,15 +25,71 @@
   .link{
     color: black !important;
     text-decoration: none !important;
-
+    text-align: center;
+    font-family: "Montserrat";
   }
 
   .cardTitle p{
     font-size:1rem;
-
   }
+
   .cardImg{
   object-fit: cover;
   width: 230px;
   height: 230px 
+}
+
+.shopBtns {
+  font-family: 'Montserrat';
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: none;
+}
+
+.shopBtn {
+  font-family: 'Montserrat';
+  font-size: 0.8em;
+  background-color: white;
+  border:none;
+  text-decoration: underline;
+}
+.shopBtn:hover{
+color:red;
+  text-decoration: underline;
+  background-color: white;
+  border:none;
+}
+
+.searchParent{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1em 1em;
+}
+
+.searchForm{
+  text-align: center;
+  font-size: 0.8em;
+
+}
+.searchForm p{
+  font-family: 'Montserrat';
+  text-align: center;
+}
+
+.inputSearch{
+  font-family: 'Montserrat';
+  border-radius: 2%;
+  width:20rem;
+  text-align: center;
+  font-size: 0.8em;
+  padding: 0.5em;
+}
+
+.errorParent{
+  display: flex !important;
+  justify-content: center !important;;
+  align-items: center;
+
 }

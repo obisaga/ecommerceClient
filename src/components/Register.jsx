@@ -120,61 +120,61 @@ const Register = () => {
           </MDBModal>
         </>
 
-
-        <p>Already a member?  <Link to="/login">Login here</Link></p><br />
+<div className="form-container">
+        <p className="pLoginRegister">Already a member?  <Link to="/login">Login here</Link></p><br />
 
         <form onSubmit={handleSubmit} className="loginForm">
           <p className="loginRegisterTitle">Registration</p>
 
-          <label className="registerLabel">First Name:</label>
+          <label className="loginLabel">First Name:</label>
           <input
             type="text"
             id="firstName"
-            className="register-text-input"
+            className="login-text-input"
             name="firstName"
             onChange={(e) => setFirstName(e.target.value)}
-            placeholder="Username"
+            placeholder="First Name"
             required
           />
           <br />
-          <label className="registerLabel">Last Name:</label>
+          <label className="loginLabel">Last Name:</label>
           <input
             type="text"
             id="lastName"
-            className="register-text-input"
+            className="login-text-input"
             name="lastName"
             onChange={(e) => setLastName(e.target.value)}
             placeholder="Last Name"
             required
           />
           <br />
-          <label className="registerLabel">Date of Birth</label>
+          <label className="loginLabel">Date of Birth</label>
           <input
             type="date"
             id="birth"
-            className="register-text-input"
+            className="login-text-input"
             name="birth"
             onChange={(e) => setBirth(e.target.value)}
             placeholder="YYYY-MM-DD"
             required
           />
           <br />
-          <label className="registerLabel">Email:</label>
+          <label className="loginLabel">Email:</label>
           <input
             type="email"
             id="email"
-            className="register-text-input"
+            className="login-text-input"
             name="email"
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Your email"
             required
           />
           <br />
-          <label className="registerLabel">Password:</label>
+          <label className="loginLabel">Password:</label>
           <input
             type="password"
             id="password"
-            className="register-text-input"
+            className="login-text-input"
             name="password"
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Your password"
@@ -182,8 +182,9 @@ const Register = () => {
           />
           <br />
 
-          <input type="submit" className="registerButton" value="REGISTER" />
+          <input type="submit" className="loginButton" value="REGISTER" />
         </form>
+        </div>
         {error ? <p>{error.message} </p> : null}
       </div>
       <Info />

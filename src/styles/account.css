@@ -1,15 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;1,400;1,500&display=swap');
+
+
 div .settings-container{
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    background-color: rgb(232, 236, 240); 
-    padding: 3em 2em;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background-color: white;
+    /* padding: 3em 2em; */
+    font-family: 'Montserrat';
+    font-size: 0.8rem
 } 
-div h1{
-    font-size: 2em;
+
+div .settings-container input{
+    margin-left:2rem;
+    width:30rem;
+  text-align: center;
+  font-size: 0.8em;
+  padding: 0.5em;
+} 
+
+
+
+
+input{
+    border-radius: 2%;
 }
+
+
+div .titleParent{
+    padding-top:0.2rem;
+    font-family: "Montserrat";
+    font-size: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.titleParent h1{
+    font-size: 1.5rem;
+}
+
 
 .name{
     display: flex;
@@ -24,4 +55,49 @@ button{
     padding: 1px 4px;
     margin: 8px;
 }
+
+.settings{
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center; 
+}
+
+.orders{
+    display: flex;
+    flex-direction:column;
+    margin-left:10rem;  
+    margin-bottom:5rem;
+}
+
+.settingsBtns button{
+    background-color:white;
+    margin-top: 2em;
+    font-size: 0.8em;
+    padding: 0.5em;
+    border-radius: 10%;
+    box-shadow: 1px 2px black;
+  }
+
+ .editBtn:hover{
+    background-color: #A6A093;
+  }
+  
+
+ .continueBtn{
+    border:none;
+    background-color: white;
+    margin-right: 80%;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    padding-left: 8rem;
+ }
+ .continueBtn:hover{
+   background-color: white;
+   text-decoration: underline;
+
+ }
+  
+
+
 
