@@ -19,7 +19,6 @@ const Shop = () => {
     try {
       const response = await axios.get("http://localhost:3000/api/products");
       console.log(response.data);
-
       setProducts(response.data);
     } catch (err) {
       console.log(err);

@@ -1,17 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;1,400;1,500&display=swap');
+
 .about-us{
     display: flex;
     flex-direction: row;
     align-items: center;
-    background: gainsboro;
-    width:inherit;
+    background: #F5F2F0;
+    padding-left:5%;
   }
 
   .about-us .aboutus-text{
+    font-family: 'Playfair Display';
     text-align: justify;
     padding: 4em 4em;
-    width: 70%;
+    width: 75%;
+    font-family: 'Playfair Display';
+    font-weight: 500;
+    font-style: italic;  
+    padding-right:10%;
   }
 
   .about-image{
-    width: 30%;
+    width: 25rem;
+    height: 30rem;
+    background-size: cover;
+    object-fit: cover;
+   
   }

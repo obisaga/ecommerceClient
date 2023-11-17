@@ -9,16 +9,15 @@ import Footer from "../elements/Footer";
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import {
-    MDBBtn,
-    MDBModal,
-    MDBModalDialog,
-    MDBModalContent,
-    MDBModalHeader,
-    MDBModalTitle,
-    MDBModalBody,
-    MDBModalFooter,
-  } from 'mdb-react-ui-kit';
-
+  MDBBtn,
+  MDBModal,
+  MDBModalDialog,
+  MDBModalContent,
+  MDBModalHeader,
+  MDBModalTitle,
+  MDBModalBody,
+  MDBModalFooter,
+} from 'mdb-react-ui-kit';
 
 
 const Register = () => {
@@ -47,18 +46,23 @@ const Register = () => {
       };
       const getResponse = await fetch(url, requestData);
       console.log(getResponse);
-      setModal(!modal);  
+      
 
       if (getResponse.ok) {
         const data = await getResponse.json();
         console.log(data);
+        setError("");
+        setModal(!modal);
+       
         return data;
-
       } else {
         const data = await getResponse.json();
         setError("Error");
+        setModal(!modal);
+
         return data;
       }
+
     } catch (err) {
       console.error(err);
     }
@@ -74,51 +78,50 @@ const Register = () => {
       password,
     });
     console.log(response);
-    
   };
 
 
   const confirmClose = () => {
     console.log("button clicked")
-
-    setModal(!modal);  
+    setModal(!modal);
   };
 
   return (
     <div>
-        <Navigation />
+      <Navigation />
       <div>
-<>
-      <MDBModal tabIndex='-1' open={modal} setOpen={setModal}>
-      <MDBModalDialog centered>
-        <MDBModalContent>
-          <MDBModalHeader>
-            <MDBModalTitle>Confirmation</MDBModalTitle>
-            <MDBBtn className='btn-close' color='none'></MDBBtn>
-          </MDBModalHeader>
+        <>
+          <MDBModal tabIndex='-1' open={modal} setOpen={setModal}>
+            <MDBModalDialog centered>
+              <MDBModalContent>
+                <MDBModalHeader>
+                  <MDBModalTitle>Confirmation</MDBModalTitle>
+                  <MDBBtn className='btn-close' color='none'></MDBBtn>
+                </MDBModalHeader>
 
-{!error ? (<>  <MDBModalBody>
-            <p>
-              Account Registered
-            </p>
-          </MDBModalBody>
-          <MDBModalFooter>
-           <Link to="/login"><MDBBtn onClick={confirmClose}>Close</MDBBtn></Link>
-          </MDBModalFooter></>) : (<>  <MDBModalBody>
-            <p>
-              E-mail is already in use
-            </p>
-          </MDBModalBody>
-          <MDBModalFooter>
-           <MDBBtn onClick={confirmClose}>Close</MDBBtn>
-          </MDBModalFooter></>)}
-        </MDBModalContent>
-      </MDBModalDialog>
-    </MDBModal>
-    </>
+                {error ? (<>  <MDBModalBody>
+                    <p>
+                      E-mail is already in use
+                    </p>
+                  </MDBModalBody>
+                    <MDBModalFooter>
+                      <MDBBtn onClick={confirmClose}>Close</MDBBtn>
+                    </MDBModalFooter></>) : ( <>  <MDBModalBody>
+                  <p>
+                    Account Registered
+                  </p>
+                </MDBModalBody>
+                  <MDBModalFooter>
+                    <Link to="/login"><MDBBtn onClick={confirmClose}>Close</MDBBtn></Link>
+                  </MDBModalFooter></>)}
 
-    
-      <p>Already a member?  <Link to="/login">Login here</Link></p><br/>
+              </MDBModalContent>
+            </MDBModalDialog>
+          </MDBModal>
+        </>
+
+
+        <p>Already a member?  <Link to="/login">Login here</Link></p><br />
 
         <form onSubmit={handleSubmit} className="loginForm">
           <p className="loginRegisterTitle">Registration</p>
@@ -178,10 +181,10 @@ const Register = () => {
             required
           />
           <br />
-        
-          <input type="submit" className="registerButton" value="REGISTER"/>
+
+          <input type="submit" className="registerButton" value="REGISTER" />
         </form>
-        {error ? <p>{error} </p> : null}
+        {error ? <p>{error.message} </p> : null}
       </div>
       <Info />
       <Footer />

@@ -161,11 +161,7 @@ const AccountSettings = () => {
                 ) 
                 
                 : (<><p>Orders not available</p></>)}
-                
 
-
-
-           
             <Info />
             <Footer />
         </div>

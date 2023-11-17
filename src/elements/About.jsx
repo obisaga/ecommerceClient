@@ -3,16 +3,11 @@ import "../styles/about.css"
 
 const About = () => {
   return (
-    <div>
+    <div id="aboutSection">
       <section className="about-us">
         <p className="aboutus-text">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
+        The jewelry shop is a charming boutique that specializes in offering a diverse and exquisite collection of fine jewelry. <br />
+        Whether in search of a bold statement piece or a subtle everyday accessory, the modern jewelry boutique is the ultimate destination for those who value the creativity and innovation of handmade adornments.
         </p>
         <img
           src="https://github.com/obisaga/ecommerceImages/blob/main/free%20stock%20images/pexels-tima-miroshnichenko-6262835.jpg?raw=true"

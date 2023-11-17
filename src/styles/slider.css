@@ -1,70 +1,44 @@
-.collections{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+.parent{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  /* background-color:#; */
+  padding-left: 10rem;
+  padding-right: 10rem;
+  padding-bottom: 3em;
 
-  .collections .collections-header{
-    border: solid thin  black;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+}
 
-  .collections button{
-    border: none;
-    color: black;
-    background-color: antiquewhite;
-    border-radius: 10px;
-    padding: 15px 32px;
+.parent p{
+  font-family: 'Montserrat';
+    padding-top: 2.5rem;
     text-align: center;
-    text-decoration: none;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    width: 250px;
+    font-size: 18px;
+ 
+}
+  
+  .slider {
+    margin:20px 20px;
+    overflow: hidden;
+    padding-right:30rem 
   }
 
 
-.container{
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 600px;
-    height: 400px;
+  .slider img {
+    width: 15rem;
+    height: 15rem;
+    object-fit: cover;
+    border-radius:10px;
   }
-
-
-.pi-angle-left{
-    cursor: pointer;
-    opacity: 0.5;
-    width: 50px;
-    height: 50px;
-    background-color: #aca8a8;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-}
-
-.pi-angle-right{
-    cursor: pointer;
-    opacity: 0.5;
-    width: 50px;
-    height: 50px;
-    background-color: #aca8a8;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-}
-
-
-
+  
+  .react-multi-carousel-list {
+  padding: 0rem 0 2rem 0;
+  }
+  
+  .custom-dot-list-style button{
+  border: none;
+  background: black
+  }
+  .react-multi-carousel-dot.react-multi-carousel-dot--active button{
+  background: white !important;
+  }

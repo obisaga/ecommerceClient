@@ -1,0 +1,17 @@
+.contactContainer{
+    background-color: beige;
+    display:flex;
+    justify-content: center;
+    gap: 20%;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.addressSection{
+    align-self: center;
+}
+.mapSection{
+    object-fit: cover;
+    width: 50%;
+   
+}

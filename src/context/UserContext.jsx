@@ -31,15 +31,15 @@ const UserProvider= ({children}) => {
             sessionStorage.setItem('token', token);
             console.log('Token set in sessionStorage:', token);
             setUser(user);
-           
             setToken(token);
             setSuccess(true);
-            setTimeout(() => {
-                navigate('/home');
-            }, 500);
+            setError("");
 
-            } else {
+            navigate('/home');
+
+            } else if (response.status === 400){
                 console.log(response.status)
+                setError(response.status);    
             }
             
         } catch (e) {
@@ -47,7 +47,7 @@ const UserProvider= ({children}) => {
             setError(e.response.data);
             setTimeout(() => {
                 setError(null);
-            }, 3000);
+            }, 4000);
         } finally {
             setLoading(false);
         }

@@ -1,5 +1,22 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;1,400;1,500&display=swap');
+
+.footer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .footerImg {
     padding-top: 6rem;
     width: 250px;
     height: auto
 }
+
+p{
+    align-items: center;
+    font-family: "Montserrat";
+    font-size: 0.9em;
+}
+

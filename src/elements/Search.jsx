@@ -6,8 +6,6 @@ import { Link } from "react-router-dom";
 import "../styles/shop.css"
 
 
-
-
 const Search = () => {
 
     const [products, setProducts] = useState([]);
@@ -15,57 +13,28 @@ const Search = () => {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState("");
   
-    const fetchProducts = async () => {
+    const fetchProducts = async (input) => {
       try {
         setLoading(true)
-        // setError("")
-        const response = await axios.get(`http://localhost:3000/api/products/search?query=${input}`);
+        setError("")
+        const response = await axios.get(`http://localhost:3000/api/products/search?categories=${input}`);
         console.log("Response data: ", response.data);
         setProducts(response.data);
   
-        if (response.data.length === 0) {
+        if (response.status === 204) {
           setError("Search unsuccessful. No data found.");
-          setProducts([]);
+          // setProducts([]);
       } else {
           setProducts(response.data);
         }
   
       } catch (error) {
-        setError("The request has failed");
-        setProducts([]);
+        console.log(error)
+        // setProducts([]);
       } finally {
         setLoading(false)
       }
     };
-
-
-  //   const fetchData = async () => {
-  //   try {
-  //     setLoading(true);
-  //     setError("");
-  //     const response = await axios.get(
-  //       `http://hn.algolia.com/api/v1/search?query=${inputValue}`
-  //     );
-  //     const data = response.data.hits.filter(
-  //       (data) => data.url != null
-  //     );
-  //   if (data.length === 0) {
-  //       setError("Search unsuccessful. No data found.");
-  //       setData([]);
-  //   } else {
-  //       setData(data);
-  //     }
-  //   } catch (error) {
-  //     // setError("The request has failed");
-  //     setData([]);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
-  
-    // useEffect(() => {
-    //   fetchProducts();
-    // }, []);
   
     const handleChange = (e) => {
       setInput(e.target.value);
@@ -73,7 +42,7 @@ const Search = () => {
   
     const handleSubmit = async (e) => {
       e.preventDefault();
-      fetchProducts();
+      await fetchProducts(input);
     };
     
 
@@ -85,7 +54,8 @@ const Search = () => {
           <p className="paragraphContent">Content loading ...</p>
         </div>
       ) : null}
-      {error && <div>{error}</div>}
+
+      {/* {error && <div>{error}</div>} */}
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -94,9 +64,9 @@ const Search = () => {
           onChange={handleChange}
         />
       </form>
-
- 
-      {products.map((product, index) => {
+      
+{products.length ?  (
+      products.map((product, index) => {
         return (
           <>
            <div className="cardContainer">
@@ -121,7 +91,7 @@ const Search = () => {
             </div>
           </>
         );
-      })}
+      })) : (<><p>{error}</p></>)}
     </div>
   );
 }

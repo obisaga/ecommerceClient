@@ -39,8 +39,8 @@ const Login = () => {
     <div>
       <Navigation />
       {loading && <p>Loading...</p>}
-      {success }
-      {error && <p>Error: {error}</p>}
+      {/* {success } */}
+      {/* {error && <p>Error: {error}</p>} */}
 
       
       {!loading && !error && (
@@ -82,6 +82,8 @@ const Login = () => {
   
         </>
       )}
+
+      {error ? (<><p> {error.message} </p></>): null}
       <Info />
       <Footer />
     </div>

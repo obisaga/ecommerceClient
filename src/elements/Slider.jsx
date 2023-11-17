@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import "../styles/olgacarousel.css"
+import "../styles/slider.css"
 import axios from 'axios'
 import { NavLink } from "react-router-dom";
 
@@ -10,7 +10,7 @@ import { NavLink } from "react-router-dom";
 const responsive = {
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
-    items: 4,
+    items: 5,
     slidesToSlide: 1 // optional, default to 1.
   },
   tablet: {
@@ -82,7 +82,7 @@ const Slider = () => {
   return (
     <div className="parent">
 
-     <p>Recently Added</p>
+     <p>RECENTLY ADDED</p>
       <Carousel
         responsive={responsive}
         autoPlay={true}

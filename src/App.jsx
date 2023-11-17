@@ -10,8 +10,10 @@ import Contact from "./components/Contact";
 import AccountSettings from "./components/AccountSettings";
 import Checkout from "./components/Checkout";
 // import NotFound from "./components/NotFound";
-// import PublicRoutes from "./routes/PublicRoutes"
-// import PrivateRoutes from "./routes/PrivateRoutes"
+import PublicRoutes from "./routes/PublicRoutes"
+import PrivateRoutes from "./routes/PrivateRoutes"
+// import Newsletter from "./components/Newsletter";
+import "./App.css";
 
 
 function App() {
@@ -30,15 +32,11 @@ function App() {
           <Route path="/login" element={<Login />} /> 
       <Route path="/register" element={<Register />} />
       <Route path="/contact" element={<Contact />} /> 
+      {/* <Route path="/newsletter" element={<Newsletter />} />  */}
       <Route path="/account" element={<AccountSettings />} /> 
       <Route path="/checkout" element={<Checkout />} /> 
 
-         
-
-
-
       </Routes>
-
       </>
     
   );
