@@ -102,7 +102,7 @@ const Cart = (props) => {
         <div className='bottomButtons'>
           
           {/* <NavLink to="/home"> */}
-            <button className="proceedBtn" onClick={proceedCheck}> PROCEED TO CHECKOUT →</button>
+          <Link to="/checkout"><button className="proceedBtn" onClick={proceedCheck}> PROCEED TO CHECKOUT →</button></Link>
             {/* </NavLink> */}
         </div>
        </>

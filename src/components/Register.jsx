@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import "../styles/loginAndRegister.css"
 import Navigation from "../elements/Navigation";
 import Info from "../elements/Info";
@@ -64,6 +64,8 @@ const Register = () => {
     <div>
         <Navigation />
       <div>
+      <p>Already a member?  <Link to="/login">Login here</Link></p><br/>
+
         <form onSubmit={handleSubmit} className="loginForm">
           <p className="loginRegisterTitle">Registration</p>
 

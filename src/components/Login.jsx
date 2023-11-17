@@ -3,8 +3,9 @@ import "../styles/loginAndRegister.css";
 import Navigation from "../elements/Navigation";
 import Info from "../elements/Info";
 import Footer from "../elements/Footer";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { UserContext } from '../context/UserContext';
+
 
 
 const Login = () => {
@@ -18,14 +19,14 @@ const Login = () => {
       
     const {user, login} = useContext(UserContext);
       
-    useEffect(() => {
-      let timer = setTimeout(() => {
-        setShowElement(false);
-      }, 3500);
-      return () => {
-        clearTimeout(timer);
-      };
-    }, [showElement]);
+    // useEffect(() => {
+    //   let timer = setTimeout(() => {
+    //     setShowElement(false);
+    //   }, 1000);
+    //   return () => {
+    //     clearTimeout(timer);
+    //   };
+    // }, [showElement]);
 
     
     const handleSubmit = async (e) => {
@@ -38,19 +39,22 @@ const Login = () => {
     <div>
       <Navigation />
       {loading && <p>Loading...</p>}
-      {success && <p>{user.firstName} has successfully logged in </p>}
+      {success }
       {error && <p>Error: {error}</p>}
+
+      
       {!loading && !error && (
         <>
+        <p>Not a member yet?  <Link to="/register">Register here</Link></p><br/>
         <form onSubmit={handleSubmit} className="loginForm">
           <p className="loginRegisterTitle">Login</p>
-          {showElement ? (
+          {/* {showElement ? (
             <div class="popup">
               <p id="timer" class="popuptext">
-                {error}
+              Hi, {user.firstName}!
               </p>
             </div>
-          ) : null}
+          ) : null} */}
 
           <label className="loginLabel">Email:</label>
           <input

@@ -8,6 +8,7 @@ import Register from './components/Register'
 import SingleProduct from './components/SingleProduct'
 import Contact from "./components/Contact";
 import AccountSettings from "./components/AccountSettings";
+import Checkout from "./components/Checkout";
 // import NotFound from "./components/NotFound";
 // import PublicRoutes from "./routes/PublicRoutes"
 // import PrivateRoutes from "./routes/PrivateRoutes"
@@ -30,6 +31,8 @@ function App() {
       <Route path="/register" element={<Register />} />
       <Route path="/contact" element={<Contact />} /> 
       <Route path="/account" element={<AccountSettings />} /> 
+      <Route path="/checkout" element={<Checkout />} /> 
+
          
 
 

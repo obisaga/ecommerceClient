@@ -14,6 +14,8 @@ const CartProvider = ({ children }) => {
     const [numberofProducts, setNumberofProducts] = useState(0);
     const [totalPrice, setTotalPrice] = useState(0); 
     const [products, setProducts] = useState([]); 
+    const [orderCart, setOrderCart] = useState([]); 
+
 
     const cartCountingProducts = async () => {
         try {
@@ -72,6 +74,31 @@ const removeFromCart = async (idValue) => {
 };
 
 
+/// push cart to Orders
+
+const pushOrder = async () => {
+    // fetch data about the whole cart, cart = response from that fetch
+    const userId = user._id
+    console.log("PUSH ORDER", userId)
+    // const cart = products
+    // console.log("PUSH ORDER",cart)
+    // const payload = { userId, cart };
+    // console.log("PUSH ORDER",payload)
+    try {
+        const response = await axios.post(`http://localhost:3000/api/users/reserve/${user._id}`, {
+            headers: { 'Content-Type': 'application/json' }
+        });
+    console.log("order cart context", response)
+        
+    } catch (e) {
+        console.log(e.response.data)
+        setError(e.response.data);
+        
+    } finally {
+    }
+};
+
+
 useEffect(()=>{
     cartCountingProducts()
 }, [user])
@@ -83,7 +110,8 @@ useEffect(()=>{
     updateCartQuantity,
     cartCountingProducts,
     numberofProducts,
-    totalPrice
+    totalPrice,
+    pushOrder
   }     
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;

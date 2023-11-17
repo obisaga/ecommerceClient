@@ -36,7 +36,7 @@ const UserProvider= ({children}) => {
             setSuccess(true);
             setTimeout(() => {
                 navigate('/home');
-            }, 3000);
+            }, 500);
 
             } else {
                 console.log(response.status)

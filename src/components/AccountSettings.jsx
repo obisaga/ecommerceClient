@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import axios from 'axios'
 import { UserContext } from '../context/UserContext';
 import Navigation from "../elements/Navigation";
@@ -17,6 +17,8 @@ const AccountSettings = () => {
     const [success, setSuccess] = useState(false);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
+    const [orders, setOrders] = useState([])
+    const [images, setImages] = useState([])
 
     const handleEditClick = () => {
         setEditing(true);
@@ -50,6 +52,30 @@ const AccountSettings = () => {
     const handleLastNameChange = (event) => {
         setLastName(event.target.value);
     };
+
+
+    const findOrder = async () => {
+        try {
+          const response = await axios.get(`http://localhost:3000/api/orders/user/${user._id}`);
+          console.log(response.data);
+          if (response.status === 200){ 
+            console.log("Order found", response.data.products.map((product)=>product.productId.image))
+            setImages(response.data.products.map((product)=>product.productId.image))
+            setOrders(response.data)
+          } else {
+            console.log("Order not found", response.data)
+          }
+        } catch (err) {
+            console.log("Error",error)        
+        } finally {
+            }
+      };
+          
+      useEffect(() => {
+        findOrder();
+      }, [user]);
+      console.log(images)
+
 
     return (
         <div>
@@ -111,9 +137,35 @@ const AccountSettings = () => {
                 <button> SHOP </button>
             </NavLink>
             <hr />
-            <div>
+
+           
+
                 <h1>Order History</h1>
-            </div>
+ 
+                {orders ? (<>
+                <p>Order Number: {orders._id}</p> 
+                <p>Total Price: {orders.totalAmountPrice}</p> 
+                <p>Products: {orders.totalAmount}</p>
+                
+               {images.map((img,index) => {
+                    return (
+                      <div key={index}>
+                      <img src={img}></img>
+                      </div>
+                       
+                    );
+                  })
+                }
+                </> 
+                
+                ) 
+                
+                : (<><p>Orders not available</p></>)}
+                
+
+
+
+           
             <Info />
             <Footer />
         </div>
@@ -121,3 +173,5 @@ const AccountSettings = () => {
 };
 
 export default AccountSettings;
+
+
