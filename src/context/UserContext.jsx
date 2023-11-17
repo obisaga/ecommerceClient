@@ -87,7 +87,7 @@ const UserProvider= ({children}) => {
         }
     };
 
-            fetchUserData();
+fetchUserData();
 }, [token]);
 
   return (

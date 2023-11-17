@@ -66,11 +66,10 @@ const Cart = (props) => {
   return (
     <>
       <Navigation />
-      {/* <div> <button className="continueBtnTop" onClick={continueShop}> ← CONTINUE SHOPPING </button></div> */}
       {products.length ? (
         
        <>
-              <Link to="/shop"><div> <button className="continueBtnTop" onClick={continueShop}> ← CONTINUE SHOPPING </button></div></Link> 
+        <Link to="/shop"><div> <button className="continueBtnTop" onClick={continueShop}> ← CONTINUE SHOPPING </button></div></Link> 
 
          {products.map((product, index) => {
           return (
@@ -107,7 +106,8 @@ const Cart = (props) => {
             {/* </NavLink> */}
         </div>
        </>
-      ) : <><p>Your cart is empty</p>    <Link to="/shop"><button className="startShoppingBtn" onClick={continueShop}> ← START SHOPPING </button></Link></>}
+      ) : <>      <Link to="/shop"><div> <button className="continueBtnTop" onClick={continueShop}> ← START SHOPPING </button></div></Link> 
+      <p>Your Cart is Empty</p><br/><br/></>}
 
       <Info />
       <Footer />
