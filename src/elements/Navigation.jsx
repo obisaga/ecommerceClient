@@ -155,10 +155,10 @@ const Navigation = (props) => {
           <div className="dropdown">
             <NavLink to="/shop" className="dropbtn">SHOP</NavLink>
             <div className="dropdown-content">
-              <button onClick={()=>navigate(`/shop/rings`)}  className="navSecondBtn">RINGS</button>
-              <button onClick={()=>navigate(`/shop/earrings`)}className="navSecondBtn">EARRINGS</button>
-              <button onClick={()=>navigate(`/shop/bracelets`)} className="navSecondBtn">BRACELETS</button>
-              <button onClick={()=>navigate(`/shop/necklaces`)}  className="navSecondBtn">NECKLACES</button>
+              <button onClick={()=>navigate("/shop/rings")}  className="navSecondBtn">RINGS</button>
+              <button onClick={()=>navigate("/shop/earrings")}className="navSecondBtn">EARRINGS</button>
+              <button onClick={()=>navigate("/shop/bracelets")} className="navSecondBtn">BRACELETS</button>
+              <button onClick={()=>navigate("/shop/necklaces")}  className="navSecondBtn">NECKLACES</button>
 
             </div>
           </div>

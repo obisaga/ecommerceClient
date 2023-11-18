@@ -3,7 +3,7 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import "../styles/slider.css"
 import axios from 'axios'
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 
 
@@ -97,12 +97,12 @@ const Slider = () => {
           return (
             
                     
-        <NavLink
+        <Link
             className="link"
             key={index}
             to={`/products/${imageUrl._id}`}>
       <div className="slider" key={index}><img src={imageUrl.image} alt="products" /></div>
-      </NavLink>
+      </Link>
                     
           
           );

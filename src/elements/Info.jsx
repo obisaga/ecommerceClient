@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "../styles/info.css"
 
 const Info = () => {
@@ -8,19 +8,19 @@ const Info = () => {
       <section className="info">
         <section className="customer-service">
           <span className="title">CUSTOMER SERVICE</span>
-          <NavLink to="#"> FAQ </NavLink>
-          <NavLink to="#"> TERMS AND CONDITIONS </NavLink>
-          <NavLink to="#"> RETURNS AND SHIPPING </NavLink>
-          <NavLink to="#"> PRIVACY POLICY </NavLink>
-          <NavLink to="#"> COOKIES </NavLink>
+          <Link to="#"> FAQ </Link>
+          <Link to="#"> TERMS AND CONDITIONS </Link>
+          <Link to="#"> RETURNS AND SHIPPING </Link>
+          <Link to="#"> PRIVACY POLICY </Link>
+          <Link to="#"> COOKIES </Link>
         </section>
         <section className="about">
           <span className="title">ABOUT</span>
-          <NavLink to="#"> ABOUT US </NavLink>
-          <NavLink to="#"> CONTACT </NavLink>
+          <Link to="#"> ABOUT US </Link>
+          <Link to="#"> CONTACT </Link>
           <span className="info-icons">
-          <NavLink to="https://www.instagram.com/"> <i className="pi pi-instagram"></i> </NavLink>
-          <NavLink to="https://www.facebook.com/"> <i className="pi pi-facebook"></i> </NavLink>
+          <Link to="https://www.instagram.com/"> <i className="pi pi-instagram"></i> </Link>
+          <Link to="https://www.facebook.com/"> <i className="pi pi-facebook"></i> </Link>
           </span>
         </section>
         <section className="newsletter">

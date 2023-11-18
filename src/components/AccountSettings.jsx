@@ -4,7 +4,7 @@ import { UserContext } from '../context/UserContext';
 import Navigation from "../elements/Navigation";
 import Footer from "../elements/Footer";
 import "../styles/account.css"
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Info from "../elements/Info"
 
 
@@ -83,9 +83,9 @@ const AccountSettings = () => {
             {loading && <p>Loading...</p>}
             {success && <p>User updated successful!</p>}
             {error && <p>Error: {error}</p>}
-            <NavLink to="/shop">
+            <Link to="/shop">
                 <button className='continueBtn'> ← GO TO SHOP </button>
-            </NavLink>
+            </Link>
             <div className="titleParent"><h1>Account Settings</h1></div>
 
             <br />
@@ -133,9 +133,9 @@ const AccountSettings = () => {
                         <h3 className='not-available'>
                             User settings not available at the moment. Please come back later!
                         </h3>
-                        <NavLink to="/shop">
+                        <Link to="/shop">
                             <button className='continueBtn'> ← SHOP </button>
-                        </NavLink>
+                        </Link>
                     </>)
             }
            
