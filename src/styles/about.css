@@ -5,18 +5,19 @@
     flex-direction: row;
     align-items: center;
     background: #F5F2F0;
-    padding-left:5%;
+    padding-left:8%;
   }
 
   .about-us .aboutus-text{
     font-family: 'Playfair Display';
     text-align: justify;
     padding: 4em 4em;
-    width: 75%;
+    width: 72%;
     font-family: 'Playfair Display';
     font-weight: 500;
     font-style: italic;  
     padding-right:10%;
+    font-size: 1.3em;
   }
 
   .about-image{
