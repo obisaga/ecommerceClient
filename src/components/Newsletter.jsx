@@ -66,5 +66,24 @@
 
 // export default Newsletter
 
+import React from 'react'
+import Navigation from '../elements/Navigation'
+import Info from '../elements/Info'
+import Footer from '../elements/Footer'
+import "../styles/newsletter.css"
 
+const Newsletter = () => {
+  return (
+    <>
+     <Navigation />
+    <div className='news-container'>Newsletter coming soon!</div>
+    <Info />
+    <Footer />
+    
+    </>
+   
+  )
+}
+
+export default Newsletter
 

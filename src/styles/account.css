@@ -21,8 +21,6 @@ div .settings-container input{
 } 
 
 
-
-
 input{
     border-radius: 2%;
 }
@@ -56,6 +54,7 @@ button{
     margin: 8px;
 }
 
+
 .settings{
     display: flex;
     flex-direction:column;
@@ -79,6 +78,7 @@ button{
     box-shadow: 1px 2px black;
   }
 
+
  .editBtn:hover{
     background-color: #A6A093;
   }
@@ -91,7 +91,9 @@ button{
     margin-top: 1rem;
     margin-bottom: 0.5rem;
     padding-left: 8rem;
+    font-size: 0.8em;
  }
+ 
  .continueBtn:hover{
    background-color: white;
    text-decoration: underline;

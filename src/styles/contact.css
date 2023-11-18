@@ -1,5 +1,5 @@
 .contactContainer{
-    background-color: beige;
+    background-color: #F3EEEE;
     display:flex;
     justify-content: center;
     gap: 20%;
@@ -9,6 +9,7 @@
 
 .addressSection{
     align-self: center;
+    font-size: 1.2em;
 }
 .mapSection{
     object-fit: cover;

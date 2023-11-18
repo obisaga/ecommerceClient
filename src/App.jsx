@@ -12,7 +12,7 @@ import Checkout from "./components/Checkout";
 // import NotFound from "./components/NotFound";
 // import PublicRoutes from "./routes/PublicRoutes"
 // import PrivateRoutes from "./routes/PrivateRoutes"
-// import Newsletter from "./components/Newsletter";
+import Newsletter from "./components/Newsletter";
 import "./App.css";
 
 
@@ -31,7 +31,7 @@ function App() {
           <Route path="/login" element={<Login />}/>
           <Route path="/register" element={<Register />}/>
           {/* <Route path="/notfound" element={<NotFound />} /> */}
-          {/* <Route path="/newsletter" element={<Newsletter />} />  */}
+          <Route path="/newsletter" element={<Newsletter />} /> 
           {/* <Route path='*' element={<Navigate to={"/home"} />} /> */}
     
           <Route path="/account" element={<AccountSettings />} />
