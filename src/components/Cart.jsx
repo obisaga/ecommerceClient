@@ -74,7 +74,7 @@ const Cart = (props) => {
          {products.map((product, index) => {
           return (
             <div  key={index} className='cart-container'>
-            <div className="cartCheck">
+            <div className="cart">
             <img src={product.productId.image}></img>
             <p className="productTitle">{product.productId.title}</p>
             <p className="productColor">Color: {product.productId.color}</p>

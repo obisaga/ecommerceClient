@@ -54,7 +54,7 @@ console.log("Error", err)
               <img className="cartImg" src={product.productId.image}></img>
               <p className="productTitle">{product.productId.title}</p>
               <p className="productColor">Color: {product.productId.color}</p>
-              <p className="productPrice"> Amount: {product.quantity}</p>
+              <p className="productPrice"> Qty: {product.quantity}</p>
               <p className="productPrice">{product.productId.price} €</p>
             </div>
             <hr />
