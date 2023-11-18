@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 import Navigation from "../elements/Navigation";
 import Footer from "../elements/Footer";
 import * as ReactBootstrap from "react-bootstrap";
@@ -7,11 +7,15 @@ import Card from "react-bootstrap/Card";
 import axios from "axios";
 import { UserContext } from "../context/UserContext";
 import { CartContext } from "../context/CartContext";
+import { useNavigate } from "react-router-dom";
+
 
 import "../styles/singleproduct.css"
 
 
 const SingleProduct = (props) => {
+  const navigate = useNavigate();
+
   const [product, setProduct] = useState({});
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -44,6 +48,7 @@ const SingleProduct = (props) => {
         
       } finally {
         console.log("The end of function")
+        navigate(`/shop`);
       }
   }
   

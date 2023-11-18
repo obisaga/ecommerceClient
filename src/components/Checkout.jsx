@@ -6,6 +6,8 @@ import Info from "../elements/Info";
 import Footer from "../elements/Footer"
 import axios from 'axios';
 import "../styles/checkout.css"
+import {Link} from "react-router-dom"
+
 
 
 const Checkout = () => {
@@ -71,7 +73,7 @@ console.log("Error", err)
         <p>Products: {amounts.totalAmount}</p>
       </div>
 
-     <button className="confirmBtn" onClick={handleClick}>Confirm Order</button>
+      <Link to="/account"><button className="confirmBtn" onClick={handleClick}>Confirm Order</button></Link>
 
       </div>
     
