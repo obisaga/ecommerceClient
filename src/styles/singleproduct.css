@@ -1,3 +1,5 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;1,400;1,500&display=swap');
 .singleProductWrapper{
     display: flex;
     flex-direction: column;
@@ -11,4 +13,42 @@
 .productImg{
     width: 500px;
 
+}
+
+.singleProductWrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin: 6em;
+    padding: 2em 25em;
+   
+   
+}
+
+.productContainer{
+    width: 75%;
+  
+}
+
+.cardBody{
+    background-color: #F3EEEE;
+    font-family: "Montserrat";
+    font-size: 1.5em;
+}
+
+.cardTitle{
+    font-family: "Montserrat";
+    font-weight: 800;
+    font-size: 1.3em;
+    
+}
+
+.addToCart{
+    background-color:rgb(225, 206, 206);
+    margin-top: 2em;
+    font-size: 0.8em;
+    padding: 0.5em;
+    border-radius: 5%;
+    box-shadow: 1px 2px black;
 }
