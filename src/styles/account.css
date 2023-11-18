@@ -65,9 +65,36 @@ button{
 .orders{
     display: flex;
     flex-direction:column;
-    margin-left:10rem;  
+    /* margin-left:10rem;   */
     margin-bottom:5rem;
+    background-color: #F3EEEE;
+    padding-left: 2rem;
 }
+.orderDisplaySummary {
+    padding-top:2rem;
+    display:flex;
+    flex-direction: row;
+    gap: 2rem;
+}
+
+.productsDisplaySummary h6{
+    font-family: 'Montserrat';
+    font-size: 0.9rem;
+    }
+
+
+.productsDisplaySummary{
+    font-family: 'Montserrat';
+    display:flex;
+flex-direction: column;}
+
+.productImages{
+    display:flex;
+    flex-direction: row;
+    gap:3rem
+}
+
+
 
 .settingsBtns button{
     background-color:white;
@@ -102,4 +129,8 @@ button{
   
 
 
-
+.accountImg{
+    width:3rem;
+    height:3rem;
+    object-fit: cover
+}

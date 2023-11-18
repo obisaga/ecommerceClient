@@ -58,10 +58,15 @@ const AccountSettings = () => {
         try {
           const response = await axios.get(`http://localhost:3000/api/orders/user/${user._id}`);
           console.log(response.data);
+         
+         (console.log)
           if (response.status === 200){ 
-            console.log("Order found", response.data.products.map((product)=>product.productId.image))
-            setImages(response.data.products.map((product)=>product.productId.image))
+            // console.log("Order found", response.data.products.map((product)=>product.productId.image))
             setOrders(response.data)
+        //    setImages(response.data.products.map((product)=>product.productId.image))
+
+
+
           } else {
             console.log("Order not found", response.data)
           }
@@ -70,6 +75,8 @@ const AccountSettings = () => {
         } finally {
             }
       };
+
+      
           
       useEffect(() => {
         findOrder();
@@ -144,26 +151,33 @@ const AccountSettings = () => {
            
 
             <div className="titleParent"> <h1>Order History</h1></div>
- 
-                {orders ? (<div className="orders">
-                <p>Order Number: {orders._id}</p> 
-                <p>Total Price: {orders.totalAmountPrice}</p> 
-                <p>Products: {orders.totalAmount}</p>
+ {orders.length ? orders.map((order)=>(
+    <div className="orders">
+ <div className="orderDisplaySummary">
+    <p>Order Number: {order._id}</p> 
+    <p>Total Price: {order.totalAmountPrice}</p> 
+    <p>Number of products: {order.totalAmount}</p>
+</div>
+    <div className="productsDisplaySummary">
+        <div> <h6>Products</h6></div>
+   <div className="productImages">
+   {order.products.map((product, index) => {
+        return (
+          <div key={index}>
+          <img src={product.productId.image} className="accountImg"></img>
+          <p>{product.productId.title}</p>
+          </div>
+           
+        );
+      })
+    }
+    </div>
+    </div>
+    </div> 
+ )) 
+              
                 
-               {images.map((img,index) => {
-                    return (
-                      <div key={index}>
-                      <img src={img} style={{width:"100px"}}></img>
-                      </div>
-                       
-                    );
-                  })
-                }
-                </div> 
-                
-                ) 
-                
-                : (<><p>Orders not available</p></>)}
+                : (<><p>You don't have orders history</p></>)}
 
             <Info />
             <Footer />

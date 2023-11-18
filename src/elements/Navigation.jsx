@@ -66,9 +66,6 @@ const Navigation = (props) => {
     }
   };
 
-  // useEffect(() => {
-  //   filterProducts();
-  // }, []);
 
 
   const scrollToAboutSection = () => {

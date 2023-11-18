@@ -33,7 +33,7 @@ const ShopFilter = () => {
 
   useEffect(() => {
     fetchProducts();
-  }, []);
+  }, [filter]);
 
   const fireSearch = () => {
     setSearch(true)

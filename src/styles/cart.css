@@ -1,25 +1,42 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;1,400;1,500&display=swap');
 
-
-.cart-container{
+ 
+.cartContainerComponent{
    display: flex;
    flex-direction: column;
    justify-content: center;
-   align-items: flex-start;
+   align-items: center;
    background-color: #F3EEEE;
-   padding: 20px 30px;
-   margin: 4em 20em 0em 20em;
-}
+   margin-left: 10%;
+   margin-right: 10%;
+}  
 
-.cart-container p{
+.cartContainerComponent p{
    font-family: "Montserrat";
    font-size: 1em;
 }
 
  .cart button:hover{
-    background-color: bisque;
+    background-color: rgb(221, 192, 192);
  }
 
+ .cart{
+   display:flex;
+   justify-content: center;
+   align-content:center;
+   width:100%;
+   
+
+}
+
+.cart img{
+  width: 4rem;
+  height:5rem;
+  padding-top:1rem;
+  padding-left:1rem;
+  margin-left: 0.5em;
+  margin-right: 2em;
+}
  .continueBtnTop{
     border:none;
     background-color: white;
@@ -35,19 +52,7 @@
    text-decoration: underline;
  }
 
- .cart{
-    display:flex;
-    justify-content: center;
-    align-content:center;
-
- }
-
- .cart img{
-   width: 4rem;
-   height:5rem;
-   margin-left: 0.5em;
-   margin-right: 2em;
- }
+ 
 
  .productTitle {
    margin-left: 1.5em;
@@ -71,24 +76,36 @@
 }
 
  .cartQuantityButtons{
+   padding-top:1rem;
     display:flex;
     justify-content: center;
     align-items: center;
  }
  .cartQuantityButtons p{
-    padding-left: 2rem;
-    padding-right: 2rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
     padding-top: 1em;
+    font-size:0.8rem;
+    width:4rem;
  }
 
  .adjustmentBtn {
     width:2.5rem;
     height: 2.5rem
  }
+
+ 
  .deleteBtn {
+   width: 6rem;
     height: 3rem;
-    margin-left: 8rem
+    margin-left: 3rem;
+    margin-right: 1rem;
+
+
  }
+
+  
+
 
  .total-price{
     display: flex;

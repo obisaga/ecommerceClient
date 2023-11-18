@@ -10,14 +10,14 @@
 }
 
 
-.cart-container{
+.cartContainerCheckout{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
     background-color: #F3EEEE;
-    padding: 20px 30px;
-    margin: 4em 20em 0em 20em;
+    padding: 10px 10px;
+    margin: 0.1em 10em 0em 10em;
  }
 
 
@@ -27,8 +27,8 @@
     align-items: center;
     margin-top: 2rem;
     margin-bottom: 5rem;
-    margin-left: 85em;
-    margin-right: 5em;
+    margin-left: 70em;
+    margin-right: 10em;
     font-size: 0.9em;
     background-color: rgb(225, 206, 206); 
     padding: 1em;   
@@ -42,6 +42,12 @@
    margin-top: 1%;
 }
 
+.footParent{
+    display:flex;
+    flex-direction: column;
+    margin-right: 3rem;
+
+}
 
 
 

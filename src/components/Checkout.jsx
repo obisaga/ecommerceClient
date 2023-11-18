@@ -49,7 +49,7 @@ console.log("Error", err)
 
       {products.map((product, index) => {
         return (
-          <div key={index} className="cart-container">
+          <div key={index} className="cartContainerCheckout">
             <div className="cart">
               <img className="cartImg" src={product.productId.image}></img>
               <p className="productTitle">{product.productId.title}</p>
@@ -62,7 +62,7 @@ console.log("Error", err)
         );
       })}
 
-      <div>
+      <div className="footParent">
       <div className="total-price">
         <p>Total: {amounts.totalAmountPrice} </p>
         <p>€</p>
@@ -71,7 +71,7 @@ console.log("Error", err)
         <p>Products: {amounts.totalAmount}</p>
       </div>
 
-      <button className="confirmBtn" onClick={handleClick}>Confirm Order</button>
+     <button className="confirmBtn" onClick={handleClick}>Confirm Order</button>
 
       </div>
     
