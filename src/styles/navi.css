@@ -100,7 +100,6 @@ color: black;
 .links a { 
   margin: 0;
     padding: 1.5rem;
-    
     color: black;
     font-size: small;
     text-decoration: none;
@@ -123,7 +122,7 @@ color: black;
   .dropdown-content {
     display: none;
     position: absolute;
-    /* background-color: #black; */
+    background-color: whitesmoke;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
     z-index: 1;
