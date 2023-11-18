@@ -5,6 +5,7 @@ import Navigation from "../elements/Navigation";
 import Info from "../elements/Info";
 import Footer from "../elements/Footer"
 import axios from 'axios';
+import "../styles/checkout.css"
 
 
 const Checkout = () => {
@@ -40,45 +41,44 @@ console.log("Error", err)
       }, [user]);
 
   return (
-    <>
-    <Navigation />
-    <div>Order Summary</div>
+    <div>
+      <Navigation />
+      <div>
+        <h1 className="order-title">Order Summary</h1>
+      </div>
 
-
-    {products.map((product, index) => {
-          return (
-            <div  key={index}>
+      {products.map((product, index) => {
+        return (
+          <div key={index} className="cart-container">
             <div className="cart">
-            <img src={product.productId.image}></img>
-            <p>{product.productId.title}</p>
-            <p >Color: {product.productId.color}</p>
-            <p> Amount: {product.quantity}</p>
-            <p >{product.productId.price} €</p> 
-          
+              <img className="cartImg" src={product.productId.image}></img>
+              <p className="productTitle">{product.productId.title}</p>
+              <p className="productColor">Color: {product.productId.color}</p>
+              <p className="productPrice"> Amount: {product.quantity}</p>
+              <p className="productPrice">{product.productId.price} €</p>
             </div>
-             <hr/>
-             </div>
-          );
-        })
-      }
-      
-       <div className="total-price">
-          <p>Total: {amounts.totalAmountPrice} </p>
-          <p>€</p>
-                   
-        </div>
-        <div className="total-amount">
-          <p>Products: {amounts.totalAmount} </p>
-          
-                   
-        </div>
-    
+            <hr />
+          </div>
+        );
+      })}
 
-    <button className="confirmBtn"  onClick={handleClick}> Confirm </button>
-    <Info />
-    <Footer />
-    </>
-  )
+      <div>
+      <div className="total-price">
+        <p>Total: {amounts.totalAmountPrice} </p>
+        <p>€</p>
+      </div>
+      <div className="total-price">
+        <p>Products: {amounts.totalAmount}</p>
+      </div>
+
+      <button className="confirmBtn" onClick={handleClick}>Confirm Order</button>
+
+      </div>
+    
+      <Info />
+      <Footer />
+    </div>
+  );
 }
 
 export default Checkout

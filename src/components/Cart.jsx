@@ -73,12 +73,12 @@ const Cart = (props) => {
 
          {products.map((product, index) => {
           return (
-            <div  key={index}>
-            <div className="cart">
+            <div  key={index} className='cart-container'>
+            <div className="cartCheck">
             <img src={product.productId.image}></img>
-            <p>{product.productId.title}</p>
-            <p >Color: {product.productId.color}</p>
-            <p >{product.productId.price} €</p> 
+            <p className="productTitle">{product.productId.title}</p>
+            <p className="productColor">Color: {product.productId.color}</p>
+            <p className="productPrice">{product.productId.price} €</p> 
             <div className="cartQuantityButtons">
             <button className="adjustmentBtn" disabled={product.quantity === 1} onClick={() => removeOne(product.productId._id)}> - </button>
               <p>Qty: {product.quantity}</p>
@@ -86,13 +86,16 @@ const Cart = (props) => {
               <button className="deleteBtn" value={product.quantity} onClick={() => deleteItem(product.productId._id)}> Remove from Cart </button>
            </div>
             </div>
-             <hr/>
+            <hr/>
+            
              </div>
+            
           );
         })
       }
       
        <div className="total-price">
+      
           <p>Total: {totalPrice} </p>
           <p>€</p>
           

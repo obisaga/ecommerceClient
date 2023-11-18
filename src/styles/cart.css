@@ -1,154 +1,103 @@
-/* .cart-container{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background-color: rgb(245, 245, 232);
-    padding: 10px 20px;
-    margin-top: 70px;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;1,400;1,500&display=swap');
+
+
+.cart-container{
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: flex-start;
+   background-color: #F3EEEE;
+   padding: 20px 30px;
+   margin: 4em 20em 0em 20em;
 }
 
-.cart-wrapper{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    align-content: center;
-    padding: 5em;
+.cart-container p{
+   font-family: "Montserrat";
+   font-size: 1em;
 }
 
-.btn-delete{
-    height: fit-content;
-}
-
-.product-info{
-    display: flex;
-    gap: 1.4em;
-}
-
-.product-info .product-details{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.product-quantity{
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: 0.5em;
-}
-
-.btn-reduce{
-    border-radius: 20%;
-    cursor: pointer;
-}
-
-.btn-increase{
-    border-radius: 20%;
-    cursor: pointer;
-}
-
-.total-price{
-    display: flex;
-    justify-content: flex-end;
-    align-items: baseline;
-    gap: 3em;
-    padding-right: 170px;
-    padding-top: 20px;
-}
-
-.back-checkout-btn{
-    display: flex;
-    justify-content: space-around;
-    flex-direction: row;
-    margin-top: 3em;
-    margin-bottom: 3em;
-}
-
-.btn-back{
-    border: none;
-    color: black;
-    background-color: antiquewhite;
-    border-radius: 10px;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    width: 250px;
-}
-
-.checkout{
-    border: none;
-    color: black;
-    background-color: antiquewhite;
-    border-radius: 10px;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    width: 250px;
-}
-
-
-
-
-
-
-
- */
  .cart button:hover{
     background-color: bisque;
  }
+
  .continueBtnTop{
     border:none;
     background-color: white;
     margin-right: 80%;
     margin-top: 2rem;
-    margin-bottom: 4rem
+    margin-bottom: 4rem;
+    margin-left: 5em;
+    font-size: 0.9em;
  }
+
  .continueBtnTop:hover{
    background-color: white;
    text-decoration: underline;
-
  }
-
-
 
  .cart{
     display:flex;
-    justify-content: space-between;
+    justify-content: center;
+    align-content:center;
+
  }
 
  .cart img{
-width: 3rem;
-height:3rem
+   width: 4rem;
+   height:5rem;
+   margin-left: 0.5em;
+   margin-right: 2em;
  }
+
+ .productTitle {
+   margin-left: 1.5em;
+   margin-right: 0.5em;
+   padding-top: 2.3em;
+   width: 25rem;
+   font-weight: 600 !important;
+ }
+
+.productColor {
+   margin-left: 0.8em;
+   margin-right: 0.8em;
+   padding-top: 2.3em;
+   width: 10rem;
+}
+.productPrice {
+   margin-left: 0.5em;
+   margin-right: 2.5em;
+   padding-top: 2.3em;
+   width:5rem;
+}
 
  .cartQuantityButtons{
     display:flex;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
  }
  .cartQuantityButtons p{
     padding-left: 2rem;
     padding-right: 2rem;
+    padding-top: 1em;
  }
 
  .adjustmentBtn {
-    width:2rem;
-    height: 2rem
+    width:2.5rem;
+    height: 2.5rem
  }
  .deleteBtn {
-    height: 2rem;
-    margin-left: 2rem
+    height: 3rem;
+    margin-left: 8rem
  }
 
  .total-price{
     display: flex;
     justify-content: flex-end;
-   gap:1rem
+    margin-right: 19%;
+    margin-top: 3%;
+    gap:1rem;
+    font-weight: 400;
+    font-size: 1.5em;
  }
 
  .bottomButtons{
@@ -156,22 +105,28 @@ height:3rem
     justify-content: right;
     margin-top: 2rem;
     margin-bottom: 5rem;
+    margin-left: 5em;
+    margin-right: 5em;
+    font-size: 0.9em;
  }
 
 
  .proceedBtn{
     border:none;
     background-color: white;
-    
+    font-size: 0.9em;
+    margin-top: 2rem;
+    margin-bottom: 5rem;
+    margin-left: 5em;
+    margin-right: 5em; 
  }
+
  .proceedBtn:hover{
     background-color: white;
     text-decoration: underline;
-    
  }
 
  .startShoppingBtn{
-
     border:none;
     background-color: white;
     margin-right: 80%;
@@ -179,8 +134,7 @@ height:3rem
  }
  .startShoppingBtn:hover{
     background-color: white;
-      text-decoration: underline;
-     
+   text-decoration: underline;
    }
 
    .count{
@@ -190,9 +144,7 @@ height:3rem
       /* background-image: no-repeat center/80% url("https://upload.wikimedia.org/wikipedia/commons/c/c0/Location_dot_black.svg"); */
       background: no-repeat center url("https://raw.githubusercontent.com/obisaga/ecommerceImages/main/circle-fill-svgrepo-com.png");
      padding: 1.2rem 1.2rem 1.2rem 1.2rem;
-    
       background-size: 50%, 50%, 20%;;
-   
    }
    /* .pi pi-circle-fill{
      color:aqua !important;

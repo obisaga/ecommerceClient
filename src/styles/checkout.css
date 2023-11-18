@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;1,400;1,500&display=swap');
+
+
+.order-title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+
+.cart-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    background-color: #F3EEEE;
+    padding: 20px 30px;
+    margin: 4em 20em 0em 20em;
+ }
+
+
+.confirmBtn{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+    margin-bottom: 5rem;
+    margin-left: 85em;
+    margin-right: 5em;
+    font-size: 0.9em;
+    background-color: rgb(225, 206, 206); 
+    padding: 1em;   
+}
+     
+.confirmBtn:hover{
+    background-color: rgb(221, 192, 192);
+}
+
+.total-price{
+   margin-top: 1%;
+}
+
+
+
+
+

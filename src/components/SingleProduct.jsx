@@ -85,7 +85,7 @@ const SingleProduct = (props) => {
 
               <Card.Text className="color">Color: {product.color}</Card.Text>
               {/* <Card.Text className="size"><p>Sizes: {product.availability.map((product)=> <p>{product.size}  <button className="addToCart" onClick={findCart}>ADD TO CART</button></p>)}</p></Card.Text> */}
-              <Card.Text className="size">Sizes: {product.availability.map((product) => { product.size })}</Card.Text>
+              {/* <Card.Text className="size">Sizes: {product.availability.map((product) => { product.size })}</Card.Text> */}
 
               <Card.Text className="price">Price: {product.price} €</Card.Text>
               <button className="addToCart" onClick={() => findCart(product._id, 1)}>ADD TO CART</button>
