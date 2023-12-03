@@ -13,7 +13,7 @@ const UserProvider= ({children}) => {
 
     // const api_url = import.meta.env.VITE_BACKEND_URL;
 
-    const url = "http://localhost:3000"
+    const url = "https://ecommerce-server-hrcv.onrender.com"
 
     console.log('Token used in API request:', token);
 
@@ -68,7 +68,7 @@ const UserProvider= ({children}) => {
     const fetchUserData = async () => {
         // If there's a token set in the state, try to get the user data
         if (token) {
-            const url = "http://localhost:3000";
+            const url = "https://ecommerce-server-hrcv.onrender.com";
             try {
                 const response = await axios.get(`${url}/api/users/user`, {
                     headers: {

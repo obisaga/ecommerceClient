@@ -19,7 +19,7 @@ const Checkout = () => {
 
     const findOrder = async () => {
         try {
-          const response = await axios.get(`http://localhost:3000/api/cart/user/${user._id}`);
+          const response = await axios.get(`https://ecommerce-server-hrcv.onrender.com/api/cart/user/${user._id}`);
           console.log(response.data);
           if (response.status === 200){ 
             console.log("Order found", response.data)

@@ -19,7 +19,7 @@ const CartProvider = ({ children }) => {
 
     const cartCountingProducts = async () => {
         try {
-            const findCart = await axios.get(`http://localhost:3000/api/cart/user/${user._id}`)
+            const findCart = await axios.get(`https://ecommerce-server-hrcv.onrender.com/api/cart/user/${user._id}`)
            
            if(findCart){
             setNumberofProducts(findCart.data.totalAmount)
@@ -36,7 +36,7 @@ const CartProvider = ({ children }) => {
     //function to create a cart and add a product
     const addToCart = async (newCartData) => {
         console.log("getting into addToCart function", newCartData)
-        await axios.post("http://localhost:3000/api/cart", newCartData);
+        await axios.post("https://ecommerce-server-hrcv.onrender.com/api/cart", newCartData);
         await cartCountingProducts()
 
     };
@@ -56,7 +56,7 @@ const CartProvider = ({ children }) => {
         }
         
         //Update cart
-        await axios.put(`http://localhost:3000/api/cart/user/${user._id}/${productId}`, {newQuantity : updatedProducts});
+        await axios.put(`https://ecommerce-server-hrcv.onrender.com/api/cart/user/${user._id}/${productId}`, {newQuantity : updatedProducts});
         //Refresh price and quantity
         await cartCountingProducts()
         } catch (error) {
@@ -67,7 +67,7 @@ const CartProvider = ({ children }) => {
 
 const removeFromCart = async (idValue) => {
     console.log(idValue, "Cart found - Context")  
-    const updateQty = await axios.put(`http://localhost:3000/api/cart/user/${user._id}/remove/${idValue}`)
+    const updateQty = await axios.put(`https://ecommerce-server-hrcv.onrender.com/api/cart/user/${user._id}/remove/${idValue}`)
     await cartCountingProducts()
     console.log("Cart updated", updateQty)
 
@@ -85,7 +85,7 @@ const pushOrder = async () => {
     // const payload = { userId, cart };
     // console.log("PUSH ORDER",payload)
     try {
-        const response = await axios.post(`http://localhost:3000/api/users/reserve/${user._id}`, {
+        const response = await axios.post(`https://ecommerce-server-hrcv.onrender.com/api/users/reserve/${user._id}`, {
             headers: { 'Content-Type': 'application/json' }
         });
     console.log("order cart context", response)

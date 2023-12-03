@@ -19,7 +19,7 @@ const Search = () => {
       try {
         setLoading(true)
         setError("")
-        const response = await axios.get(`http://localhost:3000/api/products/search?categories=${input}`);
+        const response = await axios.get(`https://ecommerce-server-hrcv.onrender.com/api/products/search?categories=${input}`);
         console.log("Response data: ", response.data);
         setProducts(response.data);
   

@@ -27,7 +27,7 @@ const AccountSettings = () => {
     const handleSaveClick = async () => {
         // Send data to the database
         try {
-            const response = await axios.put(`http://localhost:3000/api/users/${user._id}`, {
+            const response = await axios.put(`https://ecommerce-server-hrcv.onrender.com/api/users/${user._id}`, {
                 firstName: name,
                 lastName: lastName,
             }, {
@@ -56,7 +56,7 @@ const AccountSettings = () => {
 
     const findOrder = async () => {
         try {
-          const response = await axios.get(`http://localhost:3000/api/orders/user/${user._id}`);
+          const response = await axios.get(`https://ecommerce-server-hrcv.onrender.com/api/orders/user/${user._id}`);
           console.log(response.data);
          
          (console.log)

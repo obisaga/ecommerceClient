@@ -26,7 +26,7 @@ const SingleProduct = (props) => {
   const findCart = async (productId, quantity) => {
     try {
       console.log("Finding user's cart...");
-      const url = `http://localhost:3000/api/cart/user/${user._id}`;
+      const url = `https://ecommerce-server-hrcv.onrender.com/api/cart/user/${user._id}`;
       await axios.get(url);
       await updateCartQuantity( product._id, 1)
     } catch (error) {
@@ -55,7 +55,7 @@ const SingleProduct = (props) => {
   const productFetch = async () => {
     try {
       setLoading(true);
-      const url = `http://localhost:3000/api/products/${id}`;
+      const url = `https://ecommerce-server-hrcv.onrender.com/api/products/${id}`;
       const response = await axios.get(url);
       setProduct(response.data);
     } catch (error) {

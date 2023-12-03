@@ -16,7 +16,7 @@ const Login = () => {
   
     const userLogin = async (credentials) => {
       try {
-        const url = "http://localhost:3000/api/auth/login";
+        const url = "https://ecommerce-server-hrcv.onrender.com/api/auth/login";
         const requestData = {
           method: "POST",
           headers: { "Content-Type": "application/json" },

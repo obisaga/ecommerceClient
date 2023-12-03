@@ -22,7 +22,7 @@ const ShopFilter = () => {
 
   const fetchProducts = async () => {
     try {
-        const response = await axios.get(`http://localhost:3000/api/products/filter/${filter}`);
+        const response = await axios.get(`https://ecommerce-server-hrcv.onrender.com/api/products/filter/${filter}`);
         console.log(response.data);
 
       setProducts(response.data);
