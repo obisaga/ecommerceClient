@@ -9,7 +9,7 @@ import "primeicons/primeicons.css";
 import { CartContext } from "../context/CartContext";
 import {Link} from "react-router-dom"
 
-const Cart = (props) => {
+const Cart = () => {
   const [emptyCart, setEmptyCart] = useState("")
   const { user } = useContext(UserContext);
   const [products, setProducts] = useState([]); 
@@ -110,7 +110,7 @@ const Cart = (props) => {
         </div>
        </>
       ) : <>      <Link to="/shop"><div> <button className="continueBtnTop" onClick={continueShop}> ← START SHOPPING </button></div></Link> 
-      <p>Your Cart is Empty</p><br/><br/></>}
+      <p className='cartEmptyMsg'>Your Cart is Empty</p><br/><br/></>}
 
       <Info />
       <Footer />

@@ -10,7 +10,7 @@ export const CartContext = createContext();
 
 // Create the ShopProvider component
 const CartProvider = ({ children }) => {
-    const { user } = useContext(UserContext);
+    const {fetchUserData, user } = useContext(UserContext);
     const [numberofProducts, setNumberofProducts] = useState(0);
     const [totalPrice, setTotalPrice] = useState(0); 
     const [products, setProducts] = useState([]); 
@@ -89,12 +89,18 @@ const pushOrder = async () => {
             headers: { 'Content-Type': 'application/json' }
         });
     console.log("order cart context", response)
-        
+    await fetchUserData();
+
     } catch (e) {
         console.log(e.response.data)
         setError(e.response.data);
         
     } finally {
+        const resetCart = await axios.delete(`https://ecommerce-server-hrcv.onrender.com/api/cart/user/${user._id}`, {
+            headers: { 'Content-Type': 'application/json' }
+        })
+        console.log("Cart set to null", resetCart)
+        setNumberofProducts(0)
     }
 };
 

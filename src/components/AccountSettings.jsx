@@ -56,6 +56,7 @@ const AccountSettings = () => {
 
     const findOrder = async () => {
         try {
+            setLoading(true)
           const response = await axios.get(`https://ecommerce-server-hrcv.onrender.com/api/orders/user/${user._id}`);
           console.log(response.data);
          
@@ -73,15 +74,19 @@ const AccountSettings = () => {
         } catch (err) {
             console.log("Error",error)        
         } finally {
-            }
+            setLoading(false)
+        }
       };
 
       
           
-      useEffect(() => {
+      useEffect( () => {
         findOrder();
       }, [user]);
-      console.log(images)
+
+
+
+          console.log(images)
 
 
     return (

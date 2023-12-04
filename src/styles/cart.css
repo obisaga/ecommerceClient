@@ -167,3 +167,10 @@
      color:aqua !important;
    } */
 
+   .cartEmptyMsg{
+      display: flex;
+      justify-content: center;
+      text-align: center;
+      font-size: 1.5em;
+      padding-bottom: 20%;
+   }

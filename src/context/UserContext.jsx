@@ -61,6 +61,31 @@ const UserProvider= ({children}) => {
         setToken(null)
         navigate("/home");
     }
+
+
+    const fetchUserData = async () => {
+        // If there's a token set in the state, try to get the user data
+        if (token) {
+            const url = "https://ecommerce-server-hrcv.onrender.com";
+            try {
+                const response = await axios.get(`${url}/api/users/user`, {
+                    headers: {
+                        'Authorization': `${token}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+                // Set the user data on successful response
+                console.log(response.data, "response context")
+                setUser(response.data);
+            } catch (e) {
+                console.error('Failed to fetch user data:', e);
+                 logout();
+                // Handle failure to fetch user data (e.g., by logging out the user)
+            }
+        }
+    };
+
+    
      
  // useEffect hook to load the user data on component mount
  useEffect(() => {
@@ -91,7 +116,7 @@ fetchUserData();
 }, [token]);
 
   return (
-    <UserContext.Provider value={{user, token, login, logout}}>{children}</UserContext.Provider>
+    <UserContext.Provider value={{user, token, login, logout, fetchUserData}}>{children}</UserContext.Provider>
   )
 }
 
