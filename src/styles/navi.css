@@ -11,8 +11,9 @@
   justify-content: space-around;
   align-content: center;
   padding-bottom: 1em;
-  width: 100%; /* Make it 100% wide */
+  width: 100%;
 }
+
 
 div .topNav {
     display: flex;
@@ -96,6 +97,7 @@ color: black;
 .links{
   margin-right:4rem;
 }
+
 
 .links a { 
   margin: 0;
